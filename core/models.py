@@ -264,7 +264,7 @@ class ChatMessage(models.Model):
 
 
 class UserEarnings(models.Model):
-    # user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='earnings')
     profit_per_hour = models.IntegerField(default=100) 
     last_claimed = models.DateTimeField(default=timezone.now)
     total_collected = models.IntegerField(default=0)
