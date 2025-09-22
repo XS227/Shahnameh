@@ -172,7 +172,7 @@ class Skin(models.Model):
 
 
 class Purchase(models.Model):
-    # user = models.ForeignKey(User, related_name='purchases', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, related_name='purchases', on_delete=models.CASCADE)
     skin = models.ForeignKey(Skin, related_name='purchases', on_delete=models.CASCADE)
     purchase_date = models.DateTimeField(auto_now_add=True)
 
