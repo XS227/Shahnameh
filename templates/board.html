@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>8 Puzzle Game</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        td {
+            width: 80px;
+            height: 80px;
+            text-align: center;
+            font-size: 24px;
+            border: 1px solid #333;
+            background-color: #f0f0f0;
+            cursor: pointer;
+        }
+        .empty {
+            background-color: #ddd;
+            cursor: default;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .win-message {
+            color: green;
+            font-weight: bold;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <h1>8 Puzzle Game</h1>
+
+    {% if win %}
+        <div class="win-message">🎉 You Win! 🎉</div>
+    {% endif %}
+
+    <table>
+        {% for row in board %}
+            <tr>
+                {% for cell in row %}
+                    <td
+                        {% if cell == None %} class="empty" {% endif %}
+                        onclick="location.href='/api/move/{{ forloop.parentloop.counter0 }}/{{ forloop.counter0 }}/'">
+                        {{ cell|default:"" }}
+                    </td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    <form action="/api/reset/" method="post">
+        {% csrf_token %}
+        <button type="submit">Reset Game</button>
+    </form>
+</body>
+</html>
