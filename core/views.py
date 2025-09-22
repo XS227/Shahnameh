@@ -273,15 +273,22 @@ class SettingsAPIView(APIView):
 
 
 class ClaimProfitView(APIView):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
+
+    def _get_user_earnings(self, user):
+        earnings, _ = models.UserEarnings.objects.get_or_create(
+            user=user,
+            defaults={"last_claimed": timezone.now()},
+        )
+        return earnings
 
     def get(self, request):
-        earnings = models.UserEarnings.objects.get(id=1)
+        earnings = self._get_user_earnings(request.user)
         pending = earnings.calculate_pending_profit()
         return Response({"pending_profit": pending})
 
     def post(self, request):
-        earnings = models.UserEarnings.objects.get(user=1)
+        earnings = self._get_user_earnings(request.user)
         claimed = earnings.claim_profit()
         return Response({"claimed": claimed, "total_collected": earnings.total_collected})
     
