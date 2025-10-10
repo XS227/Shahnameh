@@ -37,11 +37,27 @@
     </ul>
 </section>
 <section>
+    <h3 data-i18n-en="Repository timeline" data-i18n-fa="خط زمانی مخزن">Repository timeline</h3>
+    <ol>
+        {% for milestone in repository_timeline %}
+        <li data-i18n-en="{{ milestone.text }}" data-i18n-fa="{{ milestone.text_fa }}">{{ milestone.text }}</li>
+        {% endfor %}
+    </ol>
+</section>
+<section>
     <h3 data-i18n-en="Useful links" data-i18n-fa="پیوندهای مفید">Useful links</h3>
     <ul>
         <li><a href="https://github.com/Shahnameh-TON" class="external" target="_blank" rel="noopener" data-i18n-en="Legacy GitHub organisation" data-i18n-fa="سازمان گیت‌هاب قدیمی">Legacy GitHub organisation</a></li>
         <li><a href="/api/" class="external" data-i18n-en="Live API explorer" data-i18n-fa="مرورگر زنده API">Live API explorer</a></li>
         <li><a href="{% url 'whitepaper' %}" data-i18n-en="Whitepaper digest" data-i18n-fa="چکیده وایت‌پیپر">Whitepaper digest</a></li>
+    </ul>
+</section>
+<section>
+    <h3 data-i18n-en="Handoff resources" data-i18n-fa="منابع انتقال">Handoff resources</h3>
+    <ul>
+        {% for resource in handoff_resources %}
+        <li data-i18n-en="{{ resource.text }}" data-i18n-fa="{{ resource.text_fa }}">{{ resource.text }}</li>
+        {% endfor %}
     </ul>
 </section>
 {% endblock %}
