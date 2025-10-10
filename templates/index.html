@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Vazirmatn:wght@400;500;700&display=swap"
         rel="stylesheet"
     />
     <style>
@@ -132,6 +132,42 @@
             box-shadow: none;
             backdrop-filter: blur(10px);
             background-color: rgba(8, 11, 27, 0.35);
+        }
+
+        .language-switcher {
+            position: absolute;
+            top: clamp(1rem, 4vw, 2.5rem);
+            right: clamp(1rem, 4vw, 3rem);
+            display: inline-flex;
+            gap: 0.5rem;
+            background: rgba(8, 11, 27, 0.55);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            border-radius: 999px;
+            padding: 0.35rem;
+            backdrop-filter: blur(12px);
+            z-index: 3;
+        }
+
+        .language-button {
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-weight: 600;
+            padding: 0.45rem 0.95rem;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: background-color 150ms ease, color 150ms ease, transform 150ms ease;
+        }
+
+        .language-button:hover,
+        .language-button:focus-visible {
+            color: var(--text);
+            transform: translateY(-1px);
+        }
+
+        .language-button.active {
+            background: var(--secondary);
+            color: #020617;
         }
 
         .button:hover,
@@ -285,6 +321,201 @@
 
         .mission-copy strong {
             color: var(--secondary);
+        }
+
+        .reeal-section {
+            position: relative;
+            padding: clamp(3rem, 6vw, 5rem) 0;
+        }
+
+        .reeal-header {
+            max-width: 72ch;
+            margin: 0 auto clamp(2rem, 5vw, 3rem);
+            text-align: center;
+        }
+
+        .reeal-header p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .reeal-grid {
+            display: grid;
+            gap: clamp(1.5rem, 4vw, 2.5rem);
+        }
+
+        @media (min-width: 960px) {
+            .reeal-grid {
+                grid-template-columns: 1.1fr 0.9fr;
+                align-items: stretch;
+            }
+        }
+
+        .reeal-card {
+            background: rgba(9, 12, 28, 0.78);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 28px;
+            padding: clamp(1.8rem, 4vw, 2.6rem);
+            box-shadow: 0 22px 50px -28px rgba(7, 10, 28, 0.9);
+            backdrop-filter: blur(16px);
+        }
+
+        .reeal-card h3 {
+            margin: 0 0 1.2rem;
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.4rem;
+            color: var(--highlight);
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            color: var(--text);
+        }
+
+        .price-table thead th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.08em;
+            color: rgba(248, 250, 252, 0.6);
+            padding-bottom: 0.75rem;
+        }
+
+        .price-table tbody tr {
+            border-block: 1px solid rgba(148, 163, 184, 0.12);
+        }
+
+        .price-table tbody tr:first-child {
+            border-top: none;
+        }
+
+        .price-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .price-table td {
+            padding: 0.85rem 0;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .price-table td strong {
+            color: var(--text);
+        }
+
+        .price-table td span {
+            display: block;
+            font-size: 0.8rem;
+            color: rgba(248, 250, 252, 0.6);
+        }
+
+        .chart-card {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .chart-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .chart-toolbar strong {
+            font-size: 1rem;
+            color: var(--text);
+        }
+
+        .chart-toolbar span {
+            color: rgba(248, 250, 252, 0.6);
+            font-size: 0.85rem;
+        }
+
+        .chart-tabs {
+            display: inline-flex;
+            background: rgba(8, 11, 27, 0.55);
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            overflow: hidden;
+        }
+
+        .chart-tab {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: rgba(248, 250, 252, 0.6);
+        }
+
+        .chart-tab.active {
+            color: #020617;
+            background: var(--secondary);
+        }
+
+        .chart-note {
+            font-size: 0.85rem;
+            color: rgba(248, 250, 252, 0.6);
+            line-height: 1.6;
+        }
+
+        .community-section {
+            padding: clamp(3rem, 6vw, 5rem) 0;
+            background: linear-gradient(180deg, rgba(12, 9, 28, 0.88), rgba(8, 10, 26, 0.92));
+            border-block: 1px solid rgba(56, 189, 248, 0.1);
+        }
+
+        .community-section .section-inner {
+            text-align: center;
+        }
+
+        .community-intro {
+            max-width: 70ch;
+            margin: 0 auto clamp(2rem, 5vw, 3rem);
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.6rem;
+            padding: 1rem 1.2rem;
+            border-radius: 18px;
+            background: rgba(8, 11, 27, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 150ms ease, box-shadow 200ms ease, border-color 150ms ease;
+        }
+
+        .social-link:hover,
+        .social-link:focus-visible {
+            transform: translateY(-3px);
+            border-color: var(--secondary);
+            box-shadow: 0 18px 40px -20px rgba(56, 189, 248, 0.75);
+        }
+
+        .social-icon {
+            display: inline-flex;
+            width: 1.6rem;
+            height: 1.6rem;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(56, 189, 248, 0.2);
+            color: var(--secondary);
+            font-size: 0.95rem;
         }
 
         .countdown-panel {
@@ -464,6 +695,56 @@
             color: var(--highlight);
         }
 
+        body[dir='rtl'] {
+            font-family: 'Vazirmatn', 'Baloo 2', 'Segoe UI', system-ui, sans-serif;
+        }
+
+        body[dir='rtl'] .hero {
+            direction: rtl;
+        }
+
+        body[dir='rtl'] .hero-copy,
+        body[dir='rtl'] .hero-card,
+        body[dir='rtl'] .transparency-header,
+        body[dir='rtl'] .mission-copy,
+        body[dir='rtl'] .countdown-panel,
+        body[dir='rtl'] .section-title,
+        body[dir='rtl'] .feature-card,
+        body[dir='rtl'] .intel-header,
+        body[dir='rtl'] .reeal-header,
+        body[dir='rtl'] .chart-toolbar,
+        body[dir='rtl'] .community-section .section-inner,
+        body[dir='rtl'] footer {
+            text-align: right;
+        }
+
+        body[dir='rtl'] .language-switcher {
+            right: auto;
+            left: clamp(1rem, 4vw, 3rem);
+        }
+
+        body[dir='rtl'] .cta-row {
+            justify-content: flex-end;
+        }
+
+        body[dir='rtl'] .feature-card ul {
+            padding-left: 0;
+            padding-right: 1.1rem;
+        }
+
+        body[dir='rtl'] .timeline-step {
+            padding: 1.6rem 3.2rem 1.6rem 1.6rem;
+        }
+
+        body[dir='rtl'] .timeline-step::before {
+            left: auto;
+            right: 1.1rem;
+        }
+
+        body[dir='rtl'] .social-link {
+            flex-direction: row-reverse;
+        }
+
         .intel-section {
             position: relative;
             margin: 4.5rem auto;
@@ -629,8 +910,14 @@
 </head>
 <body>
     <header>
+        <div class="language-switcher" role="group" aria-label="Language toggle">
+            <button class="language-button active" type="button" data-lang="en">EN</button>
+            <button class="language-button" type="button" data-lang="fa">فا</button>
+        </div>
         <div class="hero">
             <div class="hero-copy">
+                <h1 data-i18n="hero.title">Forge Legends on the Shahnameh Frontier</h1>
+                <p data-i18n="hero.lead" data-i18n-format="html">
                 <h1>Forge Legends on the Shahnameh Frontier</h1>
                 <p>
                     Rally your guild, grow the kingdom and chart a path through the myths of ancient Persia.
@@ -641,7 +928,7 @@
                     the <strong>third Editors' Choice</strong> during our first phase, Shahnameh Game blends playful strategy with
                     Web3 stewardship so every decision leaves a mark on the eternal chronicle.
                 </p>
-                <p>
+                <p data-i18n="hero.mission" data-i18n-format="html">
                     <strong>We are set on revolutionising the national economy of Iran through the gaming industry</strong>,
                     creating equitable rails where player creativity, culture and capital compound for communities at
                     home and across the diaspora.
@@ -652,15 +939,17 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 6.75h.008v.008H11.25V6.75zM11.25 9h.008v.008H11.25V9zm0 2.25h.008v.008H11.25V11.25zm0 2.25h.008v.008H11.25V13.5zm0 2.25h.008v.008H11.25V15.75zm0 2.25h.008v.008H11.25V18zm2.25-11.25h.008v.008H13.5V6.75zm0 2.25h.008v.008H13.5V9zm0 2.25h.008v.008H13.5V11.25zm0 2.25h.008v.008H13.5V13.5zm0 2.25h.008v.008H13.5V15.75zm0 2.25h.008v.008H13.5V18zm2.25-11.25h.008v.008H15.75V6.75zm0 2.25h.008v.008H15.75V9zm0 2.25h.008v.008H15.75V11.25zm0 2.25h.008v.008H15.75V13.5zm0 2.25h.008v.008H15.75V15.75zm0 2.25h.008v.008H15.75V18z" />
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l.72-.72a1.5 1.5 0 011.06-.44h7.5A1.5 1.5 0 0117.5 7.5v9a1.5 1.5 0 01-1.5 1.5h-7.5a1.5 1.5 0 01-1.5-1.5V7.5z" />
                         </svg>
-                        Explore the API
+                        <span data-i18n="hero.cta.primary" data-i18n-format="text">Explore the API</span>
                     </a>
-                    <a class="button secondary" href="{% url 'whitepaper' %}">Read the Whitepaper</a>
+                    <a class="button secondary" href="{% url 'whitepaper' %}">
+                        <span data-i18n="hero.cta.secondary" data-i18n-format="text">Read the Whitepaper</span>
+                    </a>
                 </div>
             </div>
             <div class="hero-visual">
                 <div class="hero-card">
-                    <h2>Story Season 2: Dawn of the Simurgh</h2>
-                    <p>
+                    <h2 data-i18n="hero.card.title">Story Season 2: Dawn of the Simurgh</h2>
+                    <p data-i18n="hero.card.body">
                         Chart expeditions, tame mythical familiars and unlock cooperative quests to rebuild the House of Knowledge.
                         Every completed saga reshapes the shared roadmap.
                     </p>
@@ -747,55 +1036,62 @@
     <section class="transparency-section">
         <div class="section-inner">
             <div class="transparency-header">
-                <h2 class="section-title">Token Transparency, Front and Centre</h2>
-                <p>
+                <h2 class="section-title" data-i18n="transparency.title">Token Transparency, Front and Centre</h2>
+                <p data-i18n="transparency.lead">
                     Every explorer can audit the heart of the Shahnameh treasury in real time. Track live price action,
                     unique holder momentum and the liquidity securing our adventures without leaving the landing page.
                 </p>
             </div>
             <div class="transparency-grid">
                 <article class="transparency-card">
-                    <h3>Current TON Price</h3>
+                    <h3 data-i18n="transparency.cards.price">Current TON Price</h3>
                     <p class="transparency-value" data-ton-price>$--</p>
                     <p class="transparency-note">
-                        24h Change:
+                        <span data-i18n="transparency.cards.change">24h Change:</span>
                         <span class="intel-badge" data-ton-change>--%</span>
                     </p>
                 </article>
                 <article class="transparency-card">
-                    <h3>Holder Accounts</h3>
+                    <h3 data-i18n="transparency.cards.holders">Holder Accounts</h3>
                     <p class="transparency-value" data-ton-holders>--</p>
-                    <p class="transparency-note" data-ton-holders-note>Awaiting holder telemetry…</p>
+                    <p
+                        class="transparency-note"
+                        data-ton-holders-note
+                        data-i18n="transparency.cards.holdersNote"
+                        data-i18n-dynamic="true"
+                    >
+                        Awaiting holder telemetry…
+                    </p>
                 </article>
                 <article class="transparency-card">
-                    <h3>Liquidity Depth</h3>
+                    <h3 data-i18n="transparency.cards.liquidity">Liquidity Depth</h3>
                     <p class="transparency-value" data-ton-liquidity data-format="raw">$--</p>
-                    <p class="transparency-note">Aggregated across major TON pools and refreshed continuously.</p>
+                    <p class="transparency-note" data-i18n="transparency.cards.liquidityNote">Aggregated across major TON pools and refreshed continuously.</p>
                 </article>
             </div>
-            <p class="mission-copy">
+            <p class="mission-copy" data-i18n="mission.statement" data-i18n-format="html">
                 Our mission is bold: empower Iranian creators and players with regenerative, decentralised economics that
                 funnel new prosperity into local studios, guilds and storytellers. <strong>Transparent tokenomics is the
                 bedrock of that revolution.</strong>
             </p>
             <div class="countdown-panel" aria-live="polite">
-                <h3>Countdown to the Next Shahnameh Season</h3>
+                <h3 data-i18n="countdown.title">Countdown to the Next Shahnameh Season</h3>
                 <div class="countdown-grid">
                     <div class="countdown-cell">
                         <span class="countdown-value" data-countdown-days>--</span>
-                        <span class="countdown-label">Days</span>
+                        <span class="countdown-label" data-i18n="countdown.days">Days</span>
                     </div>
                     <div class="countdown-cell">
                         <span class="countdown-value" data-countdown-hours>--</span>
-                        <span class="countdown-label">Hours</span>
+                        <span class="countdown-label" data-i18n="countdown.hours">Hours</span>
                     </div>
                     <div class="countdown-cell">
                         <span class="countdown-value" data-countdown-minutes>--</span>
-                        <span class="countdown-label">Minutes</span>
+                        <span class="countdown-label" data-i18n="countdown.minutes">Minutes</span>
                     </div>
                     <div class="countdown-cell">
                         <span class="countdown-value" data-countdown-seconds>--</span>
-                        <span class="countdown-label">Seconds</span>
+                        <span class="countdown-label" data-i18n="countdown.seconds">Seconds</span>
                     </div>
                 </div>
                 <p class="transparency-note" style="margin-top: 1.5rem;" data-countdown-message>
@@ -807,25 +1103,25 @@
 
     <section>
         <div class="section-inner">
-            <h2 class="section-title">Why the Chronicle Matters</h2>
+            <h2 class="section-title" data-i18n="chronicle.title">Why the Chronicle Matters</h2>
             <div class="feature-grid">
                 <article class="feature-card">
-                    <h3>Living Lore</h3>
-                    <p>
+                    <h3 data-i18n="chronicle.cards.lore">Living Lore</h3>
+                    <p data-i18n="chronicle.cards.loreBody">
                         Weekly chapters ripple across the realm, introducing fresh objectives and collaborative twists
                         inspired by Ferdowsi's timeless poetry.
                     </p>
                 </article>
                 <article class="feature-card">
-                    <h3>Player-Governed Economy</h3>
-                    <p>
+                    <h3 data-i18n="chronicle.cards.economy">Player-Governed Economy</h3>
+                    <p data-i18n="chronicle.cards.economyBody">
                         Guild councils steward resources, vote on upgrades and set tribute paths that weave on-chain governance
                         with narrative stakes.
                     </p>
                 </article>
                 <article class="feature-card">
-                    <h3>Adventures for Every Hero</h3>
-                    <p>
+                    <h3 data-i18n="chronicle.cards.adventure">Adventures for Every Hero</h3>
+                    <p data-i18n="chronicle.cards.adventureBody">
                         From puzzle raids to social quests, the Shahnameh frontier rewards storytellers, strategists and
                         lorekeepers alike.
                     </p>
@@ -837,39 +1133,67 @@
     <section class="intel-section">
         <div class="section-inner">
             <div class="intel-header">
-                <h2>Live TON Intelligence</h2>
-                <p>
+                <h2 data-i18n="intel.title">Live TON Intelligence</h2>
+                <p data-i18n="intel.lead">
                     Stay nimble with on-chain telemetry. We surface token price swings, liquidity health and due diligence
                     sentiment directly from TonAPI and DYOR so guild treasurers can react in real time.
                 </p>
             </div>
             <div class="intel-grid" id="intel-grid">
                 <article class="intel-card" id="ton-price-card">
-                    <h3>TON Price</h3>
+                    <h3 data-i18n="intel.cards.price">TON Price</h3>
                     <div class="intel-value" data-ton-price>$--</div>
                     <div class="intel-metric">
-                        24h Change:
+                        <span data-i18n="intel.cards.change">24h Change:</span>
                         <span class="intel-badge" data-ton-change>--%</span>
                     </div>
-                    <p class="intel-metric" data-ton-liquidity>Liquidity data loading…</p>
+                    <p
+                        class="intel-metric"
+                        data-ton-liquidity
+                        data-i18n="intel.cards.liquidityNote"
+                        data-i18n-dynamic="true"
+                    >
+                        Liquidity data loading…
+                    </p>
                 </article>
                 <article class="intel-card" id="dyor-health-card">
-                    <h3>DYOR Project Pulse</h3>
+                    <h3 data-i18n="intel.cards.dyor">DYOR Project Pulse</h3>
                     <div class="intel-value" data-dyor-score>--%</div>
-                    <div class="intel-metric" data-dyor-tier>Awaiting DYOR audit tiers…</div>
-                    <p class="intel-metric" data-dyor-updated>Refreshing insights…</p>
+                    <div
+                        class="intel-metric"
+                        data-dyor-tier
+                        data-i18n="intel.cards.dyorTier"
+                        data-i18n-dynamic="true"
+                    >
+                        Awaiting DYOR audit tiers…
+                    </div>
+                    <p
+                        class="intel-metric"
+                        data-dyor-updated
+                        data-i18n="intel.cards.dyorUpdated"
+                        data-i18n-dynamic="true"
+                    >
+                        Refreshing insights…
+                    </p>
                 </article>
                 <article class="intel-card" id="content-share-card">
-                    <h3>Content Contribution</h3>
+                    <h3 data-i18n="intel.cards.content">Content Contribution</h3>
                     <div class="intel-value" data-content-share>--%</div>
                     <div class="intel-metric">
-                        Verified Contributors:
+                        <span data-i18n="intel.cards.contributors">Verified Contributors:</span>
                         <span class="intel-badge" data-contributors>--</span>
                     </div>
-                    <p class="intel-metric" data-content-note>Syncing community dashboards…</p>
+                    <p
+                        class="intel-metric"
+                        data-content-note
+                        data-i18n="intel.cards.contentNote"
+                        data-i18n-dynamic="true"
+                    >
+                        Syncing community dashboards…
+                    </p>
                 </article>
             </div>
-            <p class="intel-footer" id="intel-footer">
+            <p class="intel-footer" id="intel-footer" data-i18n="intel.footer" data-i18n-format="html">
                 Data updates every few minutes straight from
                 <a href="https://tonapi.io/" target="_blank" rel="noreferrer">TonAPI</a>
                 and
@@ -878,27 +1202,105 @@
         </div>
     </section>
 
+    <section class="reeal-section">
+        <div class="section-inner">
+            <div class="reeal-header">
+                <h2 class="section-title" data-i18n="reeal.title">REEAL Token Market Pulse</h2>
+                <p data-i18n="reeal.lead">
+                    Track how the REEAL treasury token performs across global markets and visualise seven-day price action in one glance.
+                </p>
+            </div>
+            <div class="reeal-grid">
+                <article class="reeal-card">
+                    <h3 data-i18n="reeal.table.title">Global Price Board</h3>
+                    <table class="price-table">
+                        <thead>
+                            <tr>
+                                <th data-i18n="reeal.table.pair">Pair</th>
+                                <th data-i18n="reeal.table.market">Market</th>
+                                <th data-i18n="reeal.table.price">Price</th>
+                            </tr>
+                        </thead>
+                        <tbody data-reeal-table></tbody>
+                    </table>
+                </article>
+                <article class="reeal-card chart-card">
+                    <div class="chart-toolbar">
+                        <div>
+                            <strong data-i18n="reeal.chart.title">REEAL / USD</strong>
+                            <span data-i18n="reeal.chart.subtitle">Seven day snapshot</span>
+                        </div>
+                        <div class="chart-tabs" aria-hidden="true">
+                            <span class="chart-tab active" data-i18n="reeal.chart.tab.price">Price</span>
+                            <span class="chart-tab" data-i18n="reeal.chart.tab.liquidity">Liquidity</span>
+                            <span class="chart-tab" data-i18n="reeal.chart.tab.tradingview">TradingView</span>
+                            <span class="chart-tab" data-i18n="reeal.chart.tab.currency">USD</span>
+                        </div>
+                    </div>
+                    <canvas id="reeal-price-chart" height="220" role="img" aria-label="REEAL token price chart"></canvas>
+                    <p class="chart-note" data-i18n="reeal.chart.note" data-i18n-format="html">
+                        The REEAL to USD chart is designed for users to instantly see the changes that occur on the market and predicts what will come next.
+                        <a href="https://dyor.io" target="_blank" rel="noreferrer">Get this data with DYOR TON API</a>.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
     <section>
         <div class="section-inner">
-            <h2 class="section-title">Embark on the Path</h2>
+            <h2 class="section-title" data-i18n="timeline.title">Embark on the Path</h2>
             <div class="timeline">
-                <div class="timeline-step" data-step="1">
+                <div class="timeline-step" data-step="1" data-i18n="timeline.step1">
                     Choose your guild banner, rally companions and claim your district in the Citadel of Tales.
                 </div>
-                <div class="timeline-step" data-step="2">
+                <div class="timeline-step" data-step="2" data-i18n="timeline.step2">
                     Complete seasonal quests, unravel riddles from ancient spirits and unlock shared boons for the community.
                 </div>
-                <div class="timeline-step" data-step="3">
+                <div class="timeline-step" data-step="3" data-i18n="timeline.step3">
                     Chronicle your victories on-chain to leave an enduring legacy in the ever-expanding Shahnameh codex.
                 </div>
             </div>
         </div>
     </section>
 
+    <section class="community-section">
+        <div class="section-inner">
+            <h2 class="section-title" data-i18n="community.title">Join the Shahnameh Community</h2>
+            <p class="community-intro" data-i18n="community.lead">
+                Follow us across social channels to receive launch alerts, lore reveals and economy briefings first.
+            </p>
+            <div class="social-grid">
+                <a class="social-link" href="https://t.me/Shahnameh_bot" target="_blank" rel="noreferrer">
+                    <span class="social-icon" aria-hidden="true">🤖</span>
+                    <span data-i18n="community.links.bot">Telegram Bot</span>
+                </a>
+                <a class="social-link" href="https://www.youtube.com/@Shahnamehgamefi/" target="_blank" rel="noreferrer">
+                    <span class="social-icon" aria-hidden="true">▶️</span>
+                    <span data-i18n="community.links.youtube">YouTube Channel</span>
+                </a>
+                <a class="social-link" href="https://t.me/Shahnameh_news" target="_blank" rel="noreferrer">
+                    <span class="social-icon" aria-hidden="true">🗞️</span>
+                    <span data-i18n="community.links.news">Telegram News</span>
+                </a>
+                <a class="social-link" href="https://www.instagram.com/ShahnamehGameFi" target="_blank" rel="noreferrer">
+                    <span class="social-icon" aria-hidden="true">📸</span>
+                    <span data-i18n="community.links.instagram">Instagram</span>
+                </a>
+                <a class="social-link" href="https://x.com/ShahnamehGameFi" target="_blank" rel="noreferrer">
+                    <span class="social-icon" aria-hidden="true">𝕏</span>
+                    <span data-i18n="community.links.x">X (Twitter)</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
     <footer>
-        Crafted by the Shahnameh core team · Dive deeper on <a href="{% url 'legacy-overview' %}">our knowledge base</a>
+        <span data-i18n="footer.credit">Crafted by the Shahnameh core team · Dive deeper on</span>
+        <a href="https://github.com/XS227/Shahnameh" target="_blank" rel="noreferrer" data-i18n="footer.link">our knowledge base</a>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         const tonElements = {
             price: document.querySelector('[data-ton-price]'),
@@ -928,6 +1330,487 @@
             elements.forEach((element) => {
                 element.innerHTML = value;
             });
+        };
+
+        const translatableElements = selectAll('[data-i18n]');
+        const defaultTranslations = {};
+
+        const getElementContent = (element) =>
+            element.dataset.i18nFormat === 'text'
+                ? element.textContent.trim()
+                : element.innerHTML.trim();
+
+        translatableElements.forEach((element) => {
+            const key = element.dataset.i18n;
+            if (key && defaultTranslations[key] === undefined) {
+                defaultTranslations[key] = getElementContent(element);
+            }
+        });
+
+        const translations = {
+            fa: {
+                'hero.title': 'افسانه‌ها را در مرزهای شاهنامه بسازید',
+                'hero.lead':
+                    'یگان خود را گرد آورید، پادشاهی را گسترش دهید و مسیرتان را از دل اسطوره‌های ایران باستان ترسیم کنید. شاهنامه گیم که در فاز نخست به عنوان <strong>سومین انتخاب سردبیر</strong> شناخته شد، راهبردی بازی‌محور را با سرپرستی وب۳ درهم می‌آمیزد تا هر تصمیم در تاریخ جاودانه اثر بگذارد.',
+                'hero.mission':
+                    '<strong>ما برای متحول کردن اقتصاد ملی ایران از مسیر صنعت بازی مصمم هستیم</strong> و ریل‌هایی عادلانه می‌سازیم تا خلاقیت بازیکنان، فرهنگ و سرمایه برای جوامع داخل کشور و در سراسر دیاسپورا هم‌افزا شود.',
+                'hero.cta.primary': 'کشف API',
+                'hero.cta.secondary': 'مطالعه وایت‌پیپر',
+                'hero.card.title': 'فصل داستانی ۲: سپیده‌دم سیمرغ',
+                'hero.card.body':
+                    'ماموریت‌ها را طرح‌ریزی کنید، یاران اسطوره‌ای را رام نمایید و ماموریت‌های تعاونی را برای بازسازی خانه دانش آزاد کنید. هر فصل کامل‌شده مسیر مشترک را دگرگون می‌کند.',
+                'transparency.title': 'شفافیت توکن، در مرکز صحنه',
+                'transparency.lead':
+                    'هر کاوشگری می‌تواند قلب خزانه شاهنامه را در لحظه بررسی کند. نوسان قیمت، شتاب دارندگان و نقدینگی پشتیبان ما را بدون ترک صفحه دنبال کنید.',
+                'transparency.cards.price': 'قیمت فعلی TON',
+                'transparency.cards.change': 'تغییر ۲۴ ساعته:',
+                'transparency.cards.holders': 'تعداد دارندگان',
+                'transparency.cards.holdersNote': 'در انتظار داده‌های تعداد دارندگان…',
+                'transparency.cards.liquidity': 'عمق نقدینگی',
+                'transparency.cards.liquidityNote': 'تجمیع‌شده از استخرهای اصلی TON و به‌صورت مستمر تازه می‌شود.',
+                'mission.statement':
+                    'ماموریت ما جسورانه است: توانمندسازی سازندگان و بازیکنان ایرانی با اقتصادی بازتولیدی و غیرمتمرکز که رونق تازه‌ای را به استودیوها، گیلدها و راویان محلی هدایت می‌کند. <strong>توکنومیک شفاف سنگ‌بنای این انقلاب است.</strong>',
+                'countdown.title': 'شمارش معکوس تا فصل بعدی شاهنامه',
+                'countdown.days': 'روز',
+                'countdown.hours': 'ساعت',
+                'countdown.minutes': 'دقیقه',
+                'countdown.seconds': 'ثانیه',
+                'chronicle.title': 'چرا سالنامه اهمیت دارد',
+                'chronicle.cards.lore': 'اسطوره زنده',
+                'chronicle.cards.loreBody':
+                    'هر هفته فصل‌های تازه در قلمرو طنین می‌اندازد و مأموریت‌ها و همکاری‌های نو را با الهام از شعر جاودانه فردوسی به ارمغان می‌آورد.',
+                'chronicle.cards.economy': 'اقتصاد با حاکمیت بازیکنان',
+                'chronicle.cards.economyBody':
+                    'شورای گیلدها منابع را مدیریت می‌کنند، درباره ارتقا رأی می‌دهند و مسیر باج‌گذاری را طوری تنظیم می‌کنند که حاکمیت روی زنجیره با اهمیت روایی درهم‌تنیده شود.',
+                'chronicle.cards.adventure': 'ماجراجویی برای هر قهرمان',
+                'chronicle.cards.adventureBody':
+                    'از یورش‌های معمایی تا مأموریت‌های اجتماعی، مرزهای شاهنامه راویان، استراتژیست‌ها و داستان‌نگهداران را پاداش می‌دهد.',
+                'intel.title': 'اطلاعات زنده TON',
+                'intel.lead':
+                    'با تله‌متری روی زنجیره چابک بمانید. نوسان قیمت توکن، سلامت نقدینگی و احساسات دقت لازم را مستقیم از TonAPI و DYOR ارائه می‌کنیم تا خزانه‌داران گیلد به‌موقع واکنش نشان دهند.',
+                'intel.cards.price': 'قیمت TON',
+                'intel.cards.change': 'تغییر ۲۴ ساعته:',
+                'intel.cards.liquidityNote': 'در انتظار دریافت داده‌های نقدینگی…',
+                'intel.cards.dyor': 'نبض پروژه DYOR',
+                'intel.cards.dyorTier': 'در انتظار سطوح ارزیابی DYOR…',
+                'intel.cards.dyorUpdated': 'در حال تازه‌سازی داده‌ها…',
+                'intel.cards.content': 'مشارکت محتوایی',
+                'intel.cards.contributors': 'خالقان تأییدشده:',
+                'intel.cards.contentNote': 'همگام‌سازی داشبوردهای جامعه…',
+                'intel.footer':
+                    'داده‌ها هر چند دقیقه یک‌بار مستقیماً از <a href="https://tonapi.io/" target="_blank" rel="noreferrer">TonAPI</a> و <a href="https://www.dyor.com/" target="_blank" rel="noreferrer">DYOR Intelligence</a> به‌روزرسانی می‌شوند.',
+                'reeal.title': 'نبض بازار توکن REEAL',
+                'reeal.lead':
+                    'عملکرد توکن خزانه REEAL را در بازارهای جهانی دنبال کنید و روند قیمت هفت‌روزه را در یک نگاه به تصویر بکشید.',
+                'reeal.table.title': 'تابلوی قیمت جهانی',
+                'reeal.table.pair': 'جفت',
+                'reeal.table.market': 'بازار',
+                'reeal.table.price': 'قیمت',
+                'reeal.chart.title': 'REEAL / دلار آمریکا',
+                'reeal.chart.subtitle': 'نمای هفت‌روزه',
+                'reeal.chart.tab.price': 'قیمت',
+                'reeal.chart.tab.liquidity': 'نقدینگی',
+                'reeal.chart.tab.tradingview': 'تریدینگ‌ویو',
+                'reeal.chart.tab.currency': 'دلار',
+                'reeal.chart.note':
+                    'نمودار REEAL به دلار برای نمایش فوری تغییرات بازار طراحی شده است و کمک می‌کند حرکت بعدی را پیش‌بینی کنید. <a href="https://dyor.io" target="_blank" rel="noreferrer">داده را با DYOR TON API دریافت کنید</a>.',
+                'timeline.title': 'به مسیر قدم بگذارید',
+                'timeline.step1':
+                    'پرچم گیلد خود را انتخاب کنید، همراهان را گرد آورید و ناحیه‌ای را در ارگ قصه‌ها تصاحب کنید.',
+                'timeline.step2':
+                    'ماموریت‌های فصلی را کامل کنید، معماهای ارواح کهن را بگشایید و پاداش‌های مشترک را برای جامعه آزاد کنید.',
+                'timeline.step3':
+                    'پیروزی‌های خود را روی زنجیره ثبت کنید تا میراثی ماندگار در سالنامه در حال گسترش شاهنامه به جا بگذارید.',
+                'community.title': 'به جامعه شاهنامه بپیوندید',
+                'community.lead':
+                    'برای دریافت آگاه‌سازی‌های لانچ، افشاگری‌های داستانی و گزارش‌های اقتصادی در اولویت، ما را در شبکه‌های اجتماعی دنبال کنید.',
+                'community.links.bot': 'بات تلگرام',
+                'community.links.youtube': 'کانال یوتوب',
+                'community.links.news': 'اخبار تلگرام',
+                'community.links.instagram': 'اینستاگرام',
+                'community.links.x': 'ایکس (توییتر)',
+                'footer.credit': 'توسط تیم اصلی شاهنامه ساخته شده · بیشتر بخوانید در',
+                'footer.link': 'پایگاه دانش ما',
+                'ton.holdersNotePending': 'داده‌های دارندگان به‌زودی از شاخص‌های TON دریافت می‌شود.',
+                'intel.cards.liquidityPlaceholder': 'در انتظار دریافت داده‌های نقدینگی…',
+                'intel.cards.liquidityPending': 'داده‌های نقدینگی به‌محض آماده‌سازی نمایش داده می‌شوند…',
+                'intel.cards.reportedLiquidity': 'نقدینگی گزارش‌شده:',
+                'ton.holdersContext': 'کیف‌پول‌های منحصربه‌فرد ردیابی‌شده در نمایه‌سازهای TON.',
+                'dyor.scoreUnrated': 'بدون امتیاز',
+                'dyor.tierUnavailable': 'رتبه‌بندی DYOR در دسترس نیست.',
+                'dyor.tierLabel': 'رتبه ریسک',
+                'dyor.tierPending': 'رتبه ریسک در انتظار بررسی DYOR است.',
+                'dyor.lastRefreshedPrefix': 'آخرین به‌روزرسانی',
+                'content.noteReady': 'سهم محتوایی نشان‌دهنده خالقان تأییدشده در DYOR است.',
+                'content.notePending': 'داده سهم محتوا پس از خزش بعدی DYOR نمایش داده می‌شود.',
+                'countdown.message.future':
+                    'آغاز فصل جدید در <strong>۱۱ نوامبر ۲۰۲۵</strong> است — از هم‌اکنون برنامه‌ریزی گیلد خود را هماهنگ کنید.',
+                'countdown.message.live':
+                    'فصل جدید آغاز شد — <strong>همین حالا گیلد خود را بسیج کنید!</strong>',
+            },
+        };
+
+        const languageButtons = selectAll('[data-lang]');
+        let activeLanguage = 'en';
+
+        const getLocalizedString = (key, fallback) => {
+            if (activeLanguage === 'fa') {
+                const translation = translations.fa[key];
+                if (translation !== undefined) {
+                    return translation;
+                }
+            }
+            return fallback;
+        };
+
+        const applyLanguage = (lang) => {
+            const supported = ['en', 'fa'];
+            const nextLanguage = supported.includes(lang) ? lang : 'en';
+            activeLanguage = nextLanguage;
+            const isPersian = nextLanguage === 'fa';
+            document.documentElement.lang = isPersian ? 'fa' : 'en';
+            document.body.dir = isPersian ? 'rtl' : 'ltr';
+
+            languageButtons.forEach((button) => {
+                button.classList.toggle('active', button.dataset.lang === nextLanguage);
+            });
+
+            translatableElements.forEach((element) => {
+                const key = element.dataset.i18n;
+                if (!key) return;
+                const translation = isPersian ? translations.fa[key] : defaultTranslations[key];
+                if (translation !== undefined) {
+                    if (element.dataset.i18nFormat === 'text') {
+                        element.textContent = translation;
+                    } else {
+                        element.innerHTML = translation;
+                    }
+                }
+            });
+
+            try {
+                localStorage.setItem('preferredLanguage', nextLanguage);
+            } catch (error) {
+                console.warn('Language preference not stored', error);
+            }
+        };
+
+        languageButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                applyLanguage(button.dataset.lang);
+                renderReealTable();
+                renderReealChart();
+                updateCountdown();
+                initialiseIntel();
+            });
+        });
+
+        let initialLanguage = 'en';
+        try {
+            const stored = localStorage.getItem('preferredLanguage');
+            if (stored && (stored === 'fa' || stored === 'en')) {
+                initialLanguage = stored;
+            }
+        } catch (error) {
+            console.warn('Language storage unavailable', error);
+        }
+
+        applyLanguage(initialLanguage);
+
+        const reealRates = [
+            {
+                pair: 'REEAL/TON',
+                pairFa: 'REEAL/TON',
+                market: { en: 'Toncoin', fa: 'تون‌کوین' },
+                code: 'TON',
+                amount: 0.00033,
+                decimals: 6,
+                prefix: 'TON ',
+            },
+            {
+                pair: 'REEAL/USD',
+                pairFa: 'REEAL/USD',
+                market: { en: 'United States Dollar', fa: 'دلار آمریکا' },
+                code: 'USD',
+                amount: 0.000094,
+                decimals: 6,
+                prefix: '$',
+            },
+            {
+                pair: 'REEAL/EUR',
+                pairFa: 'REEAL/EUR',
+                market: { en: 'Euro', fa: 'یورو' },
+                code: 'EUR',
+                amount: 0.000088,
+                decimals: 6,
+                prefix: '€',
+            },
+            {
+                pair: 'REEAL/GBP',
+                pairFa: 'REEAL/GBP',
+                market: { en: 'British Pound', fa: 'پوند بریتانیا' },
+                code: 'GBP',
+                amount: 0.000073,
+                decimals: 6,
+                prefix: '£',
+            },
+            {
+                pair: 'REEAL/CAD',
+                pairFa: 'REEAL/CAD',
+                market: { en: 'Canadian Dollar', fa: 'دلار کانادا' },
+                code: 'CAD',
+                amount: 0.000102,
+                decimals: 6,
+                prefix: 'CA$',
+            },
+            {
+                pair: 'REEAL/AUD',
+                pairFa: 'REEAL/AUD',
+                market: { en: 'Australian Dollar', fa: 'دلار استرالیا' },
+                code: 'AUD',
+                amount: 0.000135,
+                decimals: 6,
+                prefix: 'A$',
+            },
+            {
+                pair: 'REEAL/JPY',
+                pairFa: 'REEAL/JPY',
+                market: { en: 'Japanese Yen', fa: 'ین ژاپن' },
+                code: 'JPY',
+                amount: 0.013,
+                decimals: 3,
+                prefix: '¥',
+            },
+            {
+                pair: 'REEAL/KRW',
+                pairFa: 'REEAL/KRW',
+                market: { en: 'South Korean Won', fa: 'وون کره‌جنوبی' },
+                code: 'KRW',
+                amount: 0.128,
+                decimals: 3,
+                prefix: '₩',
+            },
+            {
+                pair: 'REEAL/TRY',
+                pairFa: 'REEAL/TRY',
+                market: { en: 'Turkish Lira', fa: 'لیر ترکیه' },
+                code: 'TRY',
+                amount: 0.803,
+                decimals: 3,
+                prefix: '₺',
+            },
+            {
+                pair: 'REEAL/BRL',
+                pairFa: 'REEAL/BRL',
+                market: { en: 'Brazilian Real', fa: 'رئال برزیل' },
+                code: 'BRL',
+                amount: 0.476,
+                decimals: 3,
+                prefix: 'R$',
+            },
+            {
+                pair: 'REEAL/KZT',
+                pairFa: 'REEAL/KZT',
+                market: { en: 'Kazakhstani Tenge', fa: 'تنگه قزاقستان' },
+                code: 'KZT',
+                amount: 0.49,
+                decimals: 3,
+                prefix: '₸',
+            },
+            {
+                pair: 'REEAL/UZS',
+                pairFa: 'REEAL/UZS',
+                market: { en: 'Uzbekistani Som', fa: 'سوم ازبکستان' },
+                code: 'UZS',
+                amount: 0.11,
+                decimals: 3,
+                prefix: 'UZS ',
+            },
+            {
+                pair: 'REEAL/BYN',
+                pairFa: 'REEAL/BYN',
+                market: { en: 'Belarusian Ruble', fa: 'روبل بلاروس' },
+                code: 'BYN',
+                amount: 0.303,
+                decimals: 3,
+                prefix: 'Br ',
+            },
+            {
+                pair: 'REEAL/AZN',
+                pairFa: 'REEAL/AZN',
+                market: { en: 'Azerbaijani Manat', fa: 'منات آذربایجان' },
+                code: 'AZN',
+                amount: 0.226,
+                decimals: 3,
+                prefix: '₼',
+            },
+            {
+                pair: 'REEAL/AMD',
+                pairFa: 'REEAL/AMD',
+                market: { en: 'Armenian Dram', fa: 'درام ارمنستان' },
+                code: 'AMD',
+                amount: 0.38,
+                decimals: 3,
+                prefix: '֏',
+            },
+            {
+                pair: 'REEAL/MDL',
+                pairFa: 'REEAL/MDL',
+                market: { en: 'Moldovan Leu', fa: 'لئوی مولداوی' },
+                code: 'MDL',
+                amount: 0.056,
+                decimals: 3,
+                prefix: 'L ',
+            },
+            {
+                pair: 'REEAL/UAH',
+                pairFa: 'REEAL/UAH',
+                market: { en: 'Ukrainian Hryvnia', fa: 'گریونا اوکراین' },
+                code: 'UAH',
+                amount: 0.378,
+                decimals: 3,
+                prefix: '₴',
+            },
+        ];
+
+        const reealPriceSeries = [
+            { label: '04 Oct', labelFa: '۴ اکتبر', price: 0.000000093 },
+            { label: '05 Oct', labelFa: '۵ اکتبر', price: 0.000000096 },
+            { label: '06 Oct', labelFa: '۶ اکتبر', price: 0.000000094 },
+            { label: '07 Oct', labelFa: '۷ اکتبر', price: 0.000000095 },
+            { label: '08 Oct', labelFa: '۸ اکتبر', price: 0.000000091 },
+            { label: '09 Oct', labelFa: '۹ اکتبر', price: 0.000000089 },
+            { label: '10 Oct', labelFa: '۱۰ اکتبر', price: 0.00000009 },
+        ];
+
+        const reealTableBody = document.querySelector('[data-reeal-table]');
+        const reealChartCanvas = document.getElementById('reeal-price-chart');
+        let reealChart;
+
+        const resolvePairLabel = (rate) =>
+            activeLanguage === 'fa' && rate.pairFa ? rate.pairFa : rate.pair;
+
+        const resolveMarketLabel = (rate) =>
+            activeLanguage === 'fa' && rate.market?.fa ? rate.market.fa : rate.market?.en;
+
+        const formatReealPrice = (rate) => {
+            const formatted = formatNumber(rate.amount, {
+                minimumFractionDigits: rate.decimals,
+                maximumFractionDigits: rate.decimals,
+            });
+            return `${rate.prefix ?? ''}${formatted}${rate.suffix ?? ''}`;
+        };
+
+        const renderReealTable = () => {
+            if (!reealTableBody) return;
+            const rows = reealRates
+                .map((rate) => {
+                    const pairLabel = resolvePairLabel(rate);
+                    const marketLabel = resolveMarketLabel(rate);
+                    const priceLabel = formatReealPrice(rate);
+                    return `
+                        <tr>
+                            <td><strong>${pairLabel}</strong>${rate.code ? `<span>${rate.code}</span>` : ''}</td>
+                            <td><strong>${marketLabel}</strong></td>
+                            <td><strong>${priceLabel}</strong></td>
+                        </tr>
+                    `;
+                })
+                .join('');
+            reealTableBody.innerHTML = rows;
+        };
+
+        const renderReealChart = () => {
+            if (!reealChartCanvas) return;
+            const labels = reealPriceSeries.map((point) =>
+                activeLanguage === 'fa' && point.labelFa ? point.labelFa : point.label
+            );
+            const data = reealPriceSeries.map((point) => point.price);
+            const context = reealChartCanvas.getContext('2d');
+
+            if (!reealChart) {
+                const gradient = context.createLinearGradient(0, 0, 0, reealChartCanvas.height);
+                gradient.addColorStop(0, 'rgba(56, 189, 248, 0.35)');
+                gradient.addColorStop(1, 'rgba(56, 189, 248, 0)');
+
+                reealChart = new Chart(context, {
+                    type: 'line',
+                    data: {
+                        labels,
+                        datasets: [
+                            {
+                                label: 'REEAL',
+                                data,
+                                fill: true,
+                                backgroundColor: gradient,
+                                borderColor: '#38bdf8',
+                                borderWidth: 2,
+                                tension: 0.35,
+                                pointRadius: 3,
+                                pointHoverRadius: 4,
+                                pointBackgroundColor: '#facc15',
+                            },
+                        ],
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: {
+                                backgroundColor: 'rgba(8, 11, 27, 0.85)',
+                                borderColor: 'rgba(148, 163, 184, 0.4)',
+                                borderWidth: 1,
+                                callbacks: {
+                                    title: (tooltipItems) => tooltipItems[0]?.label || '',
+                                    label: (context) => {
+                                        const value = context.parsed.y;
+                                        return `${getLocalizedString('reeal.chart.title', 'REEAL / USD')}: ${formatNumber(value, {
+                                            minimumFractionDigits: 9,
+                                            maximumFractionDigits: 9,
+                                        })}`;
+                                    },
+                                },
+                            },
+                        },
+                        scales: {
+                            x: {
+                                grid: {
+                                    color: 'rgba(148, 163, 184, 0.1)',
+                                },
+                                ticks: {
+                                    color: 'rgba(248, 250, 252, 0.6)',
+                                },
+                            },
+                            y: {
+                                grid: {
+                                    color: 'rgba(148, 163, 184, 0.1)',
+                                },
+                                ticks: {
+                                    color: 'rgba(248, 250, 252, 0.6)',
+                                    callback: (value) =>
+                                        formatNumber(value, {
+                                            minimumFractionDigits: 9,
+                                            maximumFractionDigits: 9,
+                                        }),
+                                },
+                            },
+                        },
+                    },
+                });
+            } else {
+                reealChart.data.labels = labels;
+                reealChart.data.datasets[0].data = data;
+                reealChart.options.plugins.tooltip.callbacks.label = (context) => {
+                    const value = context.parsed.y;
+                    return `${getLocalizedString('reeal.chart.title', 'REEAL / USD')}: ${formatNumber(value, {
+                        minimumFractionDigits: 9,
+                        maximumFractionDigits: 9,
+                    })}`;
+                };
+                reealChart.update();
+            }
         };
 
         const tonElements = {
@@ -961,7 +1844,8 @@
         const formatNumber = (value, options = {}) => {
             const { style = 'decimal', minimumFractionDigits = 2, maximumFractionDigits = 2 } = options;
             try {
-                return new Intl.NumberFormat('en-US', {
+                const locale = activeLanguage === 'fa' ? 'fa-IR' : 'en-US';
+                return new Intl.NumberFormat(locale, {
                     style,
                     minimumFractionDigits,
                     maximumFractionDigits,
@@ -992,20 +1876,37 @@
             });
             tonElements.liquidity.forEach((element) => {
                 element.textContent =
-                    element.dataset.format === 'raw' ? '$--' : 'Awaiting liquidity feed…';
+                    element.dataset.format === 'raw'
+                        ? '$--'
+                        : getLocalizedString(
+                              'intel.cards.liquidityPlaceholder',
+                              'Awaiting liquidity feed…'
+                          );
             });
             setText(tonElements.holders, '--');
-            setText(tonElements.holdersNote, 'Holder telemetry will display once TON indexers respond.');
+            setText(
+                tonElements.holdersNote,
+                getLocalizedString(
+                    'ton.holdersNotePending',
+                    'Holder telemetry will display once TON indexers respond.'
+                )
+            );
 
             setText(dyorElements.score, 'N/A');
-            setText(dyorElements.tier, 'DYOR ratings currently unavailable.');
+            setText(
+                dyorElements.tier,
+                getLocalizedString('dyor.tierUnavailable', 'DYOR ratings currently unavailable.')
+            );
             setText(dyorElements.updated, '');
 
             setText(contentElements.share, 'N/A');
             setText(contentElements.contributors, '--');
             setText(
                 contentElements.note,
-                'Community dashboards will populate once DYOR data is reachable.'
+                getLocalizedString(
+                    'content.notePending',
+                    'Community dashboards will populate once DYOR data is reachable.'
+                )
             );
         };
 
@@ -1111,7 +2012,10 @@
                             if (element.dataset.format === 'raw') {
                                 element.textContent = formattedLiquidity;
                             } else {
-                                element.textContent = `Reported liquidity: ${formattedLiquidity}`;
+                                element.textContent = `${getLocalizedString(
+                                    'intel.cards.reportedLiquidity',
+                                    'Reported liquidity:'
+                                )} ${formattedLiquidity}`;
                             }
                         });
                     } else {
@@ -1119,7 +2023,10 @@
                             element.textContent =
                                 element.dataset.format === 'raw'
                                     ? '$--'
-                                    : 'Liquidity metrics pending fresh updates…';
+                                    : getLocalizedString(
+                                          'intel.cards.liquidityPending',
+                                          'Liquidity metrics pending fresh updates…'
+                                      );
                         });
                     }
 
@@ -1131,7 +2038,10 @@
                         setText(tonElements.holders, formattedHolders);
                         setText(
                             tonElements.holdersNote,
-                            'Unique wallets tracked across TON indexers.'
+                            getLocalizedString(
+                                'ton.holdersContext',
+                                'Unique wallets tracked across TON indexers.'
+                            )
                         );
                     }
 
@@ -1203,18 +2113,33 @@
                         })}%`;
                         setText(dyorElements.score, formattedScore);
                     } else {
-                        setText(dyorElements.score, 'Unrated');
+                        setText(
+                            dyorElements.score,
+                            getLocalizedString('dyor.scoreUnrated', 'Unrated')
+                        );
                     }
 
                     if (tier) {
-                        setText(dyorElements.tier, `Risk tier: ${tier}`);
+                        const tierLabel = getLocalizedString('dyor.tierLabel', 'Risk tier');
+                        setText(dyorElements.tier, `${tierLabel}: ${tier}`);
                     } else {
-                        setText(dyorElements.tier, 'Risk tier awaiting DYOR review.');
+                        setText(
+                            dyorElements.tier,
+                            getLocalizedString(
+                                'dyor.tierPending',
+                                'Risk tier awaiting DYOR review.'
+                            )
+                        );
                     }
 
                     if (updatedAt) {
                         const updatedDate = new Date(updatedAt);
                         if (!Number.isNaN(updatedDate.getTime())) {
+                            const locale = activeLanguage === 'fa' ? 'fa-IR' : 'en-US';
+                            const readable = `${getLocalizedString(
+                                'dyor.lastRefreshedPrefix',
+                                'Last refreshed'
+                            )} ${updatedDate.toLocaleString(locale)}`;
                             dyorElements.updated.textContent = `Last refreshed ${updatedDate.toLocaleString()}`;
                         }
                     } else {
@@ -1273,8 +2198,14 @@
                     setText(
                         contentElements.note,
                         contentPercent !== null
-                            ? 'Content share reflects vetted creators on DYOR.'
-                            : 'Content share data pending next DYOR crawl.'
+                            ? getLocalizedString(
+                                  'content.noteReady',
+                                  'Content share reflects vetted creators on DYOR.'
+                              )
+                            : getLocalizedString(
+                                  'content.notePending',
+                                  'Content share data pending next DYOR crawl.'
+                              )
                     );
 
                     return;
@@ -1315,11 +2246,19 @@
             setText(countdownElements.seconds, seconds.toString().padStart(2, '0'));
 
             const message = isPast
-                ? 'Season relaunch has begun — <strong>rally your guild now!</strong>'
-                : 'Season relaunch is scheduled for <strong>11 November 2025</strong> — synchronise your guild\'s plans now.';
+                ? getLocalizedString(
+                      'countdown.message.live',
+                      'Season relaunch has begun — <strong>rally your guild now!</strong>'
+                  )
+                : getLocalizedString(
+                      'countdown.message.future',
+                      'Season relaunch is scheduled for <strong>11 November 2025</strong> — synchronise your guild\'s plans now.'
+                  );
             setHTML(countdownElements.message, message);
         };
 
+        renderReealTable();
+        renderReealChart();
         updateCountdown();
         setInterval(updateCountdown, 1_000);
 
