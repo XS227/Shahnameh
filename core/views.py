@@ -8,6 +8,7 @@ from django.db.models import Q
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
+from django.urls import reverse
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -35,120 +36,184 @@ def _season_two_roadmap():
     return [
         {
             "phase": "Phase 1 – Foundations (Weeks 1-4)",
+            "phase_fa": "فاز ۱ – زیربناها (هفته‌های ۴-۱)",
             "summary": (
                 "Stabilise the live game experience while preparing the lore-driven "
                 "Season 2 onboarding journey."
             ),
+            "summary_fa": (
+                "تجربه زنده بازی را پایدار می‌کنیم و همزمان مسیر ورود داستان‌محور فصل دوم را آماده می‌سازیم."
+            ),
             "items": [
                 {
                     "title": "Lore-driven onboarding update",
+                    "title_fa": "به‌روزرسانی ورود داستان‌محور",
                     "description": (
                         "Revamp the first-time user flow with narrated scenes that recap "
                         "Season 1 and foreshadow the coming faction conflict."
                     ),
+                    "description_fa": (
+                        "مسیر ورود بازیکنان جدید را با روایت صحنه‌هایی که فصل اول را مرور می‌کند و نبرد فرقه‌ها را نوید می‌دهد بازطراحی می‌کنیم."
+                    ),
                 },
                 {
                     "title": "Economy audit & balancing",
+                    "title_fa": "ممیزی و توازن اقتصاد",
                     "description": (
                         "Benchmark in-game resource sinks, token emission, and mining "
                         "rates to ensure sustainable growth before new features launch."
                     ),
+                    "description_fa": (
+                        "نرخ مصرف منابع، انتشار توکن و استخراج را پایش می‌کنیم تا پیش از عرضه قابلیت‌های جدید، رشد پایداری تضمین شود."
+                    ),
                 },
                 {
                     "title": "Telegram bot quality-of-life",
+                    "title_fa": "بهبود تجربه بات تلگرام",
                     "description": (
                         "Improve latency, add inline help, and surface player progression "
                         "stats from the legacy bot workflows."
+                    ),
+                    "description_fa": (
+                        "تأخیر را کاهش می‌دهیم، راهنمای درون‌خط اضافه می‌کنیم و آمار پیشرفت بازیکنان را از فرایندهای قدیمی نمایان می‌سازیم."
                     ),
                 },
             ],
         },
         {
             "phase": "Phase 2 – Faction Warfare (Weeks 5-8)",
+            "phase_fa": "فاز ۲ – نبرد فرقه‌ها (هفته‌های ۸-۵)",
             "summary": (
                 "Deliver the headline Season 2 feature that asks players to align with "
                 "one of three factions."
             ),
+            "summary_fa": (
+                "ویژگی اصلی فصل دوم را عرضه می‌کنیم؛ جایی که بازیکنان باید به یکی از سه فرقه بپیوندند."
+            ),
             "items": [
                 {
                     "title": "Faction reputation system",
+                    "title_fa": "سامانه اعتبار فرقه‌ای",
                     "description": (
                         "Introduce weekly objectives tied to faction reputation that "
                         "unlock cosmetics, buffs, and leaderboard recognition."
                     ),
+                    "description_fa": (
+                        "اهداف هفتگی مرتبط با اعتبار فرقه را اضافه می‌کنیم که ظواهر ویژه، تقویت‌ها و جایگاه در جدول برترین‌ها را آزاد می‌سازد."
+                    ),
                 },
                 {
                     "title": "Cooperative faction raids",
+                    "title_fa": "یورش‌های مشارکتی فرقه‌ای",
                     "description": (
                         "Launch asynchronous raid encounters where communities pool "
                         "resources to defeat enemies inspired by epic Shahnameh tales."
                     ),
+                    "description_fa": (
+                        "یورش‌های غیرهمزمانی را راه‌اندازی می‌کنیم که در آن انجمن‌ها منابع خود را برای شکست دشمنان الهام‌گرفته از شاهنامه ترکیب می‌کنند."
+                    ),
                 },
                 {
                     "title": "Seasonal NFT drop",
+                    "title_fa": "عرضه NFT فصلی",
                     "description": (
                         "Mint a limited run of lore artifacts that provide cosmetic "
                         "variants in-game and utility for the mining mini-game."
+                    ),
+                    "description_fa": (
+                        "مجموعه‌ای محدود از آثار داستانی را ضرب می‌کنیم که ظاهرهای تازه در بازی و مزایای ویژه در مینی‌گیم استخراج می‌دهند."
                     ),
                 },
             ],
         },
         {
             "phase": "Phase 3 – Creator & Community Tools (Weeks 9-12)",
+            "phase_fa": "فاز ۳ – ابزار خالقان و جامعه (هفته‌های ۱۲-۹)",
             "summary": (
                 "Empower community storytellers and guild leads with shareable content "
                 "and moderation tools."
             ),
+            "summary_fa": (
+                "راویان جامعه و رهبران انجمن‌ها را با محتوای قابل اشتراک و ابزار مدیریت توانمند می‌کنیم."
+            ),
             "items": [
                 {
                     "title": "Quest builder beta",
+                    "title_fa": "بتای سازنده مأموریت",
                     "description": (
                         "Allow verified lore keepers to craft side quests with custom "
                         "dialogue, rewards, and puzzle layouts."
                     ),
+                    "description_fa": (
+                        "به نگهبانان روایت تأییدشده اجازه می‌دهیم مأموریت‌های فرعی با دیالوگ، پاداش و معماهای اختصاصی بسازند."
+                    ),
                 },
                 {
                     "title": "Community analytics dashboards",
+                    "title_fa": "داشبوردهای تحلیلی جامعه",
                     "description": (
                         "Provide faction captains with participation metrics, retention "
                         "trends, and token sink/source visibility."
                     ),
+                    "description_fa": (
+                        "به رهبران فرقه‌ها شاخص‌های مشارکت، روند نگهداشت و دید شفافی از منابع و مصارف توکن می‌دهیم."
+                    ),
                 },
                 {
                     "title": "Moderation escalation channel",
+                    "title_fa": "کانال ارجاع نظارت",
                     "description": (
                         "Launch a Discord and Telegram escalation workflow for player "
                         "reports that syncs with support tooling."
+                    ),
+                    "description_fa": (
+                        "کانال ارجاعی در دیسکورد و تلگرام ایجاد می‌کنیم تا گزارش‌های بازیکنان با ابزار پشتیبانی همگام شود."
                     ),
                 },
             ],
         },
         {
             "phase": "Phase 4 – Finale & Handover (Weeks 13-16)",
+            "phase_fa": "فاز ۴ – پایان و انتقال (هفته‌های ۱۶-۱۳)",
             "summary": (
                 "Close the season with a high-stakes narrative event and prepare for "
                 "long-term live-ops cadence."
             ),
+            "summary_fa": (
+                "فصل را با رویدادی داستانی و پرهیجان جمع‌بندی می‌کنیم و برای روند عملیات زنده بلندمدت آماده می‌شویم."
+            ),
             "items": [
                 {
                     "title": "World boss multi-stage event",
+                    "title_fa": "رویداد چندمرحله‌ای رئیس جهانی",
                     "description": (
                         "Trigger a server-wide encounter that requires cross-faction "
                         "coordination and unlocks epilogue cinematics."
                     ),
+                    "description_fa": (
+                        "نبردی سراسری راه می‌اندازیم که هماهنگی بین فرقه‌ای می‌طلبد و میان‌پرده پایانی را آزاد می‌کند."
+                    ),
                 },
                 {
                     "title": "Season review & rewards",
+                    "title_fa": "مرور فصل و پاداش‌ها",
                     "description": (
                         "Distribute achievement badges, roll out leaderboard rewards, "
                         "and publish a community impact report."
                     ),
+                    "description_fa": (
+                        "نشان‌های دستاورد را توزیع می‌کنیم، پاداش جدول برترین‌ها را می‌پردازیم و گزارش اثر جامعه را منتشر می‌کنیم."
+                    ),
                 },
                 {
                     "title": "Season 3 pre-production",
+                    "title_fa": "پیش‌تولید فصل سوم",
                     "description": (
-                        "Document learnings, lock feature priorities, and begin art/" 
+                        "Document learnings, lock feature priorities, and begin art/"
                         "narrative exploration for the next arc."
+                    ),
+                    "description_fa": (
+                        "آموخته‌ها را مستند می‌کنیم، اولویت قابلیت‌ها را تثبیت می‌کنیم و کاوش هنری و داستانی فصل بعد را آغاز می‌نماییم."
                     ),
                 },
             ],
@@ -156,49 +221,256 @@ def _season_two_roadmap():
     ]
 
 
+def _format_usd(value):
+    try:
+        numeric = float(value)
+    except (TypeError, ValueError):
+        return None
+
+    absolute = abs(numeric)
+    suffix = ""
+
+    if absolute >= 1_000_000_000:
+        numeric /= 1_000_000_000
+        suffix = "B"
+    elif absolute >= 1_000_000:
+        numeric /= 1_000_000
+        suffix = "M"
+    elif absolute >= 1_000:
+        numeric /= 1_000
+        suffix = "K"
+
+    if suffix:
+        return f"${numeric:.2f}{suffix}"
+
+    if absolute >= 1:
+        return f"${numeric:,.2f}"
+
+    return f"${numeric:,.4f}"
+
+
+def _format_percent(value):
+    try:
+        numeric = float(value)
+    except (TypeError, ValueError):
+        return None
+
+    if abs(numeric) <= 1:
+        numeric *= 100
+
+    return f"{numeric:+.2f}%"
+
+
+def _format_timestamp(value):
+    if value in (None, ""):
+        return None
+
+    dt = None
+
+    if isinstance(value, (int, float)):
+        dt = datetime.datetime.fromtimestamp(float(value), tz=timezone.utc)
+    elif isinstance(value, str):
+        iso_value = value.replace("Z", "+00:00")
+        try:
+            dt = datetime.datetime.fromisoformat(iso_value)
+            if dt.tzinfo is None:
+                dt = dt.replace(tzinfo=timezone.utc)
+        except ValueError:
+            dt = None
+
+    if not dt:
+        return value
+
+    local_dt = dt.astimezone(timezone.get_current_timezone())
+    return local_dt.strftime("%d %b %Y · %H:%M %Z")
+
+
+def fetch_realshahnameh_token():
+    endpoint = "https://dyor.io/api/jettonsservice/getjettondetails"
+    params = {
+        "network": "mainnet",
+        "account": "EQDhq_DjQUMJqfXLP8K8J6SlOvon08XQQK0T49xon2e0xU8p",
+    }
+
+    try:
+        response = requests.get(endpoint, params=params, timeout=12)
+        response.raise_for_status()
+        payload = response.json()
+    except requests.RequestException as exc:  # pragma: no cover - network dependent
+        return {"error": str(exc)}
+    except ValueError:  # pragma: no cover - unexpected payload
+        return {"error": "Invalid response payload from DYOR."}
+
+    result = payload.get("result") or payload.get("data") or payload
+    jetton = result.get("jetton") if isinstance(result, dict) else {}
+    metrics = result.get("metrics") if isinstance(result, dict) else {}
+
+    if isinstance(jetton, dict):
+        metrics = {**jetton.get("metrics", {}), **metrics}
+    else:
+        jetton = {}
+
+    price_usd = (
+        metrics.get("price_usd")
+        or metrics.get("priceUSD")
+        or result.get("price_usd")
+        or result.get("priceUSD")
+        or jetton.get("price_usd")
+        or jetton.get("priceUSD")
+    )
+    price_ton = (
+        metrics.get("price_ton")
+        or metrics.get("priceTON")
+        or result.get("price_ton")
+    )
+    change_24h = (
+        metrics.get("price_change24h")
+        or metrics.get("priceChange24h")
+        or metrics.get("price_change")
+        or metrics.get("priceChange")
+        or result.get("price_change24h")
+    )
+    market_cap = metrics.get("market_cap") or metrics.get("marketCap") or result.get("market_cap")
+    volume_24h = (
+        metrics.get("volume_24h")
+        or metrics.get("volume24h")
+        or metrics.get("volume")
+        or result.get("volume_24h")
+    )
+    liquidity = (
+        metrics.get("liquidity_locked")
+        or metrics.get("liquidity")
+        or metrics.get("tvl")
+        or result.get("tvl")
+    )
+    last_updated = (
+        metrics.get("updated_at")
+        or metrics.get("updatedAt")
+        or result.get("updated_at")
+        or result.get("updatedAt")
+        or payload.get("timestamp")
+    )
+
+    formatted = {
+        "name": jetton.get("name") or result.get("name") or "REAL Shahnameh",
+        "symbol": jetton.get("symbol") or result.get("symbol") or "REAL",
+        "price_usd": _format_usd(price_usd),
+        "price_ton": None,
+        "price_change_24h": _format_percent(change_24h),
+        "market_cap": _format_usd(market_cap),
+        "volume_24h": _format_usd(volume_24h),
+        "liquidity_locked": _format_usd(liquidity),
+        "last_updated": _format_timestamp(last_updated),
+        "raw": payload,
+    }
+
+    if price_ton is not None:
+        try:
+            formatted["price_ton"] = f"{float(price_ton):.6f} TON"
+        except (TypeError, ValueError):
+            formatted["price_ton"] = str(price_ton)
+
+    return formatted
+
+
 def legacy_repo_overview(request):
     context = {
         "page_title": "Legacy Repository Overview",
+        "page_title_fa": "مرور مخزن قدیمی",
         "intro": (
             "A curated summary of the original Shahnameh-TON codebase so new "
             "contributors can understand the foundation this Django project builds upon."
         ),
+        "intro_fa": (
+            "خلاصه‌ای گزیده از مخزن اولیه شاهنامه بر بستر TON تا همکاران تازه‌وارد با پایه‌های این پروژه جنگو آشنا شوند."
+        ),
+        "page_intro": "Key components from the Shahnameh-TON legacy stack in one glance.",
+        "page_intro_fa": "نگاهی سریع به اجزای کلیدی پشته قدیمی شاهنامه بر بستر TON.",
         "feature_groups": [
             {
                 "title": "Core Game Services",
+                "title_fa": "خدمات اصلی بازی",
                 "items": [
-                    "Django REST Framework APIs for registration, authentication, and player profiles.",
-                    "Turn-based puzzle mini-game endpoint used for daily engagement quests.",
-                    "Task and reward management with activation windows and completion tracking.",
+                    {
+                        "text": "Django REST Framework APIs for registration, authentication, and player profiles.",
+                        "text_fa": "رابط‌های REST جنگو برای ثبت‌نام، احراز هویت و پروفایل بازیکنان.",
+                    },
+                    {
+                        "text": "Turn-based puzzle mini-game endpoint used for daily engagement quests.",
+                        "text_fa": "نقطه پایانی مینی‌گیم معمای نوبتی که برای مأموریت‌های روزانه به کار می‌رود.",
+                    },
+                    {
+                        "text": "Task and reward management with activation windows and completion tracking.",
+                        "text_fa": "مدیریت مأموریت و پاداش با بازه‌های فعال‌سازی و رهگیری تکمیل.",
+                    },
                 ],
             },
             {
                 "title": "Blockchain & Economy Integration",
+                "title_fa": "یکپارچگی بلاک‌چین و اقتصاد",
                 "items": [
-                    "Token mining logic that pairs on-chain rewards with in-app stamina systems.",
-                    "Banking abstractions for handling user wallets, deposits, and withdrawals.",
-                    "Utility helpers for verifying Telegram sign-in payloads prior to minting rewards.",
+                    {
+                        "text": "Token mining logic that pairs on-chain rewards with in-app stamina systems.",
+                        "text_fa": "منطق استخراج توکن که پاداش‌های روی زنجیره را با سیستم استقامت درون برنامه پیوند می‌دهد.",
+                    },
+                    {
+                        "text": "Banking abstractions for handling user wallets, deposits, and withdrawals.",
+                        "text_fa": "لایه‌های بانکی برای مدیریت کیف‌پول، واریز و برداشت کاربران.",
+                    },
+                    {
+                        "text": "Utility helpers for verifying Telegram sign-in payloads prior to minting rewards.",
+                        "text_fa": "ابزارهای کمکی برای تأیید داده‌های ورود تلگرام پیش از صدور پاداش."
+                    },
                 ],
             },
             {
                 "title": "Telegram Bot Companion",
+                "title_fa": "همراه بات تلگرام",
                 "items": [
-                    "Automated user provisioning using Telegram IDs as credential seeds.",
-                    "Two-way messaging endpoints so players can receive notifications and issue commands.",
-                    "Celery task scheduling for broadcasting quests and mining updates in real time.",
+                    {
+                        "text": "Automated user provisioning using Telegram IDs as credential seeds.",
+                        "text_fa": "راه‌اندازی خودکار کاربران با استفاده از شناسه تلگرام به عنوان بذر اعتبار."
+                    },
+                    {
+                        "text": "Two-way messaging endpoints so players can receive notifications and issue commands.",
+                        "text_fa": "نقاط پایانی پیام‌رسانی دوسویه برای دریافت اعلان‌ها و اجرای دستورات توسط بازیکنان."
+                    },
+                    {
+                        "text": "Celery task scheduling for broadcasting quests and mining updates in real time.",
+                        "text_fa": "زمان‌بندی وظایف سلری برای پخش مأموریت‌ها و به‌روزرسانی‌های استخراج به‌صورت آنی."
+                    },
                 ],
             },
         ],
         "technical_highlights": [
-            "Python 3.11+, Django, Django REST Framework, Celery, Redis, and PostgreSQL (recommended).",
-            "JWT-based security using SimpleJWT plus Telegram auth verification utilities.",
-            "Docker-ready settings and environment variable strategy for multistage deployments.",
+            {
+                "text": "Python 3.11+, Django, Django REST Framework, Celery, Redis, and PostgreSQL (recommended).",
+                "text_fa": "پایتون ۳.۱۱ به بالا، جنگو، DRF، سلری، ردیس و پایگاه‌داده پیشنهادی PostgreSQL."
+            },
+            {
+                "text": "JWT-based security using SimpleJWT plus Telegram auth verification utilities.",
+                "text_fa": "امنیت مبتنی بر JWT با استفاده از SimpleJWT و ابزارهای اعتبارسنجی ورود تلگرام."
+            },
+            {
+                "text": "Docker-ready settings and environment variable strategy for multistage deployments.",
+                "text_fa": "پیکربندی آماده برای Docker و راهبرد متغیرهای محیطی جهت استقرار چندمرحله‌ای."
+            },
         ],
         "migration_notes": [
-            "Preserve API compatibility for mobile clients by proxying legacy endpoints where possible.",
-            "Move long-running tasks into Celery beat schedules to avoid blocking HTTP responses.",
-            "Centralise shared schemas in this monorepo to reduce duplication across services.",
+            {
+                "text": "Preserve API compatibility for mobile clients by proxying legacy endpoints where possible.",
+                "text_fa": "سازگاری API با کلاینت‌های موبایل را با پروکسی کردن نقاط پایانی قدیمی حفظ کنید."
+            },
+            {
+                "text": "Move long-running tasks into Celery beat schedules to avoid blocking HTTP responses.",
+                "text_fa": "وظایف طولانی را به زمان‌بندی سلری منتقل کنید تا پاسخ‌های HTTP مسدود نشوند."
+            },
+            {
+                "text": "Centralise shared schemas in this monorepo to reduce duplication across services.",
+                "text_fa": "شِماهای مشترک را در همین مونو-ریپو متمرکز کنید تا از تکرار بین سرویس‌ها کاسته شود."
+            },
         ],
+        "current_year": timezone.now().year,
     }
 
     return render(request, "legacy_overview.html", context)
@@ -207,56 +479,108 @@ def legacy_repo_overview(request):
 def whitepaper_overview(request):
     context = {
         "page_title": "Shahnameh Whitepaper Digest",
+        "page_title_fa": "چکیده وایت‌پیپر شاهنامه",
         "summary": (
             "The Shahnameh whitepaper frames the experience as a lore-rich on-chain RPG "
             "where community-driven storytelling powers the token economy. This digest "
             "highlights the pillars most relevant to the current Django stack."
         ),
+        "summary_fa": (
+            "وایت‌پیپر شاهنامه تجربه‌ای نقش‌آفرینی و زنجیره‌ای با تکیه بر روایت اصیل معرفی می‌کند که اقتصاد توکن توسط جامعه هدایت می‌شود. این چکیده مهم‌ترین ستون‌های مرتبط با پشته فعلی جنگو را برجسته می‌کند."
+        ),
+        "page_intro": "Explore the pillars behind the Shahnameh token economy and lore-first design.",
+        "page_intro_fa": "با ستون‌های پشتیبان اقتصاد توکن شاهنامه و طراحی روایت‌محور آشنا شوید.",
         "pillars": [
             {
                 "title": "Lore-first Design",
+                "title_fa": "طراحی با اولویت روایت",
                 "details": (
                     "Every mechanic connects back to Ferdowsi's epic tales. Seasonal arcs "
                     "translate major stories into collaborative events, ensuring cultural "
                     "authenticity while introducing newcomers to the lore."
                 ),
+                "details_fa": (
+                    "تمام مکانیک‌ها ریشه در داستان‌های حماسی فردوسی دارد. روایت‌های فصلی قصه‌های بزرگ را به رویدادهای مشارکتی تبدیل می‌کنند تا هم اصالت فرهنگی حفظ شود و هم تازه‌واردان با جهان داستان آشنا شوند."
+                ),
             },
             {
                 "title": "Player-owned Economy",
+                "title_fa": "اقتصاد در مالکیت بازیکنان",
                 "details": (
                     "Dual-token design distinguishes governance influence from gameplay "
                     "rewards. On-chain actions feed into off-chain progression loops, "
                     "creating meaningful stakes for daily play."
                 ),
+                "details_fa": (
+                    "طراحی دوگانه توکن، نفوذ حاکمیتی را از پاداش‌های گیم‌پلی جدا می‌کند. فعالیت‌های روی زنجیره وارد چرخه پیشرفت خارج از زنجیره می‌شود و برای بازی روزانه اهمیت واقعی ایجاد می‌کند."
+                ),
             },
             {
                 "title": "Community Governance",
+                "title_fa": "حاکمیت جامعه‌محور",
                 "details": (
                     "Story councils curate future quests, approve creator-made adventures, "
                     "and manage treasury proposals that fund community projects."
                 ),
+                "details_fa": (
+                    "شورای داستان مأموریت‌های آینده را برمی‌گزیند، ماجراجویی‌های ساخته‌شده توسط خالقان را تأیید می‌کند و پیشنهادهای خزانه را برای پروژه‌های جامعه مدیریت می‌نماید."
+                ),
             },
         ],
         "economy_breakdown": {
-            "utility_token": "Simorgh Shards (SHD) fuel crafting, quest unlocks, and faction boosts.",
-            "governance_token": "Crown of Heroes (CRH) grants voting power over story arcs and economy levers.",
+            "utility_token": {
+                "text": "Simorgh Shards (SHD) fuel crafting, quest unlocks, and faction boosts.",
+                "text_fa": "شکافه‌های سیمرغ (SHD) برای ساخت، آزادسازی مأموریت و تقویت فرقه‌ها مصرف می‌شود."
+            },
+            "governance_token": {
+                "text": "Crown of Heroes (CRH) grants voting power over story arcs and economy levers.",
+                "text_fa": "تاج قهرمانان (CRH) حق رأی بر روایت فصل‌ها و اهرم‌های اقتصادی را می‌دهد."
+            },
             "sink_examples": [
-                "Upgrading caravan caravans for cross-season persistence.",
-                "Accessing elite raids and cooperative faction contracts.",
-                "Commissioning lore-artifacts from community creators.",
+                {
+                    "text": "Upgrading caravan caravans for cross-season persistence.",
+                    "text_fa": "ارتقای کاروان‌ها برای پایداری میان فصل‌ها."
+                },
+                {
+                    "text": "Accessing elite raids and cooperative faction contracts.",
+                    "text_fa": "دسترسی به حملات نخبگان و قراردادهای مشارکتی فرقه‌ای."
+                },
+                {
+                    "text": "Commissioning lore-artifacts from community creators.",
+                    "text_fa": "سفارش آثار داستانی از خالقان جامعه."
+                },
             ],
             "source_examples": [
-                "Faction events tied to canonical battles.",
-                "Creator quests that reach community quality thresholds.",
-                "Cross-platform referrals that bring new players into the world.",
+                {
+                    "text": "Faction events tied to canonical battles.",
+                    "text_fa": "رویدادهای فرقه‌ای الهام‌گرفته از نبردهای اصیل."
+                },
+                {
+                    "text": "Creator quests that reach community quality thresholds.",
+                    "text_fa": "مأموریت‌های خالقان که به استاندارد کیفی جامعه می‌رسند."
+                },
+                {
+                    "text": "Cross-platform referrals that bring new players into the world.",
+                    "text_fa": "ارجاع‌های میان‌پلتفرمی که بازیکنان تازه را وارد جهان می‌کند."
+                },
             ],
         },
         "player_journey": [
-            "Discover Shahnameh through social channels or the Telegram bot and claim a hero soul.",
-            "Complete narrative-driven tutorials to unlock mining rigs and cooperative quests.",
-            "Form or join a guild to compete in faction warfare and shape upcoming storylines.",
+            {
+                "text": "Discover Shahnameh through social channels or the Telegram bot and claim a hero soul.",
+                "text_fa": "از طریق شبکه‌های اجتماعی یا بات تلگرام با شاهنامه آشنا شوید و روح قهرمان خود را دریافت کنید."
+            },
+            {
+                "text": "Complete narrative-driven tutorials to unlock mining rigs and cooperative quests.",
+                "text_fa": "آموزش‌های داستانی را کامل کنید تا دستگاه‌های استخراج و مأموریت‌های تعاملی باز شود."
+            },
+            {
+                "text": "Form or join a guild to compete in faction warfare and shape upcoming storylines.",
+                "text_fa": "یک انجمن بسازید یا به آن بپیوندید تا در نبرد فرقه‌ای رقابت کنید و روایت‌های آینده را شکل دهید."
+            },
         ],
         "season_two_roadmap": _season_two_roadmap(),
+        "current_year": timezone.now().year,
     }
 
     return render(request, "whitepaper.html", context)
@@ -265,20 +589,134 @@ def whitepaper_overview(request):
 def season_two_roadmap_page(request):
     context = {
         "page_title": "Season 2 Roadmap",
+        "page_title_fa": "نقشه راه فصل دوم",
+        "page_intro": (
+            "Season 2 doubles down on community-driven storytelling and competitive faction play. "
+            "The roadmap below mirrors the live operations plan shared internally so everyone can rally around the same milestones."
+        ),
+        "page_intro_fa": (
+            "فصل دوم تمرکز بیشتری بر روایت جامعه‌محور و رقابت فرقه‌ها دارد. نقشه راه زیر همان برنامه عملیات زنده داخلی است تا همه حول یک جدول زمانی مشترک هم‌راستا شوند."
+        ),
         "season_two_roadmap": _season_two_roadmap(),
         "operational_focus": [
-            "Weekly health reviews measuring retention, revenue, and community satisfaction.",
-            "Cross-team war room for launch weeks to keep live ops, support, and engineering aligned.",
-            "Transparent changelog cadence so players understand balancing decisions in real time.",
+            {
+                "text": "Weekly health reviews measuring retention, revenue, and community satisfaction.",
+                "text_fa": "بازبینی سلامت هفتگی برای سنجش نگهداشت، درآمد و رضایت جامعه."
+            },
+            {
+                "text": "Cross-team war room for launch weeks to keep live ops, support, and engineering aligned.",
+                "text_fa": "اتاق بحران میان تیمی برای هفته‌های لانچ تا عملیات زنده، پشتیبانی و مهندسی هماهنگ بمانند."
+            },
+            {
+                "text": "Transparent changelog cadence so players understand balancing decisions in real time.",
+                "text_fa": "ریتم شفاف یادداشت تغییرات تا بازیکنان تصمیم‌های ترازسازی را به‌صورت لحظه‌ای درک کنند."
+            },
         ],
         "community_programs": [
-            "Lorekeeper mentorship sessions that help storytellers refine quests before publication.",
-            "Faction ambassador spotlights celebrating player leadership and contributions.",
-            "Seasonal art contests with on-chain rewards and in-game showcase placements.",
+            {
+                "text": "Lorekeeper mentorship sessions that help storytellers refine quests before publication.",
+                "text_fa": "جلسات مربی‌گری نگهبانان روایت برای صیقل مأموریت‌ها پیش از انتشار."
+            },
+            {
+                "text": "Faction ambassador spotlights celebrating player leadership and contributions.",
+                "text_fa": "معرفی سفیران فرقه برای تقدیر از رهبری و تلاش بازیکنان."
+            },
+            {
+                "text": "Seasonal art contests with on-chain rewards and in-game showcase placements.",
+                "text_fa": "مسابقات هنری فصلی با پاداش روی زنجیره و نمایش درون بازی."
+            },
         ],
+        "current_year": timezone.now().year,
     }
 
     return render(request, "roadmap.html", context)
+
+
+def marketing_home(request):
+    token_response = fetch_realshahnameh_token()
+    token_error = None
+    token_stats = {}
+
+    if isinstance(token_response, dict) and token_response.get("error"):
+        token_error = token_response["error"]
+    elif isinstance(token_response, dict):
+        token_stats = token_response
+
+    social_links = [
+        {
+            "label_en": "Website",
+            "label_fa": "وب‌سایت",
+            "url": "https://shahnameh.io",
+            "icon": "globe",
+            "external": True,
+        },
+        {
+            "label_en": "White paper",
+            "label_fa": "وایت‌پیپر",
+            "url": reverse("whitepaper"),
+            "icon": "document",
+            "external": False,
+        },
+        {
+            "label_en": "X",
+            "label_fa": "ایکس",
+            "url": "https://x.com/ShahnamehTON",
+            "icon": "x",
+            "external": True,
+        },
+        {
+            "label_en": "Github",
+            "label_fa": "گیت‌هاب",
+            "url": "https://github.com/Shahnameh-TON",
+            "icon": "github",
+            "external": True,
+        },
+        {
+            "label_en": "Instagram",
+            "label_fa": "اینستاگرام",
+            "url": "https://instagram.com/shahnameh.ton",
+            "icon": "instagram",
+            "external": True,
+        },
+        {
+            "label_en": "Telegram Bot",
+            "label_fa": "بات تلگرام",
+            "url": "https://t.me/shahnameshbot",
+            "icon": "telegram",
+            "external": True,
+        },
+        {
+            "label_en": "Official Persian TG Channel",
+            "label_fa": "کانال رسمی فارسی تلگرام",
+            "url": "https://t.me/shahnameh_announcements",
+            "icon": "telegram",
+            "external": True,
+        },
+        {
+            "label_en": "Telegram Group",
+            "label_fa": "گروه تلگرام",
+            "url": "https://t.me/shahnamehcommunity",
+            "icon": "telegram",
+            "external": True,
+        },
+        {
+            "label_en": "YouTube",
+            "label_fa": "یوتیوب",
+            "url": "https://www.youtube.com/@ShahnamehTON",
+            "icon": "youtube",
+            "external": True,
+        },
+    ]
+
+    context = {
+        "token_stats": token_stats,
+        "token_error": token_error,
+        "season_two_roadmap": _season_two_roadmap(),
+        "social_links": social_links,
+        "current_year": timezone.now().year,
+    }
+
+    return render(request, "index.html", context)
 
 
 
@@ -412,7 +850,7 @@ def is_solved(board):
     flat = [cell for row in board for cell in row]
     return flat == expected
 
-def index(request):
+def puzzle_board(request):
     board = request.session.get('board')
     if not board:
         board = generate_solvable_board()
@@ -424,7 +862,7 @@ def index(request):
 def move_tile(request, row, col):
     board = request.session.get('board')
     if not board:
-        return redirect('index')
+        return redirect('puzzle')
 
     row, col = int(row), int(col)
     directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
@@ -436,14 +874,14 @@ def move_tile(request, row, col):
             break
 
     request.session['board'] = board
-    return redirect('index')
+    return redirect('puzzle')
 
 
 @csrf_exempt
 def reset_board(request):
     if request.method == 'POST':
         request.session['board'] = generate_solvable_board()
-    return redirect('index')
+    return redirect('puzzle')
 
 
 class DailyTaskListView(APIView):

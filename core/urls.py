@@ -2,8 +2,8 @@ from django.urls import path
 from .views import (RegisterView, profile_view,telegram_login_page, bot_login, claim_cipher,
                     CharacterListView, DailyTaskListView, CompleteTaskView, UserCharacterListCreateView,
                     SettingsAPIView, MiningActionView, MiningView, DailyHafezTaskView, complete_hafez_task,
-                    AllTasksStatusView, BootsEnegry, UnlockSkinView,BankAccountDetailAPIView, BankAccountListCreateAPIView, 
-                    CreateBankAccountView
+                    AllTasksStatusView, BootsEnegry, UnlockSkinView,BankAccountDetailAPIView, BankAccountListCreateAPIView,
+                    CreateBankAccountView, puzzle_board
                     )
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from . import views
@@ -18,7 +18,7 @@ urlpatterns = [
     path('telegram_login_page/', telegram_login_page, name='telegram_login_page'),
     path('bot_login/', bot_login, name='bot_login'),
     path('characters/', CharacterListView.as_view(), name='character_list'),
-    path('', views.index, name='index'),
+    path('puzzle/', puzzle_board, name='puzzle'),
     path('move/<int:row>/<int:col>/', views.move_tile, name='move'),
     path('reset/', views.reset_board, name='reset'),
     path('tasks/', DailyTaskListView.as_view(), name='daily-tasks'),
