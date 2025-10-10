@@ -97,7 +97,7 @@ ROOT_URLCONF = 'shahnameh_game.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [BASE_DIR, BASE_DIR / 'partials'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
