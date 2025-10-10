@@ -15,8 +15,8 @@ This project powers the Shahnameh RPG experience, combining **Django + Django RE
 - Telegram bot integration:
   - User auto-registration via Telegram ID
   - Auto-login and token handling
-  - Embedded Telegram login widget (`templates/login.html`)
-- Static marketing landing page (`templates/index.html`) with DYOR resource links and social hubs
+- Embedded Telegram login widget (`login.html`)
+- Static marketing landing page (`index.html`) with DYOR resource links and social hubs
 
 ---
 
@@ -31,7 +31,7 @@ This project powers the Shahnameh RPG experience, combining **Django + Django RE
 
 ## 🌐 Landing & Community Resources
 
-- **Landing page**: open `templates/index.html` locally or serve via `python -m http.server`
+- **Landing page**: open `index.html` locally or serve via `python -m http.server`
 - **DYOR Game Listing**: https://dyor.io/dapps/games/shahnameh
 - **REAL Token Dashboard**: https://dyor.io/token/EQDhq_DjQUMJqfXLP8K8J6SlOvon08XQQK0T49xon2e0xU8p
 - **Telegram Bot**: https://t.me/shahnameshbot
