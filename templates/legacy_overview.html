@@ -1,0 +1,47 @@
+{% extends "docs_base.html" %}
+{% block title %}{{ page_title }} · Shahnameh Knowledge Base{% endblock %}
+{% block content %}
+<section>
+    <h2>{{ page_title }}</h2>
+    <p>{{ intro }}</p>
+</section>
+<section>
+    <h3>Feature Pillars</h3>
+    <div class="grid columns-2">
+        {% for group in feature_groups %}
+        <div class="phase">
+            <strong>{{ group.title }}</strong>
+            <ul>
+                {% for item in group.items %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<section>
+    <h3>Technical Highlights</h3>
+    <ul>
+        {% for highlight in technical_highlights %}
+        <li>{{ highlight }}</li>
+        {% endfor %}
+    </ul>
+</section>
+<section>
+    <h3>Migration Notes</h3>
+    <ul>
+        {% for note in migration_notes %}
+        <li>{{ note }}</li>
+        {% endfor %}
+    </ul>
+</section>
+<section>
+    <h3>Useful Links</h3>
+    <ul>
+        <li><a href="https://github.com/Shahnameh-TON" class="external" target="_blank" rel="noopener">Legacy GitHub Organisation</a></li>
+        <li><a href="/api/" class="external">Live API Explorer</a></li>
+        <li><a href="{% url 'whitepaper' %}">Whitepaper Digest</a></li>
+    </ul>
+</section>
+{% endblock %}

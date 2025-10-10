@@ -1,0 +1,65 @@
+{% extends "docs_base.html" %}
+{% block title %}{{ page_title }} · Shahnameh Knowledge Base{% endblock %}
+{% block content %}
+<section>
+    <h2>{{ page_title }}</h2>
+    <p>{{ summary }}</p>
+</section>
+<section>
+    <h3>Design Pillars</h3>
+    <div class="grid columns-2">
+        {% for pillar in pillars %}
+        <div class="phase">
+            <strong>{{ pillar.title }}</strong>
+            <p>{{ pillar.details }}</p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<section>
+    <h3>Economy Overview</h3>
+    <p><strong>Utility Token:</strong> {{ economy_breakdown.utility_token }}</p>
+    <p><strong>Governance Token:</strong> {{ economy_breakdown.governance_token }}</p>
+    <div class="grid columns-2">
+        <div>
+            <h3>Key Sinks</h3>
+            <ul>
+                {% for sink in economy_breakdown.sink_examples %}
+                <li>{{ sink }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <h3>Key Sources</h3>
+            <ul>
+                {% for source in economy_breakdown.source_examples %}
+                <li>{{ source }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</section>
+<section>
+    <h3>Player Journey</h3>
+    <ol>
+        {% for step in player_journey %}
+        <li>{{ step }}</li>
+        {% endfor %}
+    </ol>
+</section>
+<section>
+    <h3>Season 2 at a Glance</h3>
+    {% for phase in season_two_roadmap %}
+    <div class="phase">
+        <strong>{{ phase.phase }}</strong>
+        <p>{{ phase.summary }}</p>
+        <ul>
+            {% for item in phase.items %}
+            <li><strong>{{ item.title }}:</strong> {{ item.description }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+    <p>Need the full document? Visit the <a href="https://shahnameh-white-paper.gitbook.io/shahnameh-white-paper" class="external" target="_blank" rel="noopener">Shahnameh whitepaper on GitBook</a>.</p>
+</section>
+{% endblock %}
