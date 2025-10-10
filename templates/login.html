@@ -2,58 +2,170 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Telegram Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enter the Shahnameh Realm</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark light;
+        --bg: #08061a;
+        --panel: rgba(18, 15, 40, 0.92);
+        --text: #f8fafc;
+        --muted: rgba(241, 245, 249, 0.75);
+        --accent: #38bdf8;
+        --accent-warm: #f97316;
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+        background: radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.25), transparent 55%),
+          radial-gradient(circle at 80% 25%, rgba(249, 115, 22, 0.25), transparent 60%),
+          var(--bg);
+        color: var(--text);
+        display: grid;
+        place-items: center;
+        padding: clamp(2rem, 6vw, 3rem) clamp(1.5rem, 5vw, 2.5rem);
+      }
+
+      main {
+        position: relative;
+        width: min(420px, 100%);
+        padding: clamp(2rem, 5vw, 2.6rem);
+        border-radius: 28px;
+        background: var(--panel);
+        border: 1px solid rgba(248, 250, 252, 0.15);
+        box-shadow: 0 25px 55px -28px rgba(5, 4, 16, 0.85);
+        text-align: center;
+        overflow: hidden;
+      }
+
+      main::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 20% 25%, rgba(56, 189, 248, 0.4), transparent 60%),
+          radial-gradient(circle at 75% 80%, rgba(249, 115, 22, 0.35), transparent 65%);
+        opacity: 0.45;
+        pointer-events: none;
+      }
+
+      h1 {
+        position: relative;
+        margin: 0 0 0.75rem;
+        font-family: 'Baloo 2', cursive;
+        font-size: clamp(2rem, 5vw, 2.6rem);
+        color: #facc15;
+      }
+
+      p {
+        position: relative;
+        margin: 0 0 1.8rem;
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 0.95rem;
+      }
+
+      .widget-wrapper {
+        position: relative;
+        display: grid;
+        gap: 1.5rem;
+        justify-items: center;
+      }
+
+      .status {
+        position: relative;
+        font-size: 0.9rem;
+        color: var(--muted);
+        min-height: 1.2em;
+      }
+
+      .status.success {
+        color: #4ade80;
+      }
+
+      .status.error {
+        color: #fda4af;
+      }
+
+      .safety-note {
+        position: relative;
+        margin-top: 1.75rem;
+        font-size: 0.85rem;
+        color: rgba(248, 250, 252, 0.65);
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover,
+      a:focus {
+        color: var(--accent-warm);
+      }
+    </style>
   </head>
   <body>
-    <h2>Login with Telegram</h2>
+    <main>
+      <h1>Summon with Telegram</h1>
+      <p>Link your champion by signing in through the official @shahnameshbot gateway.</p>
 
-    <!-- ✅ Correct Telegram Login Button -->
-    <script
-      async
-      src="https://telegram.org/js/telegram-widget.js?7"
-      data-telegram-login="shahnameshbot"
-      <!--
-      <--
-      your
-      bot
-      username
-      --
-    >
-      data-size="large"
-      data-userpic="false"
-      data-onauth="onTelegramAuth"
-      data-request-access="write">
-    </script>
+      <div class="widget-wrapper">
+        <script
+          async
+          src="https://telegram.org/js/telegram-widget.js?22"
+          data-telegram-login="shahnameshbot"
+          data-size="large"
+          data-userpic="false"
+          data-onauth="onTelegramAuth"
+          data-request-access="write"
+        ></script>
+        <div id="status" class="status" aria-live="polite"></div>
+      </div>
+
+      <p class="safety-note">
+        We never ask for private keys. Having trouble? <a href="mailto:support@shahnamehgamefi.ir">Contact support</a> and we will help.
+      </p>
+    </main>
 
     <script>
       async function onTelegramAuth(user) {
-        console.log("Telegram User Data:", user);
+        const statusEl = document.getElementById('status');
+        statusEl.textContent = 'Authenticating with the citadel...';
+        statusEl.className = 'status';
 
         try {
-          const response = await fetch(
-            "https://2426-103-108-5-29.ngrok-free.app/api/bot_login/",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                "ngrok-skip-browser-warning": "true",
-              },
-              body: JSON.stringify(user),
-            }
-          );
+          const response = await fetch('/api/bot_login/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+          });
 
           if (!response.ok) {
-            throw new Error("Telegram login failed");
+            throw new Error('Telegram login failed');
           }
 
           const data = await response.json();
-          console.log("Login successful:", data);
-
-          // Store token and redirect
-          localStorage.setItem("authToken", data.token);
-          window.location.href = "/dashboard.html";
+          localStorage.setItem('authToken', data.token);
+          statusEl.textContent = 'All set! Redirecting to your guild hall...';
+          statusEl.className = 'status success';
+          window.location.href = data.redirect_url || '/dashboard/';
         } catch (err) {
-          alert("Login failed: " + err.message);
+          statusEl.textContent = `Login failed: ${err.message}`;
+          statusEl.className = 'status error';
         }
       }
     </script>
