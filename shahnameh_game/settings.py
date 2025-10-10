@@ -12,21 +12,43 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 
+from celery.schedules import crontab
+
+
+def _get_bool_env(name: str, default: str = "False") -> bool:
+    """Return a boolean from the environment respecting common truthy values."""
+    value = os.environ.get(name, default)
+    return value.lower() in {"1", "true", "yes", "on"}
+
+
+def _get_list_env(name: str, default: str = "") -> list[str]:
+    """Return a list from a comma separated environment variable."""
+    raw = os.environ.get(name, default)
+    return [item.strip() for item in raw.split(",") if item.strip()]
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-from celery.schedules import crontab
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-1n+iibh4!-)d^_iyg_1jh_nq*dn5ay530r(#__bhjg3_tl@_xj'
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-change-me",  # Safe default for local development only
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = _get_bool_env("DJANGO_DEBUG")
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '2426-103-108-5-29.ngrok-free.app']
+ALLOWED_HOSTS = _get_list_env(
+    "DJANGO_ALLOWED_HOSTS",
+    default="localhost,127.0.0.1",
+)
+if not ALLOWED_HOSTS:
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
 
 
@@ -165,3 +187,8 @@ CORS_ALLOW_ALL_ORIGINS  = True
 
 MEDIA_URL = '/uploads/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+
+
+# External service configuration
+TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
+TELEGRAM_DEFAULT_CHAT_ID = os.environ.get("TELEGRAM_DEFAULT_CHAT_ID")

@@ -7,6 +7,7 @@ from django.utils import timezone
 from django.db.models import Q
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -308,7 +309,13 @@ def profile_view(request):
 @api_view(['POST'])
 def bot_login(request):
     data = request.data
-    bot_token = "7585286219:AAGltBgrhw7MZy_9U3gDyjifCJ7D7LPewAk"
+    bot_token = getattr(settings, "TELEGRAM_BOT_TOKEN", None)
+
+    if not bot_token:
+        return Response(
+            {"error": "Telegram bot token is not configured."},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
 
     if not verify_telegram_auth(data, bot_token):
         return Response({"error": "Invalid Telegram data"}, status=status.HTTP_400_BAD_REQUEST)

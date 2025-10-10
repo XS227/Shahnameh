@@ -1,7 +1,9 @@
 # telegram_bot.py
+import os
+
 import aiohttp
-from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 from telegram import Update
+from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
 API_BASE_URL = "https://api.shahnamehgamefi.ir/api"
 user_tokens = {}
@@ -38,7 +40,13 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await update.message.reply_text("❌ Login failed.")
 
 async def run_bot_async():
-    app = ApplicationBuilder().token("7671321115:AAG9Y1HLn1o_S2Dz6dF8e-ro238dU8KFXdQ").build()
+    bot_token = os.environ.get("TELEGRAM_BOT_TOKEN")
+    if not bot_token:
+        raise RuntimeError(
+            "TELEGRAM_BOT_TOKEN environment variable is not set."
+        )
+
+    app = ApplicationBuilder().token(bot_token).build()
     app.add_handler(CommandHandler("start", start))
     print("Telegram bot is running...")
     await app.run_polling()
