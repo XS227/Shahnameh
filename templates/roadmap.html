@@ -1,0 +1,46 @@
+{% extends "docs_base.html" %}
+{% block title %}{{ page_title }} · Shahnameh Knowledge Base{% endblock %}
+{% block content %}
+<section>
+    <h2>{{ page_title }}</h2>
+    <p>Season 2 doubles down on community-driven storytelling and competitive faction play. The roadmap below mirrors the live operations plan shared internally so everyone can rally around the same milestones.</p>
+</section>
+<section>
+    <h3>Milestones</h3>
+    {% for phase in season_two_roadmap %}
+    <div class="phase">
+        <strong>{{ phase.phase }}</strong>
+        <p>{{ phase.summary }}</p>
+        <ul>
+            {% for item in phase.items %}
+            <li><strong>{{ item.title }}:</strong> {{ item.description }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</section>
+<section>
+    <h3>Operational Focus</h3>
+    <ul>
+        {% for focus in operational_focus %}
+        <li>{{ focus }}</li>
+        {% endfor %}
+    </ul>
+</section>
+<section>
+    <h3>Community Programs</h3>
+    <ul>
+        {% for item in community_programs %}
+        <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+</section>
+<section>
+    <h3>Additional Resources</h3>
+    <ul>
+        <li><a href="{% url 'whitepaper' %}">Season narrative context</a></li>
+        <li><a href="https://github.com/Shahnameh-TON" class="external" target="_blank" rel="noopener">Legacy repository reference</a></li>
+        <li><a href="/api/" class="external">Developer API documentation</a></li>
+    </ul>
+</section>
+{% endblock %}

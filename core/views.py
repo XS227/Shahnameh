@@ -8,26 +8,276 @@ from django.db.models import Q
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 
-
-
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.authtoken.models import Token  
+from rest_framework.authtoken.models import Token
 import requests
 from eth_account.messages import encode_defunct
 from web3 import Web3
 
-from .serializers import (RegisterSerializer, CharacterSerializer, 
+from .serializers import (RegisterSerializer, CharacterSerializer,
                           UserCharaterSerializer, TaskSerializer,UserCharaterSerializer,
                           SettingsSerializer,MiningCardSerializer,HafizReadingSerializer,
                           BankSerializer, BankAccountSerializer)
-from .utils import verify_telegram_auth  
+from .utils import verify_telegram_auth
 from . import models
 import random
 import datetime
+
+
+def _season_two_roadmap():
+    """Centralised roadmap content so multiple pages stay in sync."""
+
+    return [
+        {
+            "phase": "Phase 1 – Foundations (Weeks 1-4)",
+            "summary": (
+                "Stabilise the live game experience while preparing the lore-driven "
+                "Season 2 onboarding journey."
+            ),
+            "items": [
+                {
+                    "title": "Lore-driven onboarding update",
+                    "description": (
+                        "Revamp the first-time user flow with narrated scenes that recap "
+                        "Season 1 and foreshadow the coming faction conflict."
+                    ),
+                },
+                {
+                    "title": "Economy audit & balancing",
+                    "description": (
+                        "Benchmark in-game resource sinks, token emission, and mining "
+                        "rates to ensure sustainable growth before new features launch."
+                    ),
+                },
+                {
+                    "title": "Telegram bot quality-of-life",
+                    "description": (
+                        "Improve latency, add inline help, and surface player progression "
+                        "stats from the legacy bot workflows."
+                    ),
+                },
+            ],
+        },
+        {
+            "phase": "Phase 2 – Faction Warfare (Weeks 5-8)",
+            "summary": (
+                "Deliver the headline Season 2 feature that asks players to align with "
+                "one of three factions."
+            ),
+            "items": [
+                {
+                    "title": "Faction reputation system",
+                    "description": (
+                        "Introduce weekly objectives tied to faction reputation that "
+                        "unlock cosmetics, buffs, and leaderboard recognition."
+                    ),
+                },
+                {
+                    "title": "Cooperative faction raids",
+                    "description": (
+                        "Launch asynchronous raid encounters where communities pool "
+                        "resources to defeat enemies inspired by epic Shahnameh tales."
+                    ),
+                },
+                {
+                    "title": "Seasonal NFT drop",
+                    "description": (
+                        "Mint a limited run of lore artifacts that provide cosmetic "
+                        "variants in-game and utility for the mining mini-game."
+                    ),
+                },
+            ],
+        },
+        {
+            "phase": "Phase 3 – Creator & Community Tools (Weeks 9-12)",
+            "summary": (
+                "Empower community storytellers and guild leads with shareable content "
+                "and moderation tools."
+            ),
+            "items": [
+                {
+                    "title": "Quest builder beta",
+                    "description": (
+                        "Allow verified lore keepers to craft side quests with custom "
+                        "dialogue, rewards, and puzzle layouts."
+                    ),
+                },
+                {
+                    "title": "Community analytics dashboards",
+                    "description": (
+                        "Provide faction captains with participation metrics, retention "
+                        "trends, and token sink/source visibility."
+                    ),
+                },
+                {
+                    "title": "Moderation escalation channel",
+                    "description": (
+                        "Launch a Discord and Telegram escalation workflow for player "
+                        "reports that syncs with support tooling."
+                    ),
+                },
+            ],
+        },
+        {
+            "phase": "Phase 4 – Finale & Handover (Weeks 13-16)",
+            "summary": (
+                "Close the season with a high-stakes narrative event and prepare for "
+                "long-term live-ops cadence."
+            ),
+            "items": [
+                {
+                    "title": "World boss multi-stage event",
+                    "description": (
+                        "Trigger a server-wide encounter that requires cross-faction "
+                        "coordination and unlocks epilogue cinematics."
+                    ),
+                },
+                {
+                    "title": "Season review & rewards",
+                    "description": (
+                        "Distribute achievement badges, roll out leaderboard rewards, "
+                        "and publish a community impact report."
+                    ),
+                },
+                {
+                    "title": "Season 3 pre-production",
+                    "description": (
+                        "Document learnings, lock feature priorities, and begin art/" 
+                        "narrative exploration for the next arc."
+                    ),
+                },
+            ],
+        },
+    ]
+
+
+def legacy_repo_overview(request):
+    context = {
+        "page_title": "Legacy Repository Overview",
+        "intro": (
+            "A curated summary of the original Shahnameh-TON codebase so new "
+            "contributors can understand the foundation this Django project builds upon."
+        ),
+        "feature_groups": [
+            {
+                "title": "Core Game Services",
+                "items": [
+                    "Django REST Framework APIs for registration, authentication, and player profiles.",
+                    "Turn-based puzzle mini-game endpoint used for daily engagement quests.",
+                    "Task and reward management with activation windows and completion tracking.",
+                ],
+            },
+            {
+                "title": "Blockchain & Economy Integration",
+                "items": [
+                    "Token mining logic that pairs on-chain rewards with in-app stamina systems.",
+                    "Banking abstractions for handling user wallets, deposits, and withdrawals.",
+                    "Utility helpers for verifying Telegram sign-in payloads prior to minting rewards.",
+                ],
+            },
+            {
+                "title": "Telegram Bot Companion",
+                "items": [
+                    "Automated user provisioning using Telegram IDs as credential seeds.",
+                    "Two-way messaging endpoints so players can receive notifications and issue commands.",
+                    "Celery task scheduling for broadcasting quests and mining updates in real time.",
+                ],
+            },
+        ],
+        "technical_highlights": [
+            "Python 3.11+, Django, Django REST Framework, Celery, Redis, and PostgreSQL (recommended).",
+            "JWT-based security using SimpleJWT plus Telegram auth verification utilities.",
+            "Docker-ready settings and environment variable strategy for multistage deployments.",
+        ],
+        "migration_notes": [
+            "Preserve API compatibility for mobile clients by proxying legacy endpoints where possible.",
+            "Move long-running tasks into Celery beat schedules to avoid blocking HTTP responses.",
+            "Centralise shared schemas in this monorepo to reduce duplication across services.",
+        ],
+    }
+
+    return render(request, "legacy_overview.html", context)
+
+
+def whitepaper_overview(request):
+    context = {
+        "page_title": "Shahnameh Whitepaper Digest",
+        "summary": (
+            "The Shahnameh whitepaper frames the experience as a lore-rich on-chain RPG "
+            "where community-driven storytelling powers the token economy. This digest "
+            "highlights the pillars most relevant to the current Django stack."
+        ),
+        "pillars": [
+            {
+                "title": "Lore-first Design",
+                "details": (
+                    "Every mechanic connects back to Ferdowsi's epic tales. Seasonal arcs "
+                    "translate major stories into collaborative events, ensuring cultural "
+                    "authenticity while introducing newcomers to the lore."
+                ),
+            },
+            {
+                "title": "Player-owned Economy",
+                "details": (
+                    "Dual-token design distinguishes governance influence from gameplay "
+                    "rewards. On-chain actions feed into off-chain progression loops, "
+                    "creating meaningful stakes for daily play."
+                ),
+            },
+            {
+                "title": "Community Governance",
+                "details": (
+                    "Story councils curate future quests, approve creator-made adventures, "
+                    "and manage treasury proposals that fund community projects."
+                ),
+            },
+        ],
+        "economy_breakdown": {
+            "utility_token": "Simorgh Shards (SHD) fuel crafting, quest unlocks, and faction boosts.",
+            "governance_token": "Crown of Heroes (CRH) grants voting power over story arcs and economy levers.",
+            "sink_examples": [
+                "Upgrading caravan caravans for cross-season persistence.",
+                "Accessing elite raids and cooperative faction contracts.",
+                "Commissioning lore-artifacts from community creators.",
+            ],
+            "source_examples": [
+                "Faction events tied to canonical battles.",
+                "Creator quests that reach community quality thresholds.",
+                "Cross-platform referrals that bring new players into the world.",
+            ],
+        },
+        "player_journey": [
+            "Discover Shahnameh through social channels or the Telegram bot and claim a hero soul.",
+            "Complete narrative-driven tutorials to unlock mining rigs and cooperative quests.",
+            "Form or join a guild to compete in faction warfare and shape upcoming storylines.",
+        ],
+        "season_two_roadmap": _season_two_roadmap(),
+    }
+
+    return render(request, "whitepaper.html", context)
+
+
+def season_two_roadmap_page(request):
+    context = {
+        "page_title": "Season 2 Roadmap",
+        "season_two_roadmap": _season_two_roadmap(),
+        "operational_focus": [
+            "Weekly health reviews measuring retention, revenue, and community satisfaction.",
+            "Cross-team war room for launch weeks to keep live ops, support, and engineering aligned.",
+            "Transparent changelog cadence so players understand balancing decisions in real time.",
+        ],
+        "community_programs": [
+            "Lorekeeper mentorship sessions that help storytellers refine quests before publication.",
+            "Faction ambassador spotlights celebrating player leadership and contributions.",
+            "Seasonal art contests with on-chain rewards and in-game showcase placements.",
+        ],
+    }
+
+    return render(request, "roadmap.html", context)
 
 
 

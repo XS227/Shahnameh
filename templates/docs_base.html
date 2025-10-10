@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{{ page_title }} · Shahnameh Knowledge Base{% endblock %}</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #0d1117;
+            --panel: #161b22;
+            --text: #e6edf3;
+            --accent: #f97316;
+            --muted: #8b949e;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, rgba(249, 115, 22, 0.12), transparent 55%),
+                        linear-gradient(180deg, rgba(13, 17, 23, 0.98), rgba(13, 17, 23, 0.92));
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        header {
+            background: rgba(22, 27, 34, 0.85);
+            backdrop-filter: blur(8px);
+            padding: 2.5rem 1.5rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        header h1 {
+            margin: 0 0 0.75rem;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+
+        nav a {
+            color: var(--text);
+            text-decoration: none;
+            padding: 0.5rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            background: rgba(249, 115, 22, 0.15);
+            border-color: rgba(249, 115, 22, 0.4);
+            color: #fff;
+        }
+
+        main {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+
+        section {
+            background: rgba(22, 27, 34, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 1.75rem;
+            margin-bottom: 1.75rem;
+            box-shadow: 0 12px 40px rgba(13, 17, 23, 0.35);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            color: rgba(249, 115, 22, 0.95);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        p {
+            line-height: 1.7;
+            color: var(--muted);
+            margin-top: 0.4rem;
+        }
+
+        ul {
+            padding-left: 1.1rem;
+            margin: 0.8rem 0 0;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+            color: var(--text);
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #fff;
+            margin: 0 0 1.5rem;
+            max-width: 680px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem 3rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.85rem;
+        }
+
+        .phase {
+            border-left: 3px solid rgba(249, 115, 22, 0.7);
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .phase strong {
+            color: #fff;
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 1.25rem;
+        }
+
+        @media (min-width: 720px) {
+            .grid.columns-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        a.external {
+            color: rgba(249, 115, 22, 0.95);
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h1>Shahnameh Knowledge Base</h1>
+    <p class="tagline">Documentation snapshots for the legacy repository, the living whitepaper, and our evolving roadmap.</p>
+    <nav>
+        <a href="{% url 'legacy-overview' %}">Legacy Repository</a>
+        <a href="{% url 'whitepaper' %}">Whitepaper Digest</a>
+        <a href="{% url 'season2-roadmap' %}">Season 2 Roadmap</a>
+        <a href="/api/" class="external">API Reference</a>
+    </nav>
+</header>
+<main>
+    {% block content %}{% endblock %}
+</main>
+<footer>
+    Built with ❤️ by the Shahnameh core team · Updated {% now "F j, Y" %}
+</footer>
+</body>
+</html>
