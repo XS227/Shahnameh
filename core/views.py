@@ -17,8 +17,16 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.authtoken.models import Token
 import requests
-from eth_account.messages import encode_defunct
-from web3 import Web3
+
+try:  # pragma: no cover - optional web3 dependency
+    from eth_account.messages import encode_defunct
+except ModuleNotFoundError:  # pragma: no cover - degrade gracefully in local shells
+    encode_defunct = None
+
+try:  # pragma: no cover - optional web3 dependency
+    from web3 import Web3
+except ModuleNotFoundError:  # pragma: no cover - degrade gracefully in local shells
+    Web3 = None
 
 from .serializers import (RegisterSerializer, CharacterSerializer,
                           UserCharaterSerializer, TaskSerializer,UserCharaterSerializer,
@@ -1452,6 +1460,12 @@ class WalletLoginAPIView(APIView):
 
         if not address or not signature or not message:
             return Response({"error": "Missing data"}, status=400)
+
+        if encode_defunct is None or Web3 is None:
+            return Response(
+                {"error": "Web3 libraries are not installed in this environment."},
+                status=503,
+            )
 
         message_encoded = encode_defunct(text=message)
         try:
