@@ -203,6 +203,130 @@
             color: var(--text-muted);
         }
 
+        .transparency-section {
+            position: relative;
+            background: linear-gradient(180deg, rgba(12, 9, 28, 0.85), rgba(8, 10, 26, 0.95));
+            border-block: 1px solid rgba(56, 189, 248, 0.12);
+        }
+
+        .transparency-header {
+            text-align: center;
+            max-width: 72ch;
+            margin: 0 auto 2.6rem;
+        }
+
+        .transparency-header p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .transparency-grid {
+            display: grid;
+            gap: 1.8rem;
+            margin-bottom: clamp(2rem, 5vw, 3rem);
+        }
+
+        @media (min-width: 720px) {
+            .transparency-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        .transparency-card {
+            position: relative;
+            padding: clamp(1.8rem, 4vw, 2.4rem);
+            border-radius: 28px;
+            background: rgba(9, 12, 28, 0.82);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: 0 22px 55px -28px rgba(7, 10, 28, 0.85);
+            backdrop-filter: blur(16px);
+        }
+
+        .transparency-card h3 {
+            margin: 0 0 0.75rem;
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.3rem;
+            color: var(--secondary);
+        }
+
+        .transparency-value {
+            font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+            font-weight: 600;
+            color: var(--highlight);
+            margin: 0 0 0.85rem;
+        }
+
+        .transparency-note {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .mission-copy {
+            margin: 0 auto clamp(2rem, 5vw, 3rem);
+            max-width: 80ch;
+            font-size: 1.05rem;
+            color: rgba(248, 250, 252, 0.82);
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .mission-copy strong {
+            color: var(--secondary);
+        }
+
+        .countdown-panel {
+            border-radius: 28px;
+            padding: clamp(2rem, 5vw, 2.8rem);
+            background: rgba(5, 8, 22, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            box-shadow: 0 20px 48px -26px rgba(6, 9, 24, 0.85);
+            text-align: center;
+        }
+
+        .countdown-panel h3 {
+            margin: 0 0 1.5rem;
+            font-family: 'Baloo 2', cursive;
+            font-size: clamp(1.6rem, 4vw, 2.1rem);
+            color: var(--highlight);
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: clamp(1rem, 3vw, 1.5rem);
+        }
+
+        @media (max-width: 640px) {
+            .countdown-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        .countdown-cell {
+            padding: 1.2rem 1rem;
+            border-radius: 24px;
+            background: rgba(15, 12, 32, 0.85);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            display: grid;
+            gap: 0.35rem;
+        }
+
+        .countdown-value {
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            font-weight: 700;
+            color: var(--secondary);
+        }
+
+        .countdown-label {
+            font-size: 0.85rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(248, 250, 252, 0.6);
+        }
+
         section {
             padding: clamp(3rem, 5vw, 4.5rem) clamp(1.5rem, 5vw, 3.5rem);
             position: relative;
@@ -482,9 +606,14 @@
             <div class="hero-copy">
                 <h1>Forge Legends on the Shahnameh Frontier</h1>
                 <p>
-                    Rally your guild, grow the kingdom and chart a path through the myths of ancient Persia.
-                    Shahnameh Game blends playful strategy with Web3 stewardship so every decision leaves a mark on
-                    the eternal chronicle.
+                    Rally your guild, grow the kingdom and chart a path through the myths of ancient Persia. Honoured as
+                    the <strong>third Editors' Choice</strong> during our first phase, Shahnameh Game blends playful strategy with
+                    Web3 stewardship so every decision leaves a mark on the eternal chronicle.
+                </p>
+                <p>
+                    <strong>We are set on revolutionising the national economy of Iran through the gaming industry</strong>,
+                    creating equitable rails where player creativity, culture and capital compound for communities at
+                    home and across the diaspora.
                 </p>
                 <div class="cta-row">
                     <a class="button" href="/api/">
@@ -507,7 +636,68 @@
                 </div>
             </div>
         </div>
-    </header>
+</header>
+
+    <section class="transparency-section">
+        <div class="section-inner">
+            <div class="transparency-header">
+                <h2 class="section-title">Token Transparency, Front and Centre</h2>
+                <p>
+                    Every explorer can audit the heart of the Shahnameh treasury in real time. Track live price action,
+                    unique holder momentum and the liquidity securing our adventures without leaving the landing page.
+                </p>
+            </div>
+            <div class="transparency-grid">
+                <article class="transparency-card">
+                    <h3>Current TON Price</h3>
+                    <p class="transparency-value" data-ton-price>$--</p>
+                    <p class="transparency-note">
+                        24h Change:
+                        <span class="intel-badge" data-ton-change>--%</span>
+                    </p>
+                </article>
+                <article class="transparency-card">
+                    <h3>Holder Accounts</h3>
+                    <p class="transparency-value" data-ton-holders>--</p>
+                    <p class="transparency-note" data-ton-holders-note>Awaiting holder telemetry…</p>
+                </article>
+                <article class="transparency-card">
+                    <h3>Liquidity Depth</h3>
+                    <p class="transparency-value" data-ton-liquidity data-format="raw">$--</p>
+                    <p class="transparency-note">Aggregated across major TON pools and refreshed continuously.</p>
+                </article>
+            </div>
+            <p class="mission-copy">
+                Our mission is bold: empower Iranian creators and players with regenerative, decentralised economics that
+                funnel new prosperity into local studios, guilds and storytellers. <strong>Transparent tokenomics is the
+                bedrock of that revolution.</strong>
+            </p>
+            <div class="countdown-panel" aria-live="polite">
+                <h3>Countdown to the Next Shahnameh Season</h3>
+                <div class="countdown-grid">
+                    <div class="countdown-cell">
+                        <span class="countdown-value" data-countdown-days>--</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-cell">
+                        <span class="countdown-value" data-countdown-hours>--</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-cell">
+                        <span class="countdown-value" data-countdown-minutes>--</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-cell">
+                        <span class="countdown-value" data-countdown-seconds>--</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+                <p class="transparency-note" style="margin-top: 1.5rem;" data-countdown-message>
+                    Season relaunch is scheduled for <strong>11 November 2025</strong> — synchronise your guild's plans now.
+                </p>
+            </div>
+        </div>
+    </section>
 
     <section>
         <div class="section-inner">
@@ -604,22 +794,46 @@
     </footer>
 
     <script>
+        const selectAll = (selector) => Array.from(document.querySelectorAll(selector));
+
+        const setText = (elements, value) => {
+            elements.forEach((element) => {
+                element.textContent = value;
+            });
+        };
+
+        const setHTML = (elements, value) => {
+            elements.forEach((element) => {
+                element.innerHTML = value;
+            });
+        };
+
         const tonElements = {
-            price: document.querySelector('[data-ton-price]'),
-            change: document.querySelector('[data-ton-change]'),
-            liquidity: document.querySelector('[data-ton-liquidity]'),
+            price: selectAll('[data-ton-price]'),
+            change: selectAll('[data-ton-change]'),
+            liquidity: selectAll('[data-ton-liquidity]'),
+            holders: selectAll('[data-ton-holders]'),
+            holdersNote: selectAll('[data-ton-holders-note]'),
         };
 
         const dyorElements = {
-            score: document.querySelector('[data-dyor-score]'),
-            tier: document.querySelector('[data-dyor-tier]'),
-            updated: document.querySelector('[data-dyor-updated]'),
+            score: selectAll('[data-dyor-score]'),
+            tier: selectAll('[data-dyor-tier]'),
+            updated: selectAll('[data-dyor-updated]'),
         };
 
         const contentElements = {
-            share: document.querySelector('[data-content-share]'),
-            contributors: document.querySelector('[data-contributors]'),
-            note: document.querySelector('[data-content-note]'),
+            share: selectAll('[data-content-share]'),
+            contributors: selectAll('[data-contributors]'),
+            note: selectAll('[data-content-note]'),
+        };
+
+        const countdownElements = {
+            days: selectAll('[data-countdown-days]'),
+            hours: selectAll('[data-countdown-hours]'),
+            minutes: selectAll('[data-countdown-minutes]'),
+            seconds: selectAll('[data-countdown-seconds]'),
+            message: selectAll('[data-countdown-message]'),
         };
 
         const formatNumber = (value, options = {}) => {
@@ -637,18 +851,28 @@
         };
 
         const applyFallback = () => {
-            tonElements.price.textContent = '$0.00';
-            tonElements.change.textContent = '0%';
-            tonElements.change.classList.remove('loss', 'gain');
-            tonElements.liquidity.textContent = 'Awaiting liquidity feed…';
+            setText(tonElements.price, '$0.00');
+            tonElements.change.forEach((element) => {
+                element.textContent = '0%';
+                element.classList.remove('loss', 'gain');
+            });
+            tonElements.liquidity.forEach((element) => {
+                element.textContent =
+                    element.dataset.format === 'raw' ? '$--' : 'Awaiting liquidity feed…';
+            });
+            setText(tonElements.holders, '--');
+            setText(tonElements.holdersNote, 'Holder telemetry will display once TON indexers respond.');
 
-            dyorElements.score.textContent = 'N/A';
-            dyorElements.tier.textContent = 'DYOR ratings currently unavailable.';
-            dyorElements.updated.textContent = '';
+            setText(dyorElements.score, 'N/A');
+            setText(dyorElements.tier, 'DYOR ratings currently unavailable.');
+            setText(dyorElements.updated, '');
 
-            contentElements.share.textContent = 'N/A';
-            contentElements.contributors.textContent = '--';
-            contentElements.note.textContent = 'Community dashboards will populate once DYOR data is reachable.';
+            setText(contentElements.share, 'N/A');
+            setText(contentElements.contributors, '--');
+            setText(
+                contentElements.note,
+                'Community dashboards will populate once DYOR data is reachable.'
+            );
         };
 
         const derivePercentage = (value) => {
@@ -698,30 +922,63 @@
                         tonData?.liquidity ||
                         null;
 
+                    const holders =
+                        tonData?.holders ||
+                        tonData?.holders_count ||
+                        tonData?.metrics?.holders ||
+                        tonData?.addresses?.holders;
+
                     if (price !== undefined) {
-                        tonElements.price.textContent = `$${formatNumber(Number(price), {
+                        const formattedPrice = `$${formatNumber(Number(price), {
                             minimumFractionDigits: 2,
                             maximumFractionDigits: 2,
                         })}`;
+                        setText(tonElements.price, formattedPrice);
                     }
 
                     if (change !== undefined && change !== null) {
                         const changeValue = Number(change);
-                        tonElements.change.textContent = `${changeValue > 0 ? '+' : ''}${formatNumber(changeValue, {
-                            minimumFractionDigits: 2,
-                            maximumFractionDigits: 2,
-                        })}%`;
-                        tonElements.change.classList.toggle('gain', changeValue > 0);
-                        tonElements.change.classList.toggle('loss', changeValue < 0);
+                        tonElements.change.forEach((element) => {
+                            element.textContent = `${changeValue > 0 ? '+' : ''}${formatNumber(changeValue, {
+                                minimumFractionDigits: 2,
+                                maximumFractionDigits: 2,
+                            })}%`;
+                            element.classList.toggle('gain', changeValue > 0);
+                            element.classList.toggle('loss', changeValue < 0);
+                        });
                     }
 
                     if (liquidity) {
-                        tonElements.liquidity.textContent = `Reported liquidity: $${formatNumber(Number(liquidity), {
+                        const formattedLiquidity = `$${formatNumber(Number(liquidity), {
                             minimumFractionDigits: 0,
                             maximumFractionDigits: 0,
                         })}`;
+                        tonElements.liquidity.forEach((element) => {
+                            if (element.dataset.format === 'raw') {
+                                element.textContent = formattedLiquidity;
+                            } else {
+                                element.textContent = `Reported liquidity: ${formattedLiquidity}`;
+                            }
+                        });
                     } else {
-                        tonElements.liquidity.textContent = 'Liquidity metrics pending fresh updates…';
+                        tonElements.liquidity.forEach((element) => {
+                            element.textContent =
+                                element.dataset.format === 'raw'
+                                    ? '$--'
+                                    : 'Liquidity metrics pending fresh updates…';
+                        });
+                    }
+
+                    if (holders !== undefined && holders !== null && !Number.isNaN(Number(holders))) {
+                        const formattedHolders = formatNumber(Number(holders), {
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0,
+                        });
+                        setText(tonElements.holders, formattedHolders);
+                        setText(
+                            tonElements.holdersNote,
+                            'Unique wallets tracked across TON indexers.'
+                        );
                     }
 
                     return;
@@ -774,51 +1031,57 @@
                         project?.metrics?.verified_contributors;
 
                     if (score !== null) {
-                        dyorElements.score.textContent = `${formatNumber(score, {
+                        const formattedScore = `${formatNumber(score, {
                             minimumFractionDigits: 1,
                             maximumFractionDigits: 1,
                         })}%`;
+                        setText(dyorElements.score, formattedScore);
                     } else {
-                        dyorElements.score.textContent = 'Unrated';
+                        setText(dyorElements.score, 'Unrated');
                     }
 
                     if (tier) {
-                        dyorElements.tier.textContent = `Risk tier: ${tier}`;
+                        setText(dyorElements.tier, `Risk tier: ${tier}`);
                     } else {
-                        dyorElements.tier.textContent = 'Risk tier awaiting DYOR review.';
+                        setText(dyorElements.tier, 'Risk tier awaiting DYOR review.');
                     }
 
                     if (updatedAt) {
                         const updatedDate = new Date(updatedAt);
                         if (!Number.isNaN(updatedDate.getTime())) {
-                            dyorElements.updated.textContent = `Last refreshed ${updatedDate.toLocaleString()}`;
+                            const readable = `Last refreshed ${updatedDate.toLocaleString()}`;
+                            setText(dyorElements.updated, readable);
                         }
                     } else {
-                        dyorElements.updated.textContent = '';
+                        setText(dyorElements.updated, '');
                     }
 
                     if (contentPercent !== null) {
-                        contentElements.share.textContent = `${formatNumber(contentPercent, {
+                        const formattedContent = `${formatNumber(contentPercent, {
                             minimumFractionDigits: 1,
                             maximumFractionDigits: 1,
                         })}%`;
+                        setText(contentElements.share, formattedContent);
                     } else {
-                        contentElements.share.textContent = 'N/A';
+                        setText(contentElements.share, 'N/A');
                     }
 
                     if (contributors !== undefined) {
-                        contentElements.contributors.textContent = formatNumber(Number(contributors), {
+                        const formattedContributors = formatNumber(Number(contributors), {
                             minimumFractionDigits: 0,
                             maximumFractionDigits: 0,
                         });
+                        setText(contentElements.contributors, formattedContributors);
                     } else {
-                        contentElements.contributors.textContent = '--';
+                        setText(contentElements.contributors, '--');
                     }
 
-                    contentElements.note.textContent =
+                    setText(
+                        contentElements.note,
                         contentPercent !== null
                             ? 'Content share reflects vetted creators on DYOR.'
-                            : 'Content share data pending next DYOR crawl.';
+                            : 'Content share data pending next DYOR crawl.'
+                    );
 
                     return;
                 } catch (error) {
@@ -831,6 +1094,40 @@
             applyFallback();
             await Promise.all([fetchTonStats(), fetchDyorStats()]);
         };
+
+        const seasonLaunch = new Date('2025-11-11T00:00:00Z');
+
+        const updateCountdown = () => {
+            const now = new Date();
+            if (Number.isNaN(seasonLaunch.getTime()) || Number.isNaN(now.getTime())) {
+                return;
+            }
+
+            let diff = seasonLaunch.getTime() - now.getTime();
+            const isPast = diff <= 0;
+            if (isPast) {
+                diff = 0;
+            }
+
+            const totalSeconds = Math.floor(diff / 1000);
+            const days = Math.floor(totalSeconds / 86_400);
+            const hours = Math.floor((totalSeconds % 86_400) / 3_600);
+            const minutes = Math.floor((totalSeconds % 3_600) / 60);
+            const seconds = totalSeconds % 60;
+
+            setText(countdownElements.days, days.toString().padStart(2, '0'));
+            setText(countdownElements.hours, hours.toString().padStart(2, '0'));
+            setText(countdownElements.minutes, minutes.toString().padStart(2, '0'));
+            setText(countdownElements.seconds, seconds.toString().padStart(2, '0'));
+
+            const message = isPast
+                ? 'Season relaunch has begun — <strong>rally your guild now!</strong>'
+                : 'Season relaunch is scheduled for <strong>11 November 2025</strong> — synchronise your guild\'s plans now.';
+            setHTML(countdownElements.message, message);
+        };
+
+        updateCountdown();
+        setInterval(updateCountdown, 1_000);
 
         initialiseIntel();
         setInterval(initialiseIntel, 180_000);
