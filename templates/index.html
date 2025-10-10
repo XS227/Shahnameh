@@ -1722,6 +1722,10 @@
 
         const renderReealChart = () => {
             if (!reealChartCanvas) return;
+            if (typeof window.Chart !== 'function') {
+                console.warn('Chart.js unavailable, skipping REEAL chart render');
+                return;
+            }
             const labels = reealPriceSeries.map((point) =>
                 activeLanguage === 'fa' && point.labelFa ? point.labelFa : point.label
             );
