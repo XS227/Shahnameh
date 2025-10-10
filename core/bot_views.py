@@ -1,13 +1,12 @@
 # core/bot_views.py
 
 import requests
-from rest_framework.views import APIView
-from rest_framework.response import Response
+from django.conf import settings
 from django.contrib.auth.models import User
-from .models import ChatMessage
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
-TELEGRAM_BOT_TOKEN = "7671321115:AAG9Y1HLn1o_S2Dz6dF8e-ro238dU8KFXdQ"
-TELEGRAM_CHAT_ID = "6303109284"
+from .models import ChatMessage
 
 class SendTelegramMessageView(APIView):
     def post(self, request):
@@ -25,10 +24,19 @@ class SendTelegramMessageView(APIView):
             # Save user message
             ChatMessage.objects.create(user=user, sender="user", message=message)
 
+            bot_token = getattr(settings, "TELEGRAM_BOT_TOKEN", None)
+            chat_id = getattr(settings, "TELEGRAM_DEFAULT_CHAT_ID", None)
+
+            if not bot_token or not chat_id:
+                return Response(
+                    {"error": "Telegram integration is not configured."},
+                    status=500,
+                )
+
             # Send to Telegram
-            url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+            url = f"https://api.telegram.org/bot{bot_token}/sendMessage"
             payload = {
-                "chat_id": TELEGRAM_CHAT_ID,
+                "chat_id": chat_id,
                 "text": message,
             }
 

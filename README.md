@@ -53,7 +53,19 @@ This project powers the Shahnameh RPG experience, combining **Django + Django RE
    ```bash
    pip install -r requirements.txt
    ```
-4. **Apply migrations & run the server**
+4. **Configure environment variables**
+   
+   Create a `.env` file (or export the variables in your shell) and provide the following values:
+   
+   ```env
+   DJANGO_SECRET_KEY=replace-with-a-strong-secret-key
+   DJANGO_DEBUG=False
+   DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
+   TELEGRAM_BOT_TOKEN=<your-telegram-bot-token>
+   TELEGRAM_DEFAULT_CHAT_ID=<optional-default-chat-id>
+   ```
+
+5. **Apply migrations & run the server**
    ```bash
    python manage.py makemigrations
    python manage.py migrate
@@ -65,7 +77,10 @@ This project powers the Shahnameh RPG experience, combining **Django + Django RE
 ## 🤖 Telegram Bot Setup
 
 1. Create a bot via [@BotFather](https://t.me/BotFather) and grab the API token.
-2. Update `telegram_bot.py` with your token or export it as an environment variable.
+2. Export your bot token so the code can read it securely:
+   ```bash
+   export TELEGRAM_BOT_TOKEN="<your-telegram-bot-token>"
+   ```
 3. Launch the bot locally:
    ```bash
    python telegram_bot.py
