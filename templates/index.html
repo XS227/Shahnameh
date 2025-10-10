@@ -819,42 +819,37 @@
     </style>
 </head>
 <body>
-    <header>
+    <main class="landing">
         <div class="language-switcher" role="group" aria-label="Language toggle">
             <button class="language-button active" type="button" data-lang="en">EN</button>
             <button class="language-button" type="button" data-lang="fa">فا</button>
         </div>
-        <div class="hero">
-            <div class="hero-copy">
-                <h1 data-i18n="hero.title">Forge Legends on the Shahnameh Frontier</h1>
-                <p data-i18n="hero.lead" data-i18n-format="html">
-                <h1>Forge Legends on the Shahnameh Frontier</h1>
-                <p>
-                    Rally your guild, grow the kingdom and chart a path through the myths of ancient Persia.
-                    Shahnameh Game blends playful strategy with Web3 stewardship so every decision leaves a mark on
-                    the eternal chronicle.
-                <p>
-                    Rally your guild, grow the kingdom and chart a path through the myths of ancient Persia. Honoured as
-                    the <strong>third Editors' Choice</strong> during our first phase, Shahnameh Game blends playful strategy with
-                    Web3 stewardship so every decision leaves a mark on the eternal chronicle.
-                </p>
-                <p data-i18n="hero.mission" data-i18n-format="html">
-                    <strong>We are set on revolutionising the national economy of Iran through the gaming industry</strong>,
-                    creating equitable rails where player creativity, culture and capital compound for communities at
-                    home and across the diaspora.
-                </p>
-                <div class="cta-row">
-                    <a class="button" href="/api/">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 6.75h.008v.008H11.25V6.75zM11.25 9h.008v.008H11.25V9zm0 2.25h.008v.008H11.25V11.25zm0 2.25h.008v.008H11.25V13.5zm0 2.25h.008v.008H11.25V15.75zm0 2.25h.008v.008H11.25V18zm2.25-11.25h.008v.008H13.5V6.75zm0 2.25h.008v.008H13.5V9zm0 2.25h.008v.008H13.5V11.25zm0 2.25h.008v.008H13.5V13.5zm0 2.25h.008v.008H13.5V15.75zm0 2.25h.008v.008H13.5V18zm2.25-11.25h.008v.008H15.75V6.75zm0 2.25h.008v.008H15.75V9zm0 2.25h.008v.008H15.75V11.25zm0 2.25h.008v.008H15.75V13.5zm0 2.25h.008v.008H15.75V15.75zm0 2.25h.008v.008H15.75V18z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l.72-.72a1.5 1.5 0 011.06-.44h7.5A1.5 1.5 0 0117.5 7.5v9a1.5 1.5 0 01-1.5 1.5h-7.5a1.5 1.5 0 01-1.5-1.5V7.5z" />
-                        </svg>
-                        <span data-i18n="hero.cta.primary" data-i18n-format="text">Explore the API</span>
-                    </a>
-                    <a class="button secondary" href="{% url 'whitepaper' %}">
-                        <span data-i18n="hero.cta.secondary" data-i18n-format="text">Read the Whitepaper</span>
-                    </a>
-                </div>
+        <section class="hero">
+            <div class="hero-inner">
+                <div class="hero-copy">
+                    <h1 data-i18n="hero.title">Forge Legends on the Shahnameh Frontier</h1>
+                    <p data-i18n="hero.lead" data-i18n-format="html">
+                        Rally your guild, grow the kingdom and chart a path through the myths of ancient Persia. Honoured as
+                        the <strong>third Editors' Choice</strong> during our first phase, Shahnameh Game blends playful strategy
+                        with Web3 stewardship so every decision leaves a mark on the eternal chronicle.
+                    </p>
+                    <p data-i18n="hero.mission" data-i18n-format="html">
+                        <strong>We are set on revolutionising the national economy of Iran through the gaming industry</strong>,
+                        creating equitable rails where player creativity, culture and capital compound for communities at
+                        home and across the diaspora.
+                    </p>
+                    <div class="cta-row">
+                        <a class="button" href="/api/">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 6.75h.008v.008H11.25V6.75zM11.25 9h.008v.008H11.25V9zm0 2.25h.008v.008H11.25V11.25zm0 2.25h.008v.008H11.25V13.5zm0 2.25h.008v.008H11.25V15.75zm0 2.25h.008v.008H11.25V18zm2.25-11.25h.008v.008H13.5V6.75zm0 2.25h.008v.008H13.5V9zm0 2.25h.008v.008H13.5V11.25zm0 2.25h.008v.008H13.5V13.5zm0 2.25h.008v.008H13.5V15.75zm0 2.25h.008v.008H13.5V18zm2.25-11.25h.008v.008H15.75V6.75zm0 2.25h.008v.008H15.75V9zm0 2.25h.008v.008H15.75V11.25zm0 2.25h.008v.008H15.75V13.5zm0 2.25h.008v.008H15.75V15.75zm0 2.25h.008v.008H15.75V18z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l.72-.72a1.5 1.5 0 011.06-.44h7.5A1.5 1.5 0 0117.5 7.5v9a1.5 1.5 0 01-1.5 1.5h-7.5a1.5 1.5 0 01-1.5-1.5V7.5z" />
+                            </svg>
+                            <span data-i18n="hero.cta.primary" data-i18n-format="text">Explore the API</span>
+                        </a>
+                        <a class="button secondary" href="{% url 'whitepaper' %}">
+                            <span data-i18n="hero.cta.secondary" data-i18n-format="text">Read the Whitepaper</span>
+                        </a>
+                    </div>
             </div>
             <div class="hero-visual">
                 <div class="hero-card">
@@ -877,6 +872,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </section>
 
         <section id="real-token">
@@ -941,8 +937,6 @@
             </p>
         </div>
     </section>
-
-</header>
 
     <section class="transparency-section">
         <div class="section-inner">
@@ -1205,6 +1199,8 @@
             </div>
         </div>
     </section>
+
+    </main>
 
     <footer>
         <span data-i18n="footer.credit">Crafted by the Shahnameh core team · Dive deeper on</span>
