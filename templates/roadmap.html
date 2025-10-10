@@ -2,45 +2,48 @@
 {% block title %}{{ page_title }} · Shahnameh Knowledge Base{% endblock %}
 {% block content %}
 <section>
-    <h2>{{ page_title }}</h2>
-    <p>Season 2 doubles down on community-driven storytelling and competitive faction play. The roadmap below mirrors the live operations plan shared internally so everyone can rally around the same milestones.</p>
+    <h2 data-i18n-en="{{ page_title }}" data-i18n-fa="{{ page_title_fa }}">{{ page_title }}</h2>
+    <p data-i18n-en="{{ page_intro }}" data-i18n-fa="{{ page_intro_fa }}">{{ page_intro }}</p>
 </section>
 <section>
-    <h3>Milestones</h3>
+    <h3 data-i18n-en="Milestones" data-i18n-fa="نقاط عطف">Milestones</h3>
     {% for phase in season_two_roadmap %}
     <div class="phase">
-        <strong>{{ phase.phase }}</strong>
-        <p>{{ phase.summary }}</p>
+        <strong data-i18n-en="{{ phase.phase }}" data-i18n-fa="{{ phase.phase_fa }}">{{ phase.phase }}</strong>
+        <p data-i18n-en="{{ phase.summary }}" data-i18n-fa="{{ phase.summary_fa }}">{{ phase.summary }}</p>
         <ul>
             {% for item in phase.items %}
-            <li><strong>{{ item.title }}:</strong> {{ item.description }}</li>
+            <li>
+                <strong data-i18n-en="{{ item.title }}" data-i18n-fa="{{ item.title_fa }}">{{ item.title }}</strong>:
+                <span data-i18n-en="{{ item.description }}" data-i18n-fa="{{ item.description_fa }}">{{ item.description }}</span>
+            </li>
             {% endfor %}
         </ul>
     </div>
     {% endfor %}
 </section>
 <section>
-    <h3>Operational Focus</h3>
+    <h3 data-i18n-en="Operational focus" data-i18n-fa="تمرکز اجرایی">Operational focus</h3>
     <ul>
         {% for focus in operational_focus %}
-        <li>{{ focus }}</li>
+        <li data-i18n-en="{{ focus.text }}" data-i18n-fa="{{ focus.text_fa }}">{{ focus.text }}</li>
         {% endfor %}
     </ul>
 </section>
 <section>
-    <h3>Community Programs</h3>
+    <h3 data-i18n-en="Community programs" data-i18n-fa="برنامه‌های جامعه">Community programs</h3>
     <ul>
         {% for item in community_programs %}
-        <li>{{ item }}</li>
+        <li data-i18n-en="{{ item.text }}" data-i18n-fa="{{ item.text_fa }}">{{ item.text }}</li>
         {% endfor %}
     </ul>
 </section>
 <section>
-    <h3>Additional Resources</h3>
+    <h3 data-i18n-en="Additional resources" data-i18n-fa="منابع بیشتر">Additional resources</h3>
     <ul>
-        <li><a href="{% url 'whitepaper' %}">Season narrative context</a></li>
-        <li><a href="https://github.com/Shahnameh-TON" class="external" target="_blank" rel="noopener">Legacy repository reference</a></li>
-        <li><a href="/api/" class="external">Developer API documentation</a></li>
+        <li><a href="{% url 'whitepaper' %}" data-i18n-en="Season narrative context" data-i18n-fa="بستر روایی فصل">Season narrative context</a></li>
+        <li><a href="https://github.com/Shahnameh-TON" class="external" target="_blank" rel="noopener" data-i18n-en="Legacy repository reference" data-i18n-fa="مرجع مخزن قدیمی">Legacy repository reference</a></li>
+        <li><a href="/api/" class="external" data-i18n-en="Developer API documentation" data-i18n-fa="مستندات API توسعه‌دهندگان">Developer API documentation</a></li>
     </ul>
 </section>
 {% endblock %}

@@ -2,18 +2,18 @@
 {% block title %}{{ page_title }} · Shahnameh Knowledge Base{% endblock %}
 {% block content %}
 <section>
-    <h2>{{ page_title }}</h2>
-    <p>{{ intro }}</p>
+    <h2 data-i18n-en="Project snapshot" data-i18n-fa="تصویر کلی پروژه">Project snapshot</h2>
+    <p data-i18n-en="{{ intro }}" data-i18n-fa="{{ intro_fa }}">{{ intro }}</p>
 </section>
 <section>
-    <h3>Feature Pillars</h3>
+    <h3 data-i18n-en="Feature pillars" data-i18n-fa="ستون‌های قابلیت">Feature pillars</h3>
     <div class="grid columns-2">
         {% for group in feature_groups %}
         <div class="phase">
-            <strong>{{ group.title }}</strong>
+            <strong data-i18n-en="{{ group.title }}" data-i18n-fa="{{ group.title_fa }}">{{ group.title }}</strong>
             <ul>
                 {% for item in group.items %}
-                <li>{{ item }}</li>
+                <li data-i18n-en="{{ item.text }}" data-i18n-fa="{{ item.text_fa }}">{{ item.text }}</li>
                 {% endfor %}
             </ul>
         </div>
@@ -21,27 +21,27 @@
     </div>
 </section>
 <section>
-    <h3>Technical Highlights</h3>
+    <h3 data-i18n-en="Technical highlights" data-i18n-fa="نکات فنی برجسته">Technical highlights</h3>
     <ul>
         {% for highlight in technical_highlights %}
-        <li>{{ highlight }}</li>
+        <li data-i18n-en="{{ highlight.text }}" data-i18n-fa="{{ highlight.text_fa }}">{{ highlight.text }}</li>
         {% endfor %}
     </ul>
 </section>
 <section>
-    <h3>Migration Notes</h3>
+    <h3 data-i18n-en="Migration notes" data-i18n-fa="نکات مهاجرت">Migration notes</h3>
     <ul>
         {% for note in migration_notes %}
-        <li>{{ note }}</li>
+        <li data-i18n-en="{{ note.text }}" data-i18n-fa="{{ note.text_fa }}">{{ note.text }}</li>
         {% endfor %}
     </ul>
 </section>
 <section>
-    <h3>Useful Links</h3>
+    <h3 data-i18n-en="Useful links" data-i18n-fa="پیوندهای مفید">Useful links</h3>
     <ul>
-        <li><a href="https://github.com/Shahnameh-TON" class="external" target="_blank" rel="noopener">Legacy GitHub Organisation</a></li>
-        <li><a href="/api/" class="external">Live API Explorer</a></li>
-        <li><a href="{% url 'whitepaper' %}">Whitepaper Digest</a></li>
+        <li><a href="https://github.com/Shahnameh-TON" class="external" target="_blank" rel="noopener" data-i18n-en="Legacy GitHub organisation" data-i18n-fa="سازمان گیت‌هاب قدیمی">Legacy GitHub organisation</a></li>
+        <li><a href="/api/" class="external" data-i18n-en="Live API explorer" data-i18n-fa="مرورگر زنده API">Live API explorer</a></li>
+        <li><a href="{% url 'whitepaper' %}" data-i18n-en="Whitepaper digest" data-i18n-fa="چکیده وایت‌پیپر">Whitepaper digest</a></li>
     </ul>
 </section>
 {% endblock %}

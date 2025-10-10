@@ -1,0 +1,81 @@
+<script>
+    (function () {
+        const themeKey = 'shahnameh-theme';
+        const languageKey = 'shahnameh-language';
+        const root = document.documentElement;
+
+        function updateThemeLabel(theme, lang) {
+            const label = document.querySelector('[data-theme-label]');
+            if (!label) {
+                return;
+            }
+            const mode = theme === 'light' ? 'light' : 'dark';
+            const language = lang === 'fa' ? 'fa' : 'en';
+            const attr = `data-${mode}-${language}`;
+            const value = label.getAttribute(attr);
+            if (value) {
+                label.textContent = value;
+            }
+        }
+
+        function applyTheme(theme) {
+            const nextTheme = theme === 'light' ? 'light' : 'dark';
+            root.setAttribute('data-theme', nextTheme);
+            localStorage.setItem(themeKey, nextTheme);
+            updateThemeLabel(nextTheme, root.getAttribute('lang'));
+        }
+
+        function applyLanguage(lang) {
+            const language = lang === 'fa' ? 'fa' : 'en';
+            root.setAttribute('lang', language);
+            root.setAttribute('dir', language === 'fa' ? 'rtl' : 'ltr');
+            document.body.classList.toggle('rtl', language === 'fa');
+
+            document.querySelectorAll('[data-i18n-en]').forEach(function (node) {
+                const en = node.getAttribute('data-i18n-en');
+                const fa = node.getAttribute('data-i18n-fa') || en;
+                const content = language === 'fa' ? fa : en;
+                if (content === null) {
+                    return;
+                }
+
+                if (node.hasAttribute('data-i18n-html')) {
+                    node.innerHTML = content;
+                } else {
+                    node.textContent = content;
+                }
+            });
+
+            document.querySelectorAll('.language-toggle button').forEach(function (btn) {
+                btn.classList.toggle('active', btn.getAttribute('data-language') === language);
+            });
+
+            localStorage.setItem(languageKey, language);
+            updateThemeLabel(root.getAttribute('data-theme') || 'dark', language);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const storedTheme = localStorage.getItem(themeKey) || 'dark';
+            const storedLanguage = localStorage.getItem(languageKey) || 'en';
+
+            applyTheme(storedTheme);
+            applyLanguage(storedLanguage);
+
+            const themeToggle = document.querySelector('[data-action="toggle-theme"]');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function () {
+                    const current = root.getAttribute('data-theme') || 'dark';
+                    const next = current === 'dark' ? 'light' : 'dark';
+                    applyTheme(next);
+                });
+            }
+
+            document.querySelectorAll('.language-toggle button').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    const targetLang = btn.getAttribute('data-language');
+                    applyLanguage(targetLang);
+                });
+            });
+        });
+    })();
+</script>

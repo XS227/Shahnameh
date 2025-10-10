@@ -2,6 +2,9 @@
 
 This project powers the Shahnameh RPG experience, combining **Django + Django REST Framework** services with a **Telegram bot** companion. It now also ships with an updated marketing landing page that surfaces the official DYOR resources for the REAL token and Shahnameh dApp.
 
+> **Project status:** Further coding work has been paused per request. Please review the existing implementation details in this
+> repository before planning additional development.
+
 ---
 
 ## 🚀 Features
