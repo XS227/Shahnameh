@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+celerybeat-schedule.*
+*.sqlite3
+uploads/
+*.dat
+*.dir
+*.bak
