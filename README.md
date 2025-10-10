@@ -1,17 +1,19 @@
 # 🏰 Shahnameh Game Backend (Django) + Telegram Bot Integration
 
-This project is the backend for the Shahnameh RPG game, built with **Django + Django REST Framework**, and integrated with **Telegram** using a custom bot. It supports JWT-based authentication, task progression, and bot interaction.
+This project powers the Shahnameh RPG experience, combining **Django + Django REST Framework** services with a **Telegram bot** companion. It now also ships with an updated marketing landing page that surfaces the official DYOR resources for the REAL token and Shahnameh dApp.
 
 ---
 
 ## 🚀 Features
 
-- JWT-based authentication (`/register/`, `/login/`,`)
+- JWT-based authentication endpoints (`/register/`, `/login/`, `/refresh/`)
 - 13-level progression system (WIP)
 - REAL token economy and mining logic (WIP)
 - Telegram bot integration:
   - User auto-registration via Telegram ID
   - Auto-login and token handling
+  - Embedded Telegram login widget (`templates/login.html`)
+- Static marketing landing page (`templates/index.html`) with DYOR resource links and social hubs
 
 ---
 
@@ -20,52 +22,73 @@ This project is the backend for the Shahnameh RPG game, built with **Django + Dj
 - **Backend**: Python, Django, Django REST Framework
 - **Auth**: SimpleJWT (token-based auth)
 - **Bot**: python-telegram-bot (async)
-- **PostgreSQL**: recommended
+- **Database**: PostgreSQL recommended (SQLite provided for development)
+
+---
+
+## 🌐 Landing & Community Resources
+
+- **Landing page**: open `templates/index.html` locally or serve via `python -m http.server`
+- **DYOR Game Listing**: https://dyor.io/dapps/games/shahnameh
+- **REAL Token Dashboard**: https://dyor.io/token/EQDhq_DjQUMJqfXLP8K8J6SlOvon08XQQK0T49xon2e0xU8p
+- **Telegram Bot**: https://t.me/shahnameshbot
+- **Telegram Announcements**: https://t.me/shahnameh_announcements
+- **Telegram Guild Chat**: https://t.me/shahnamehcommunity
 
 ---
 
 ## 📦 Installation & Setup
 
-### 1. Clone the repo
+1. **Clone the repo**
+   ```bash
+   git clone <repo>
+   cd Shahnameh
+   ```
+2. **Create a virtual environment**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Windows: venv\Scripts\activate
+   ```
+3. **Install dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. **Apply migrations & run the server**
+   ```bash
+   python manage.py makemigrations
+   python manage.py migrate
+   python manage.py runserver
+   ```
 
-```bash
-cd shahname_game
-2. Create a virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-3. Install dependencies
-pip install -r requirements.txt
-pip install django djangorestframework djangorestframework-simplejwt python-telegram-bot requests
-4. Apply migrations and run server
-python manage.py makemigrations
-python manage.py migrate
-python manage.py runserver
-🤖 Setting Up the Telegram Bot
-🔑 How to Create a Telegram Bot Token
-Open Telegram and search for @BotFather
+---
 
-Type /start if you haven't already
+## 🤖 Telegram Bot Setup
 
-Type /newbot and follow prompts:
+1. Create a bot via [@BotFather](https://t.me/BotFather) and grab the API token.
+2. Update `telegram_bot.py` with your token or export it as an environment variable.
+3. Launch the bot locally:
+   ```bash
+   python telegram_bot.py
+   ```
+4. The bot will automatically register returning players, log them in, and sync quest progress with the backend.
 
-Choose a name (e.g., Shahnameh RPG)
+---
 
-Choose a username (must end with bot, e.g., shahnameh_rpg_bot)
+## 🧪 Helpful Commands
 
-BotFather will give you a token like this:
+- Run the Django unit tests:
+  ```bash
+  python manage.py test
+  ```
+- Start the development server:
+  ```bash
+  python manage.py runserver
+  ```
+- Serve the static landing pages for review:
+  ```bash
+  python -m http.server 8000
+  ```
 
-Copy and paste this token into your telegram_bot.py:
+---
 
-BOT_TOKEN = "123456789:ABCdefGHIjklMNOpqrSTUvwxYZ" (E.g)
-📡 Running the Telegram Bot
-python telegram_bot.py
-Running the server 
-python manage.py runserver
-The bot will:
-
-Auto-register or log in users using their Telegram ID
-
-
-
-
-shahmeshgames.com
+Crafted with ❤️ by Setaei Labs — bringing legendary tales into the on-chain era.
