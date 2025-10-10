@@ -239,6 +239,16 @@
             color: var(--text-muted);
         }
 
+        section {
+            padding: clamp(3rem, 5vw, 4.5rem) clamp(1.5rem, 5vw, 3.5rem);
+            position: relative;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
         .transparency-section {
             position: relative;
             background: linear-gradient(180deg, rgba(12, 9, 28, 0.85), rgba(8, 10, 26, 0.95));
@@ -771,6 +781,16 @@
             background: radial-gradient(circle, rgba(250, 204, 21, 0.6), transparent 60%);
         }
 
+        }
+
+        .intel-section::after {
+            width: 220px;
+            height: 220px;
+            bottom: -110px;
+            left: -60px;
+            background: radial-gradient(circle, rgba(250, 204, 21, 0.6), transparent 60%);
+        }
+
         .intel-header {
             position: relative;
             z-index: 1;
@@ -852,6 +872,13 @@
             border-color: rgba(34, 197, 94, 0.4);
         }
 
+
+        .intel-badge.gain {
+            background: rgba(34, 197, 94, 0.2);
+            color: #86efac;
+            border-color: rgba(34, 197, 94, 0.4);
+        }
+
         .intel-badge.loss {
             background: rgba(248, 113, 113, 0.2);
             color: #fca5a5;
@@ -891,6 +918,12 @@
             <div class="hero-copy">
                 <h1 data-i18n="hero.title">Forge Legends on the Shahnameh Frontier</h1>
                 <p data-i18n="hero.lead" data-i18n-format="html">
+                <h1>Forge Legends on the Shahnameh Frontier</h1>
+                <p>
+                    Rally your guild, grow the kingdom and chart a path through the myths of ancient Persia.
+                    Shahnameh Game blends playful strategy with Web3 stewardship so every decision leaves a mark on
+                    the eternal chronicle.
+                <p>
                     Rally your guild, grow the kingdom and chart a path through the myths of ancient Persia. Honoured as
                     the <strong>third Editors' Choice</strong> during our first phase, Shahnameh Game blends playful strategy with
                     Web3 stewardship so every decision leaves a mark on the eternal chronicle.
@@ -923,6 +956,81 @@
                 </div>
             </div>
         </div>
+    </header>
+
+    <section>
+        <div class="section-inner">
+            <h2 class="section-title">Why the Chronicle Matters</h2>
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <h3>Living Lore</h3>
+                    <p>
+                        Weekly chapters ripple across the realm, introducing fresh objectives and collaborative twists
+                        inspired by Ferdowsi's timeless poetry.
+                    </p>
+                </article>
+                <article class="feature-card">
+                    <h3>Player-Governed Economy</h3>
+                    <p>
+                        Guild councils steward resources, vote on upgrades and set tribute paths that weave on-chain governance
+                        with narrative stakes.
+                    </p>
+                </article>
+                <article class="feature-card">
+                    <h3>Adventures for Every Hero</h3>
+                    <p>
+                        From puzzle raids to social quests, the Shahnameh frontier rewards storytellers, strategists and
+                        lorekeepers alike.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="intel-section">
+        <div class="section-inner">
+            <div class="intel-header">
+                <h2>Live TON Intelligence</h2>
+                <p>
+                    Stay nimble with on-chain telemetry. We surface token price swings, liquidity health and due diligence
+                    sentiment directly from TonAPI and DYOR so guild treasurers can react in real time.
+                </p>
+            </div>
+            <div class="intel-grid" id="intel-grid">
+                <article class="intel-card" id="ton-price-card">
+                    <h3>TON Price</h3>
+                    <div class="intel-value" data-ton-price>$--</div>
+                    <div class="intel-metric">
+                        24h Change:
+                        <span class="intel-badge" data-ton-change>--%</span>
+                    </div>
+                    <p class="intel-metric" data-ton-liquidity>Liquidity data loading…</p>
+                </article>
+                <article class="intel-card" id="dyor-health-card">
+                    <h3>DYOR Project Pulse</h3>
+                    <div class="intel-value" data-dyor-score>--%</div>
+                    <div class="intel-metric" data-dyor-tier>Awaiting DYOR audit tiers…</div>
+                    <p class="intel-metric" data-dyor-updated>Refreshing insights…</p>
+                </article>
+                <article class="intel-card" id="content-share-card">
+                    <h3>Content Contribution</h3>
+                    <div class="intel-value" data-content-share>--%</div>
+                    <div class="intel-metric">
+                        Verified Contributors:
+                        <span class="intel-badge" data-contributors>--</span>
+                    </div>
+                    <p class="intel-metric" data-content-note>Syncing community dashboards…</p>
+                </article>
+            </div>
+            <p class="intel-footer" id="intel-footer">
+                Data updates every few minutes straight from
+                <a href="https://tonapi.io/" target="_blank" rel="noreferrer">TonAPI</a>
+                and
+                <a href="https://www.dyor.com/" target="_blank" rel="noreferrer">DYOR Intelligence</a>.
+            </p>
+        </div>
+    </section>
+
 </header>
 
     <section class="transparency-section">
@@ -1194,6 +1302,22 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        const tonElements = {
+            price: document.querySelector('[data-ton-price]'),
+            change: document.querySelector('[data-ton-change]'),
+            liquidity: document.querySelector('[data-ton-liquidity]'),
+        };
+
+        const dyorElements = {
+            score: document.querySelector('[data-dyor-score]'),
+            tier: document.querySelector('[data-dyor-tier]'),
+            updated: document.querySelector('[data-dyor-updated]'),
+        };
+
+        const contentElements = {
+            share: document.querySelector('[data-content-share]'),
+            contributors: document.querySelector('[data-contributors]'),
+            note: document.querySelector('[data-content-note]'),
         const selectAll = (selector) => Array.from(document.querySelectorAll(selector));
 
         const setText = (elements, value) => {
@@ -1733,6 +1857,18 @@
         };
 
         const applyFallback = () => {
+            tonElements.price.textContent = '$0.00';
+            tonElements.change.textContent = '0%';
+            tonElements.change.classList.remove('loss', 'gain');
+            tonElements.liquidity.textContent = 'Awaiting liquidity feed…';
+
+            dyorElements.score.textContent = 'N/A';
+            dyorElements.tier.textContent = 'DYOR ratings currently unavailable.';
+            dyorElements.updated.textContent = '';
+
+            contentElements.share.textContent = 'N/A';
+            contentElements.contributors.textContent = '--';
+            contentElements.note.textContent = 'Community dashboards will populate once DYOR data is reachable.';
             setText(tonElements.price, '$0.00');
             tonElements.change.forEach((element) => {
                 element.textContent = '0%';
@@ -1821,6 +1957,11 @@
                         tonData?.liquidity ||
                         null;
 
+                    if (price !== undefined) {
+                        tonElements.price.textContent = `$${formatNumber(Number(price), {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                        })}`;
                     const holders =
                         tonData?.holders ||
                         tonData?.holders_count ||
@@ -1837,6 +1978,21 @@
 
                     if (change !== undefined && change !== null) {
                         const changeValue = Number(change);
+                        tonElements.change.textContent = `${changeValue > 0 ? '+' : ''}${formatNumber(changeValue, {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                        })}%`;
+                        tonElements.change.classList.toggle('gain', changeValue > 0);
+                        tonElements.change.classList.toggle('loss', changeValue < 0);
+                    }
+
+                    if (liquidity) {
+                        tonElements.liquidity.textContent = `Reported liquidity: $${formatNumber(Number(liquidity), {
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0,
+                        })}`;
+                    } else {
+                        tonElements.liquidity.textContent = 'Liquidity metrics pending fresh updates…';
                         tonElements.change.forEach((element) => {
                             element.textContent = `${changeValue > 0 ? '+' : ''}${formatNumber(changeValue, {
                                 minimumFractionDigits: 2,
@@ -1939,6 +2095,18 @@
                         project?.metrics?.verified_contributors;
 
                     if (score !== null) {
+                        dyorElements.score.textContent = `${formatNumber(score, {
+                            minimumFractionDigits: 1,
+                            maximumFractionDigits: 1,
+                        })}%`;
+                    } else {
+                        dyorElements.score.textContent = 'Unrated';
+                    }
+
+                    if (tier) {
+                        dyorElements.tier.textContent = `Risk tier: ${tier}`;
+                    } else {
+                        dyorElements.tier.textContent = 'Risk tier awaiting DYOR review.';
                         const formattedScore = `${formatNumber(score, {
                             minimumFractionDigits: 1,
                             maximumFractionDigits: 1,
@@ -1972,6 +2140,35 @@
                                 'dyor.lastRefreshedPrefix',
                                 'Last refreshed'
                             )} ${updatedDate.toLocaleString(locale)}`;
+                            dyorElements.updated.textContent = `Last refreshed ${updatedDate.toLocaleString()}`;
+                        }
+                    } else {
+                        dyorElements.updated.textContent = '';
+                    }
+
+                    if (contentPercent !== null) {
+                        contentElements.share.textContent = `${formatNumber(contentPercent, {
+                            minimumFractionDigits: 1,
+                            maximumFractionDigits: 1,
+                        })}%`;
+                    } else {
+                        contentElements.share.textContent = 'N/A';
+                    }
+
+                    if (contributors !== undefined) {
+                        contentElements.contributors.textContent = formatNumber(Number(contributors), {
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0,
+                        });
+                    } else {
+                        contentElements.contributors.textContent = '--';
+                    }
+
+                    contentElements.note.textContent =
+                        contentPercent !== null
+                            ? 'Content share reflects vetted creators on DYOR.'
+                            : 'Content share data pending next DYOR crawl.';
+                            const readable = `Last refreshed ${updatedDate.toLocaleString()}`;
                             setText(dyorElements.updated, readable);
                         }
                     } else {
