@@ -48,6 +48,25 @@
     </ol>
 </section>
 <section>
+    <h3 data-i18n-en="Tokenomics highlights" data-i18n-fa="نکات برجسته اقتصاد توکنی">Tokenomics highlights</h3>
+    <ul>
+        {% for row in tokenomics_highlights %}
+        <li>
+            <strong data-i18n-en="{{ row.label }}" data-i18n-fa="{{ row.label_fa }}">{{ row.label }}</strong>
+            <span data-i18n-en="{{ row.value }}" data-i18n-fa="{{ row.value_fa }}">{{ row.value }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+<section>
+    <h3 data-i18n-en="Lore sources" data-i18n-fa="منابع روایت">Lore sources</h3>
+    <ul>
+        {% for source in lore_sources %}
+        <li data-i18n-en="{{ source.text }}" data-i18n-fa="{{ source.text_fa }}">{{ source.text }}</li>
+        {% endfor %}
+    </ul>
+</section>
+<section>
     <h3 data-i18n-en="Season 2 at a glance" data-i18n-fa="نگاهی به فصل دوم">Season 2 at a glance</h3>
     {% for phase in season_two_roadmap %}
     <div class="phase">

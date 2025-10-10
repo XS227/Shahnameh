@@ -31,10 +31,34 @@
     </ul>
 </section>
 <section>
+    <h3 data-i18n-en="Alignment cadence" data-i18n-fa="ریتم هم‌آهنگی">Alignment cadence</h3>
+    <ul>
+        {% for item in alignment_cadence %}
+        <li data-i18n-en="{{ item.text }}" data-i18n-fa="{{ item.text_fa }}">{{ item.text }}</li>
+        {% endfor %}
+    </ul>
+</section>
+<section>
     <h3 data-i18n-en="Community programs" data-i18n-fa="برنامه‌های جامعه">Community programs</h3>
     <ul>
         {% for item in community_programs %}
         <li data-i18n-en="{{ item.text }}" data-i18n-fa="{{ item.text_fa }}">{{ item.text }}</li>
+        {% endfor %}
+    </ul>
+</section>
+<section>
+    <h3 data-i18n-en="Launch readiness" data-i18n-fa="آمادگی لانچ">Launch readiness</h3>
+    <ul>
+        {% for item in readiness_checklist %}
+        <li data-i18n-en="{{ item.text }}" data-i18n-fa="{{ item.text_fa }}">{{ item.text }}</li>
+        {% endfor %}
+    </ul>
+</section>
+<section>
+    <h3 data-i18n-en="Communications plan" data-i18n-fa="برنامه اطلاع‌رسانی">Communications plan</h3>
+    <ul>
+        {% for beat in communications_plan %}
+        <li data-i18n-en="{{ beat.text }}" data-i18n-fa="{{ beat.text_fa }}">{{ beat.text }}</li>
         {% endfor %}
     </ul>
 </section>

@@ -373,6 +373,8 @@ def fetch_realshahnameh_token():
     return formatted
 
 
+
+
 def legacy_repo_overview(request):
     context = {
         "page_title": "Legacy Repository Overview",
@@ -393,17 +395,17 @@ def legacy_repo_overview(request):
                 "items": [
                     {
                         "text": "Django REST Framework APIs for registration, authentication, and player profiles.",
-                        "text_fa": "رابط‌های REST جنگو برای ثبت‌نام، احراز هویت و پروفایل بازیکنان.",
+                        "text_fa": "رابط‌های REST جنگو برای ثبت‌نام، احراز هویت و پروفایل بازیکنان."
                     },
                     {
                         "text": "Turn-based puzzle mini-game endpoint used for daily engagement quests.",
-                        "text_fa": "نقطه پایانی مینی‌گیم معمای نوبتی که برای مأموریت‌های روزانه به کار می‌رود.",
+                        "text_fa": "نقطه پایانی مینی‌گیم معمای نوبتی که برای مأموریت‌های روزانه به کار می‌رود."
                     },
                     {
                         "text": "Task and reward management with activation windows and completion tracking.",
-                        "text_fa": "مدیریت مأموریت و پاداش با بازه‌های فعال‌سازی و رهگیری تکمیل.",
-                    },
-                ],
+                        "text_fa": "مدیریت مأموریت و پاداش با بازه‌های فعال‌سازی و رهگیری تکمیل."
+                    }
+                ]
             },
             {
                 "title": "Blockchain & Economy Integration",
@@ -411,17 +413,17 @@ def legacy_repo_overview(request):
                 "items": [
                     {
                         "text": "Token mining logic that pairs on-chain rewards with in-app stamina systems.",
-                        "text_fa": "منطق استخراج توکن که پاداش‌های روی زنجیره را با سیستم استقامت درون برنامه پیوند می‌دهد.",
+                        "text_fa": "منطق استخراج توکن که پاداش‌های روی زنجیره را با سیستم استقامت درون برنامه پیوند می‌دهد."
                     },
                     {
                         "text": "Banking abstractions for handling user wallets, deposits, and withdrawals.",
-                        "text_fa": "لایه‌های بانکی برای مدیریت کیف‌پول، واریز و برداشت کاربران.",
+                        "text_fa": "لایه‌های بانکی برای مدیریت کیف‌پول، واریز و برداشت کاربران."
                     },
                     {
                         "text": "Utility helpers for verifying Telegram sign-in payloads prior to minting rewards.",
                         "text_fa": "ابزارهای کمکی برای تأیید داده‌های ورود تلگرام پیش از صدور پاداش."
-                    },
-                ],
+                    }
+                ]
             },
             {
                 "title": "Telegram Bot Companion",
@@ -438,9 +440,9 @@ def legacy_repo_overview(request):
                     {
                         "text": "Celery task scheduling for broadcasting quests and mining updates in real time.",
                         "text_fa": "زمان‌بندی وظایف سلری برای پخش مأموریت‌ها و به‌روزرسانی‌های استخراج به‌صورت آنی."
-                    },
-                ],
-            },
+                    }
+                ]
+            }
         ],
         "technical_highlights": [
             {
@@ -454,7 +456,7 @@ def legacy_repo_overview(request):
             {
                 "text": "Docker-ready settings and environment variable strategy for multistage deployments.",
                 "text_fa": "پیکربندی آماده برای Docker و راهبرد متغیرهای محیطی جهت استقرار چندمرحله‌ای."
-            },
+            }
         ],
         "migration_notes": [
             {
@@ -468,12 +470,41 @@ def legacy_repo_overview(request):
             {
                 "text": "Centralise shared schemas in this monorepo to reduce duplication across services.",
                 "text_fa": "شِماهای مشترک را در همین مونو-ریپو متمرکز کنید تا از تکرار بین سرویس‌ها کاسته شود."
-            },
+            }
         ],
-        "current_year": timezone.now().year,
+        "repository_timeline": [
+            {
+                "text": "2023 – Telegram bot prototype shipping basic quest tracking and wallet binding.",
+                "text_fa": "۲۰۲۳ – نمونه اولیه بات تلگرام با رهگیری مأموریت و اتصال کیف‌پول عرضه شد."
+            },
+            {
+                "text": "Early 2024 – Legacy TON stack open-sourced with REST APIs and Celery workers.",
+                "text_fa": "اوایل ۲۰۲۴ – پشته قدیمی TON با APIهای REST و کارگرهای سلری متن‌باز شد."
+            },
+            {
+                "text": "Late 2024 – Django consolidation with modern auth, staging configs, and docs refresh.",
+                "text_fa": "اواخر ۲۰۲۴ – یکپارچه‌سازی جنگو با احراز هویت نوین، پیکربندی استیجینگ و به‌روزرسانی مستندات."
+            }
+        ],
+        "handoff_resources": [
+            {
+                "text": "Archived Notion runbooks covering incident response and release rituals.",
+                "text_fa": "رون‌بوک‌های آرشیو شده در نُوشن درباره واکنش به حوادث و آیین‌های انتشار."
+            },
+            {
+                "text": "Figma library with UI kits for bot flows, dashboards, and lore cards.",
+                "text_fa": "کتابخانه فیگما با کیت‌های رابط کاربری برای جریان‌های بات، داشبوردها و کارت‌های داستانی."
+            },
+            {
+                "text": "Postmortem archive highlighting technical learnings from Season 1 incidents.",
+                "text_fa": "آرشیو پسامورتوم که آموخته‌های فنی رخدادهای فصل اول را برجسته می‌کند."
+            }
+        ],
+        "current_year": timezone.now().year
     }
 
     return render(request, "legacy_overview.html", context)
+
 
 
 def whitepaper_overview(request):
@@ -501,7 +532,7 @@ def whitepaper_overview(request):
                 ),
                 "details_fa": (
                     "تمام مکانیک‌ها ریشه در داستان‌های حماسی فردوسی دارد. روایت‌های فصلی قصه‌های بزرگ را به رویدادهای مشارکتی تبدیل می‌کنند تا هم اصالت فرهنگی حفظ شود و هم تازه‌واردان با جهان داستان آشنا شوند."
-                ),
+                )
             },
             {
                 "title": "Player-owned Economy",
@@ -513,7 +544,7 @@ def whitepaper_overview(request):
                 ),
                 "details_fa": (
                     "طراحی دوگانه توکن، نفوذ حاکمیتی را از پاداش‌های گیم‌پلی جدا می‌کند. فعالیت‌های روی زنجیره وارد چرخه پیشرفت خارج از زنجیره می‌شود و برای بازی روزانه اهمیت واقعی ایجاد می‌کند."
-                ),
+                )
             },
             {
                 "title": "Community Governance",
@@ -524,8 +555,8 @@ def whitepaper_overview(request):
                 ),
                 "details_fa": (
                     "شورای داستان مأموریت‌های آینده را برمی‌گزیند، ماجراجویی‌های ساخته‌شده توسط خالقان را تأیید می‌کند و پیشنهادهای خزانه را برای پروژه‌های جامعه مدیریت می‌نماید."
-                ),
-            },
+                )
+            }
         ],
         "economy_breakdown": {
             "utility_token": {
@@ -548,7 +579,7 @@ def whitepaper_overview(request):
                 {
                     "text": "Commissioning lore-artifacts from community creators.",
                     "text_fa": "سفارش آثار داستانی از خالقان جامعه."
-                },
+                }
             ],
             "source_examples": [
                 {
@@ -562,8 +593,8 @@ def whitepaper_overview(request):
                 {
                     "text": "Cross-platform referrals that bring new players into the world.",
                     "text_fa": "ارجاع‌های میان‌پلتفرمی که بازیکنان تازه را وارد جهان می‌کند."
-                },
-            ],
+                }
+            ]
         },
         "player_journey": [
             {
@@ -577,13 +608,48 @@ def whitepaper_overview(request):
             {
                 "text": "Form or join a guild to compete in faction warfare and shape upcoming storylines.",
                 "text_fa": "یک انجمن بسازید یا به آن بپیوندید تا در نبرد فرقه‌ای رقابت کنید و روایت‌های آینده را شکل دهید."
+            }
+        ],
+        "tokenomics_highlights": [
+            {
+                "label": "Staking rewards cadence",
+                "label_fa": "ریتم پاداش استیکینگ",
+                "value": "Epoch-based distribution every 14 days with lore-driven seasonal boosts.",
+                "value_fa": "توزیع مبتنی بر اپوک هر ۱۴ روز با تقویت‌های فصلی و روایت‌محور."
             },
+            {
+                "label": "Treasury allocation",
+                "label_fa": "سهم خزانه",
+                "value": "15% reserved for community grants, art commissions, and guild tooling.",
+                "value_fa": "۱۵٪ برای کمک‌های جامعه، سفارش‌های هنری و ابزار انجمن ذخیره می‌شود."
+            },
+            {
+                "label": "Inflation controls",
+                "label_fa": "کنترل تورم",
+                "value": "Dynamic sink multipliers adjust emission whenever shard velocity spikes.",
+                "value_fa": "ضریب‌های مصرف پویا هنگام جهش سرعت گردش شارد، انتشار را تنظیم می‌کند."
+            }
+        ],
+        "lore_sources": [
+            {
+                "text": "Digitised manuscripts curated by the National Library of Iran.",
+                "text_fa": "نسخه‌های دیجیتال‌شده کتابخانه ملی ایران."
+            },
+            {
+                "text": "Academic commentary from Tehran University’s Shahnameh studies faculty.",
+                "text_fa": "تفاسیر دانشگاهی دانشکده مطالعات شاهنامه دانشگاه تهران."
+            },
+            {
+                "text": "Community oral histories collected during Season 1 guild summits.",
+                "text_fa": "تاریخ‌های شفاهی جامعه که در گردهمایی‌های انجمن فصل اول گردآوری شد."
+            }
         ],
         "season_two_roadmap": _season_two_roadmap(),
-        "current_year": timezone.now().year,
+        "current_year": timezone.now().year
     }
 
     return render(request, "whitepaper.html", context)
+
 
 
 def season_two_roadmap_page(request):
@@ -610,7 +676,7 @@ def season_two_roadmap_page(request):
             {
                 "text": "Transparent changelog cadence so players understand balancing decisions in real time.",
                 "text_fa": "ریتم شفاف یادداشت تغییرات تا بازیکنان تصمیم‌های ترازسازی را به‌صورت لحظه‌ای درک کنند."
-            },
+            }
         ],
         "community_programs": [
             {
@@ -624,9 +690,51 @@ def season_two_roadmap_page(request):
             {
                 "text": "Seasonal art contests with on-chain rewards and in-game showcase placements.",
                 "text_fa": "مسابقات هنری فصلی با پاداش روی زنجیره و نمایش درون بازی."
-            },
+            }
         ],
-        "current_year": timezone.now().year,
+        "alignment_cadence": [
+            {
+                "text": "Weekly cross-discipline sync reviewing build stability, live ops metrics, and narrative beats.",
+                "text_fa": "هم‌آهنگی هفتگی میان‌رشته‌ای برای بررسی پایداری بیلد، شاخص‌های عملیات زنده و ضرب‌آهنگ روایت."
+            },
+            {
+                "text": "Monthly stakeholder brief circulated to investors, guild leaders, and moderators.",
+                "text_fa": "گزارش ماهانه برای سرمایه‌گذاران، رهبران انجمن و ناظران ارسال می‌شود."
+            },
+            {
+                "text": "Mid-season retrospective capturing action items before finale sprints.",
+                "text_fa": "بازنگری میانه فصل برای ثبت اقدامات پیش از اسپرینت‌های پایانی."
+            }
+        ],
+        "readiness_checklist": [
+            {
+                "text": "Staging environment mirrors production integrations for bot, wallet, and analytics hooks.",
+                "text_fa": "محیط استیجینگ یکسان با یکپارچه‌سازی تولید برای بات، کیف‌پول و قلاب‌های تحلیلی است."
+            },
+            {
+                "text": "Release notes localised in English and Persian with screenshot reviews.",
+                "text_fa": "یادداشت‌های انتشار با بازبینی اسکرین‌شات به انگلیسی و فارسی بومی‌سازی شده‌اند."
+            },
+            {
+                "text": "Support roster confirmed with escalation paths to engineering and lore teams.",
+                "text_fa": "لیست کشیک پشتیبانی با مسیر ارجاع به تیم‌های مهندسی و روایت تأیید شده است."
+            }
+        ],
+        "communications_plan": [
+            {
+                "text": "Pre-season teaser campaign on Telegram, X, and DYOR spotlighting faction rivalry.",
+                "text_fa": "کمپین پیش‌فصل در تلگرام، ایکس و DYOR رقابت فرقه‌ها را برجسته می‌کند."
+            },
+            {
+                "text": "Weekly lore drops summarised in email newsletters with links to new quests.",
+                "text_fa": "افشای هفتگی روایت در خبرنامه ایمیلی با لینک مأموریت‌های تازه خلاصه می‌شود."
+            },
+            {
+                "text": "Live finale stream with multilingual hosts and real-time reward reveals.",
+                "text_fa": "پخش زنده فینال با مجریان چندزبانه و نمایش فوری پاداش‌ها برگزار می‌شود."
+            }
+        ],
+        "current_year": timezone.now().year
     }
 
     return render(request, "roadmap.html", context)
