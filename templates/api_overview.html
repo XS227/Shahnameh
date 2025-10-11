@@ -1,0 +1,68 @@
+{% extends "docs_base.html" %}
+{% block title %}{{ page_title }} · Shahnameh Knowledge Base{% endblock %}
+{% block content %}
+<section>
+    <h2 data-i18n-en="Quick start" data-i18n-fa="شروع سریع">Quick start</h2>
+    <div class="grid columns-2">
+        {% for link in quick_links %}
+        <div class="phase">
+            <strong data-i18n-en="{{ link.label }}" data-i18n-fa="{{ link.label_fa }}">{{ link.label }}</strong>
+            <p data-i18n-en="{{ link.description }}" data-i18n-fa="{{ link.description_fa }}">{{ link.description }}</p>
+            <p>
+                <code>{{ link.method }}</code>
+                <span>{{ link.endpoint }}</span>
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+<section>
+    <h2 data-i18n-en="Authentication" data-i18n-fa="احراز هویت">Authentication</h2>
+    <ol>
+        {% for step in authentication_steps %}
+        <li>
+            <strong data-i18n-en="{{ step.title }}" data-i18n-fa="{{ step.title_fa }}">{{ step.title }}</strong>
+            <p data-i18n-en="{{ step.details }}" data-i18n-fa="{{ step.details_fa }}" data-i18n-format="html">
+                {{ step.details|safe }}
+            </p>
+        </li>
+        {% endfor %}
+    </ol>
+</section>
+<section>
+    <h2 data-i18n-en="Endpoint families" data-i18n-fa="خانواده‌های پایان‌نقطه">Endpoint families</h2>
+    {% for group in endpoints %}
+    <div class="phase">
+        <strong data-i18n-en="{{ group.group }}" data-i18n-fa="{{ group.group_fa }}">{{ group.group }}</strong>
+        <ul>
+            {% for route in group.routes %}
+            <li>
+                <code>{{ route.method }}</code>
+                <code>{{ route.path|safe }}</code>
+                <span data-i18n-en="{{ route.description }}" data-i18n-fa="{{ route.description_fa }}">{{ route.description|safe }}</span>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</section>
+<section>
+    <h2 data-i18n-en="Rate limits" data-i18n-fa="محدودیت نرخ">Rate limits</h2>
+    <ul>
+        {% for rule in rate_limits %}
+        <li data-i18n-en="{{ rule.text }}" data-i18n-fa="{{ rule.text_fa }}">{{ rule.text }}</li>
+        {% endfor %}
+    </ul>
+</section>
+<section>
+    <h2 data-i18n-en="Support" data-i18n-fa="پشتیبانی">Support</h2>
+    <ul>
+        {% for resource in support_links %}
+        <li>
+            <a class="external" href="{{ resource.url }}" target="_blank" rel="noopener"
+                data-i18n-en="{{ resource.label }}" data-i18n-fa="{{ resource.label_fa }}">{{ resource.label }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock %}

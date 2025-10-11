@@ -515,6 +515,188 @@ def legacy_repo_overview(request):
 
 
 
+def api_overview(request):
+    context = {
+        "page_title": "Shahnameh API Explorer",
+        "page_title_fa": "راهنمای API شاهنامه",
+        "page_intro": (
+            "Integrate Shahnameh gameplay systems, player progress, and the REAL token economy with REST endpoints "
+            "secured by JWT access tokens."
+        ),
+        "page_intro_fa": (
+            "سیستم‌های گیم‌پلی شاهنامه، پیشرفت بازیکنان و اقتصاد توکن REAL را با پایان‌نقاط REST که با توکن‌های دسترسی JWT "
+            "ایمن شده‌اند یکپارچه کنید."
+        ),
+        "quick_links": [
+            {
+                "label": "Get JWT tokens",
+                "label_fa": "دریافت توکن JWT",
+                "description": "Exchange username and password credentials for an access + refresh token pair.",
+                "description_fa": "نام کاربری و گذرواژه را به جفت توکن دسترسی و نوسازی تبدیل کنید.",
+                "endpoint": "/api/login/",
+                "method": "POST",
+            },
+            {
+                "label": "Check profile",
+                "label_fa": "بررسی پروفایل",
+                "description": "Retrieve the authenticated player's username, email, and internal identifiers.",
+                "description_fa": "نام کاربری، ایمیل و شناسه‌های داخلی بازیکن احراز شده را دریافت کنید.",
+                "endpoint": "/api/profile/",
+                "method": "GET",
+            },
+            {
+                "label": "Daily tasks",
+                "label_fa": "ماموریت‌های روزانه",
+                "description": "List narrative-aligned objectives players can complete for rewards each reset.",
+                "description_fa": "فهرست اهداف داستان‌محور که بازیکنان در هر ریست می‌توانند برای پاداش کامل کنند.",
+                "endpoint": "/api/tasks/",
+                "method": "GET",
+            },
+        ],
+        "authentication_steps": [
+            {
+                "title": "Register a player",
+                "title_fa": "ثبت نام بازیکن",
+                "details": (
+                    "Call <code>/api/register/</code> with a username, email, password, and optional Telegram metadata to seed "
+                    "an account."
+                ),
+                "details_fa": (
+                    "برای ایجاد حساب، به مسیر <code>/api/register/</code> با نام کاربری، ایمیل، گذرواژه و فرادادهٔ اختیاری تلگرام "
+                    "درخواست بفرستید."
+                ),
+            },
+            {
+                "title": "Obtain JWT credentials",
+                "title_fa": "دریافت اعتبارنامه JWT",
+                "details": (
+                    "Send a POST request to <code>/api/login/</code> with the registered username and password to get an access "
+                    "token (5 minute TTL) and refresh token (1 day TTL)."
+                ),
+                "details_fa": (
+                    "درخواست POST به <code>/api/login/</code> با نام کاربری و گذرواژه ثبت‌شده بفرستید تا توکن دسترسی (با اعتبار ۵ دقیقه) و "
+                    "توکن نوسازی (با اعتبار یک روز) دریافت کنید."
+                ),
+            },
+            {
+                "title": "Refresh expired access tokens",
+                "title_fa": "نوسازی توکن‌های منقضی",
+                "details": (
+                    "When the access token expires, POST the refresh token to <code>/api/token/refresh/</code> to get a new pair "
+                    "without prompting the player to re-authenticate."
+                ),
+                "details_fa": (
+                    "پس از انقضای توکن دسترسی، با ارسال توکن نوسازی به <code>/api/token/refresh/</code> جفت تازه‌ای دریافت کنید بدون آن‌که "
+                    "بازیکن دوباره احراز هویت کند."
+                ),
+            },
+        ],
+        "endpoints": [
+            {
+                "group": "Progression",
+                "group_fa": "پیشرفت",
+                "routes": [
+                    {
+                        "method": "GET",
+                        "path": "/api/profile/",
+                        "description": "Returns the authenticated player's profile payload.",
+                        "description_fa": "اطلاعات پروفایل بازیکن احراز شده را باز می‌گرداند.",
+                    },
+                    {
+                        "method": "GET",
+                        "path": "/api/user_characters/",
+                        "description": "Lists characters owned by the current player with metadata and coin balances.",
+                        "description_fa": "شخصیت‌های متعلق به بازیکن را همراه با فراداده و موجودی سکه فهرست می‌کند.",
+                    },
+                    {
+                        "method": "POST",
+                        "path": "/api/user_characters/",
+                        "description": "Creates a new character slot using the provided hero template identifier.",
+                        "description_fa": "شخصیت تازه‌ای بر اساس شناسه قهرمان انتخاب‌شده می‌سازد.",
+                    },
+                ],
+            },
+            {
+                "group": "Daily Loop",
+                "group_fa": "چرخه روزانه",
+                "routes": [
+                    {
+                        "method": "GET",
+                        "path": "/api/tasks/",
+                        "description": "Lists available daily tasks, rewards, and completion flags.",
+                        "description_fa": "ماموریت‌های روزانه، پاداش‌ها و وضعیت تکمیل را فهرست می‌کند.",
+                    },
+                    {
+                        "method": "POST",
+                        "path": "/api/tasks/&lt;task_id&gt;/complete/",
+                        "description": "Marks a task as complete and dispenses the configured rewards.",
+                        "description_fa": "ماموریتی را تکمیل کرده و پاداش‌های تنظیم‌شده را اعطا می‌کند.",
+                    },
+                    {
+                        "method": "GET",
+                        "path": "/api/daily-hafez-task/",
+                        "description": "Retrieves the current Hafez reading quest with verse metadata.",
+                        "description_fa": "ماموریت خوانش حافظِ جاری را همراه با فرادادهٔ شعر باز می‌گرداند.",
+                    },
+                ],
+            },
+            {
+                "group": "Economy",
+                "group_fa": "اقتصاد",
+                "routes": [
+                    {
+                        "method": "POST",
+                        "path": "/api/mining_card/",
+                        "description": "Triggers a mining action to accumulate REAL resources.",
+                        "description_fa": "اقدام استخراج را برای جمع‌آوری منابع REAL فعال می‌کند.",
+                    },
+                    {
+                        "method": "GET",
+                        "path": "/api/mining/",
+                        "description": "Lists mining cards unlocked for the player including cooldown timers.",
+                        "description_fa": "کارت‌های استخراج آزاد شده برای بازیکن را به همراه زمان‌بندی سرد شدن نشان می‌دهد.",
+                    },
+                    {
+                        "method": "POST",
+                        "path": "/api/boost-energy/",
+                        "description": "Spends premium resources to refresh the player's energy pool.",
+                        "description_fa": "منابع ویژه را برای تازه‌سازی انرژی بازیکن خرج می‌کند.",
+                    },
+                ],
+            },
+        ],
+        "rate_limits": [
+            {
+                "text": "Authenticated endpoints are limited to 120 requests per minute per player access token.",
+                "text_fa": "پایان‌نقاط احراز شده به ۱۲۰ درخواست در دقیقه برای هر توکن دسترسی بازیکن محدود است.",
+            },
+            {
+                "text": "Unauthenticated registration/login calls are limited to 30 requests per IP per hour to prevent abuse.",
+                "text_fa": "درخواست‌های بدون احراز هویت برای ثبت‌نام/ورود به ۳۰ درخواست در ساعت برای هر IP محدود شده تا از سوءاستفاده جلوگیری شود.",
+            },
+        ],
+        "support_links": [
+            {
+                "label": "Postman collection",
+                "label_fa": "مجموعه Postman",
+                "url": "https://documenter.getpostman.com/view/27903907/2sA3JGhfJ7",
+            },
+            {
+                "label": "Telegram developer chat",
+                "label_fa": "گفت‌وگوی تلگرام توسعه‌دهندگان",
+                "url": "https://t.me/shahnamehcommunity",
+            },
+            {
+                "label": "GitHub issues",
+                "label_fa": "ایشیوهای گیت‌هاب",
+                "url": "https://github.com/Shahnameh-TON",
+            },
+        ],
+    }
+
+    return render(request, "api_overview.html", context)
+
+
 def whitepaper_overview(request):
     context = {
         "page_title": "Shahnameh Whitepaper Digest",
