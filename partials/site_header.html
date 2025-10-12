@@ -1,0 +1,27 @@
+<header class="site-header">
+    <div class="site-shell">
+        <a class="site-brand" href="{% url 'index' %}" data-i18n-en="Shahnameh" data-i18n-fa="شاهنامه">
+            <span>R</span>
+            <strong data-i18n-en="REAL Shahnameh" data-i18n-fa="ریل شاهنامه">REAL Shahnameh</strong>
+        </a>
+        <nav class="nav-links" aria-label="Primary">
+            <a href="{% url 'index' %}" data-i18n-en="Home" data-i18n-fa="خانه">Home</a>
+            <a href="{% url 'season2-roadmap' %}" data-i18n-en="Roadmap" data-i18n-fa="نقشه راه">Roadmap</a>
+            <a href="{% url 'whitepaper' %}" data-i18n-en="Whitepaper" data-i18n-fa="وایت‌پیپر">Whitepaper</a>
+            <a href="{% url 'legacy-overview' %}" data-i18n-en="Legacy Docs" data-i18n-fa="اسناد قدیمی">Legacy Docs</a>
+            <a href="{% url 'puzzle' %}" data-i18n-en="Puzzle" data-i18n-fa="معمای سیمرغ">Puzzle</a>
+        </nav>
+        <div class="header-actions">
+            <div class="language-toggle" role="group" aria-label="Language switcher">
+                <button type="button" data-language="en" class="active" data-i18n-en="English" data-i18n-fa="انگلیسی">English</button>
+                <button type="button" data-language="fa" data-i18n-en="Persian" data-i18n-fa="فارسی">Persian</button>
+            </div>
+            <button class="theme-toggle" type="button" data-action="toggle-theme">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M12 4a1 1 0 0 1 1 1v1.09a5 5 0 0 1 5.91 5.91H20a1 1 0 1 1 0 2h-1.09a5 5 0 0 1-5.91 5.91V20a1 1 0 1 1-2 0v-1.09a5 5 0 0 1-5.91-5.91H4a1 1 0 0 1 0-2h1.09a5 5 0 0 1 5.91-5.91V5a1 1 0 0 1 1-1Zm0 4.5A3.5 3.5 0 1 0 15.5 12 3.5 3.5 0 0 0 12 8.5Z"></path>
+                </svg>
+                <span data-theme-label data-light-en="Light" data-light-fa="روشن" data-dark-en="Dark" data-dark-fa="تاریک">Light</span>
+            </button>
+        </div>
+    </div>
+</header>

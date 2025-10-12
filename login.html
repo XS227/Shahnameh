@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -13,6 +14,12 @@
     <style>
       :root {
         color-scheme: dark light;
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Inter:wght@400;500;600&family=Vazirmatn:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    {% include 'partials/global_style.html' %}
+    <style>
+      :root {
         --bg: #08061a;
         --panel: rgba(18, 15, 40, 0.92);
         --text: #f8fafc;
@@ -23,6 +30,13 @@
 
       *, *::before, *::after {
         box-sizing: border-box;
+      [data-theme="light"] {
+        --bg: #f8fafc;
+        --panel: rgba(255, 255, 255, 0.92);
+        --text: #0f172a;
+        --muted: rgba(71, 85, 105, 0.85);
+        --accent: #0284c7;
+        --accent-warm: #ea580c;
       }
 
       body {
@@ -33,6 +47,12 @@
           radial-gradient(circle at 80% 25%, rgba(249, 115, 22, 0.25), transparent 60%),
           var(--bg);
         color: var(--text);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .login-wrapper {
+        flex: 1;
         display: grid;
         place-items: center;
         padding: clamp(2rem, 6vw, 3rem) clamp(1.5rem, 5vw, 2.5rem);
@@ -48,6 +68,11 @@
         box-shadow: 0 25px 55px -28px rgba(5, 4, 16, 0.85);
         text-align: center;
         overflow: hidden;
+      }
+
+      [data-theme="light"] main {
+        border-color: rgba(15, 23, 42, 0.12);
+        box-shadow: 0 20px 45px -26px rgba(15, 23, 42, 0.2);
       }
 
       main::before {
@@ -113,6 +138,15 @@
       a:hover,
       a:focus {
         color: var(--accent-warm);
+        display: inline-flex;
+        justify-content: center;
+        width: 100%;
+      }
+
+      .security-note {
+        margin-top: 1.6rem;
+        font-size: 0.85rem;
+        color: var(--muted);
       }
     </style>
   </head>
@@ -167,6 +201,33 @@
           statusEl.textContent = `Login failed: ${err.message}`;
           statusEl.className = 'status error';
         }
+    {% include 'partials/site_header.html' %}
+    <div class="login-wrapper">
+      <main>
+        <h1 data-i18n-en="Enter the realm" data-i18n-fa="ورود به قلمرو">Enter the realm</h1>
+        <p data-i18n-en="Connect with Telegram to sync your Shahnameh progress and claim daily rewards." data-i18n-fa="برای همگام‌سازی پیشرفت و دریافت پاداش‌های روزانه با تلگرام وارد شوید.">
+          Connect with Telegram to sync your Shahnameh progress and claim daily rewards.
+        </p>
+        <div class="widget-wrapper">
+          <script
+            async
+            src="https://telegram.org/js/telegram-widget.js?22"
+            data-telegram-login="shahnameshbot"
+            data-size="large"
+            data-onauth="onTelegramAuth(user)"
+            data-request-access="write"
+          ></script>
+        </div>
+        <p class="security-note" data-i18n-en="We never store your Telegram password. Authentication happens on Telegram servers." data-i18n-fa="رمز تلگرام شما هرگز ذخیره نمی‌شود. تأیید هویت در سرورهای تلگرام انجام می‌گیرد.">
+          We never store your Telegram password. Authentication happens on Telegram servers.
+        </p>
+      </main>
+    </div>
+    {% include 'partials/site_footer.html' %}
+    {% include 'partials/global_script.html' %}
+    <script>
+      function onTelegramAuth(user) {
+        console.log('Telegram user authorised:', user);
       }
     </script>
   </body>

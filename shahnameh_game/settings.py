@@ -12,7 +12,13 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 
-from celery.schedules import crontab
+try:
+    from celery.schedules import crontab
+except ModuleNotFoundError:  # pragma: no cover - optional dependency in CI/dev shells
+    def crontab(*args, **kwargs):  # type: ignore
+        """Fallback stub so settings can load without Celery installed."""
+
+        return {"args": args, "kwargs": kwargs}
 
 
 def _get_bool_env(name: str, default: str = "False") -> bool:
@@ -65,8 +71,15 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'core',
-    'celery',
 ]
+
+try:
+    import celery  # noqa: F401  # pragma: no cover
+except ModuleNotFoundError:
+    CELERY_AVAILABLE = False
+else:
+    CELERY_AVAILABLE = True
+    INSTALLED_APPS.append('celery')
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -85,6 +98,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR],
+        'DIRS': [BASE_DIR, BASE_DIR / 'partials'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

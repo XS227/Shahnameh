@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shahnameh Game | Web3 Strategy &amp; Community Hub</title>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shahnameh Game | REAL Token Live Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -26,6 +31,34 @@
 
         *, *::before, *::after {
             box-sizing: border-box;
+    {% include 'partials/global_style.html' %}
+    <style>
+        :root {
+            --bg: #050816;
+            --bg-soft: rgba(13, 20, 45, 0.88);
+            --surface: rgba(16, 23, 56, 0.78);
+            --surface-strong: rgba(10, 18, 48, 0.92);
+            --text: #f8fafc;
+            --text-muted: rgba(203, 213, 225, 0.86);
+            --muted: rgba(226, 232, 240, 0.82);
+            --outline: rgba(148, 163, 184, 0.22);
+            --accent-primary: #38bdf8;
+            --accent-secondary: #c084fc;
+            --highlight: #facc15;
+            --secondary: rgba(56, 189, 248, 0.85);
+            --card-border: rgba(94, 234, 212, 0.16);
+        }
+
+        [data-theme="light"] {
+            --bg: #f4f6fb;
+            --bg-soft: rgba(255, 255, 255, 0.92);
+            --surface: rgba(255, 255, 255, 0.85);
+            --surface-strong: rgba(255, 255, 255, 0.97);
+            --text: #0f172a;
+            --text-muted: rgba(71, 85, 105, 0.8);
+            --muted: rgba(71, 85, 105, 0.75);
+            --outline: rgba(15, 23, 42, 0.12);
+            --card-border: rgba(15, 23, 42, 0.12);
         }
 
         body {
@@ -56,6 +89,16 @@
         }
 
         header {
+            background:
+                radial-gradient(circle at 12% 10%, rgba(56, 189, 248, 0.2), transparent 55%),
+                radial-gradient(circle at 88% 8%, rgba(192, 132, 252, 0.22), transparent 62%),
+                linear-gradient(160deg, #050816 0%, #060b1d 40%, #0b1230 100%);
+            color: var(--text);
+            min-height: 100vh;
+            scroll-behavior: smooth;
+        }
+
+        main.landing {
             position: relative;
             overflow: hidden;
         }
@@ -82,6 +125,21 @@
             filter: blur(45px);
             opacity: 0.45;
             pointer-events: none;
+        section {
+            padding: clamp(3rem, 5vw, 4.6rem) clamp(1.5rem, 6vw, 3.5rem);
+        }
+
+        .hero {
+            padding-top: clamp(4rem, 7vw, 5.5rem);
+        }
+
+        .hero-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: clamp(2.5rem, 5vw, 4rem);
+            align-items: center;
         }
 
         .hero-copy h1 {
@@ -98,6 +156,19 @@
             color: var(--text-muted);
             margin-bottom: 2.4rem;
             max-width: 60ch;
+            font-size: clamp(2.8rem, 6vw, 4.2rem);
+            margin: 0 0 1.25rem;
+            background: linear-gradient(120deg, var(--highlight), rgba(56, 189, 248, 0.95));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 22px 45px rgba(6, 9, 24, 0.75);
+        }
+
+        .hero-copy p {
+            font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+            color: var(--text-muted);
+            margin: 0 0 2rem;
+            line-height: 1.7;
         }
 
         .cta-row {
@@ -132,6 +203,22 @@
             box-shadow: none;
             backdrop-filter: blur(10px);
             background-color: rgba(8, 11, 27, 0.35);
+            padding: 0.95rem 1.8rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+            color: #020617;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 20px 48px -24px rgba(56, 189, 248, 0.9);
+            transition: transform 0.18s ease, box-shadow 0.25s ease;
+            border: 1px solid rgba(148, 163, 184, 0.22);
+        }
+
+        .button.secondary {
+            background: rgba(5, 12, 28, 0.6);
+            color: var(--text);
+            border: 1px solid var(--card-border);
+            box-shadow: none;
         }
 
         .language-switcher {
@@ -142,10 +229,13 @@
             gap: 0.5rem;
             background: rgba(8, 11, 27, 0.55);
             border: 1px solid rgba(148, 163, 184, 0.25);
+            background: rgba(9, 14, 33, 0.65);
+            border: 1px solid var(--card-border);
             border-radius: 999px;
             padding: 0.35rem;
             backdrop-filter: blur(12px);
             z-index: 3;
+            box-shadow: 0 18px 32px -24px rgba(15, 23, 42, 0.85);
         }
 
         .language-button {
@@ -167,6 +257,7 @@
 
         .language-button.active {
             background: var(--secondary);
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.9), rgba(192, 132, 252, 0.9));
             color: #020617;
         }
 
@@ -174,6 +265,7 @@
         .button:focus-visible {
             transform: translateY(-3px);
             box-shadow: 0 26px 48px -20px rgba(56, 189, 248, 0.95);
+            box-shadow: 0 24px 52px -24px rgba(56, 189, 248, 0.95);
         }
 
         .button.secondary:hover,
@@ -308,12 +400,74 @@
             margin: 0;
             color: var(--text-muted);
             line-height: 1.7;
+            border-color: rgba(56, 189, 248, 0.65);
+            color: rgba(56, 189, 248, 0.95);
+        }
+
+        .hero-art {
+            position: relative;
+            min-height: 340px;
+            border-radius: 32px;
+            background: linear-gradient(145deg, rgba(56, 189, 248, 0.32), rgba(192, 132, 252, 0.28));
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 25px 60px -30px rgba(7, 10, 25, 0.85);
+        }
+
+        .hero-art::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80') center / cover;
+            opacity: 0.35;
+            mix-blend-mode: screen;
+        }
+
+        .hero-art::after {
+            content: "";
+            position: absolute;
+            inset: 15% 12%;
+            border-radius: 26px;
+            border: 1px solid var(--card-border);
+            background: rgba(12, 19, 40, 0.75);
+            box-shadow: inset 0 0 0 1px rgba(56, 189, 248, 0.15);
+        }
+
+        .hero-art-content {
+            position: relative;
+            padding: 2rem 2.4rem;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero-art-content h2 {
+            font-family: 'Baloo 2', cursive;
+            margin: 0 0 0.75rem;
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--highlight), rgba(56, 189, 248, 0.95));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-art-content p {
+            margin: 0;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .section-inner {
+            max-width: 1180px;
+            margin: 0 auto;
         }
 
         .transparency-section {
             position: relative;
             background: linear-gradient(180deg, rgba(12, 9, 28, 0.85), rgba(8, 10, 26, 0.95));
             border-block: 1px solid rgba(56, 189, 248, 0.12);
+            background: linear-gradient(180deg, rgba(7, 11, 28, 0.92), rgba(5, 8, 22, 0.98));
+            border-block: 1px solid var(--card-border);
         }
 
         .transparency-header {
@@ -348,6 +502,10 @@
             border: 1px solid rgba(148, 163, 184, 0.18);
             box-shadow: 0 22px 55px -28px rgba(7, 10, 28, 0.85);
             backdrop-filter: blur(16px);
+            background: linear-gradient(155deg, rgba(10, 16, 40, 0.9), rgba(18, 28, 60, 0.7));
+            border: 1px solid var(--card-border);
+            box-shadow: 0 22px 55px -28px rgba(7, 10, 28, 0.85);
+            backdrop-filter: blur(18px);
         }
 
         .transparency-card h3 {
@@ -355,12 +513,14 @@
             font-family: 'Baloo 2', cursive;
             font-size: 1.3rem;
             color: var(--secondary);
+            color: var(--highlight);
         }
 
         .transparency-value {
             font-size: clamp(1.8rem, 4.5vw, 2.6rem);
             font-weight: 600;
             color: var(--highlight);
+            color: var(--secondary);
             margin: 0 0 0.85rem;
         }
 
@@ -376,12 +536,14 @@
             max-width: 80ch;
             font-size: 1.05rem;
             color: rgba(248, 250, 252, 0.82);
+            color: var(--muted);
             text-align: center;
             line-height: 1.8;
         }
 
         .mission-copy strong {
             color: var(--secondary);
+            color: var(--highlight);
         }
 
         .reeal-section {
@@ -416,6 +578,8 @@
         .reeal-card {
             background: rgba(9, 12, 28, 0.78);
             border: 1px solid rgba(148, 163, 184, 0.2);
+            background: linear-gradient(155deg, rgba(10, 16, 38, 0.85), rgba(18, 28, 60, 0.65));
+            border: 1px solid var(--card-border);
             border-radius: 28px;
             padding: clamp(1.8rem, 4vw, 2.6rem);
             box-shadow: 0 22px 50px -28px rgba(7, 10, 28, 0.9);
@@ -501,6 +665,9 @@
             background: rgba(8, 11, 27, 0.55);
             border-radius: 999px;
             border: 1px solid rgba(148, 163, 184, 0.18);
+            background: rgba(8, 11, 27, 0.65);
+            border-radius: 999px;
+            border: 1px solid var(--card-border);
             overflow: hidden;
         }
 
@@ -514,6 +681,7 @@
         .chart-tab.active {
             color: #020617;
             background: var(--secondary);
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.9), rgba(192, 132, 252, 0.9));
         }
 
         .chart-note {
@@ -526,6 +694,8 @@
             padding: clamp(3rem, 6vw, 5rem) 0;
             background: linear-gradient(180deg, rgba(12, 9, 28, 0.88), rgba(8, 10, 26, 0.92));
             border-block: 1px solid rgba(56, 189, 248, 0.1);
+            background: linear-gradient(180deg, rgba(7, 11, 30, 0.9), rgba(5, 8, 22, 0.96));
+            border-block: 1px solid var(--card-border);
         }
 
         .community-section .section-inner {
@@ -554,6 +724,8 @@
             border-radius: 18px;
             background: rgba(8, 11, 27, 0.6);
             border: 1px solid rgba(148, 163, 184, 0.18);
+            background: rgba(8, 11, 27, 0.72);
+            border: 1px solid var(--card-border);
             color: var(--text);
             text-decoration: none;
             font-weight: 600;
@@ -565,6 +737,8 @@
             transform: translateY(-3px);
             border-color: var(--secondary);
             box-shadow: 0 18px 40px -20px rgba(56, 189, 248, 0.75);
+            border-color: rgba(56, 189, 248, 0.85);
+            box-shadow: 0 18px 40px -20px rgba(56, 189, 248, 0.7);
         }
 
         .social-icon {
@@ -575,6 +749,7 @@
             justify-content: center;
             border-radius: 50%;
             background: rgba(56, 189, 248, 0.2);
+            background: rgba(56, 189, 248, 0.18);
             color: var(--secondary);
             font-size: 0.95rem;
         }
@@ -584,6 +759,8 @@
             padding: clamp(2rem, 5vw, 2.8rem);
             background: rgba(5, 8, 22, 0.8);
             border: 1px solid rgba(56, 189, 248, 0.22);
+            background: linear-gradient(160deg, rgba(6, 10, 28, 0.9), rgba(13, 19, 42, 0.7));
+            border: 1px solid var(--card-border);
             box-shadow: 0 20px 48px -26px rgba(6, 9, 24, 0.85);
             text-align: center;
         }
@@ -612,6 +789,8 @@
             border-radius: 24px;
             background: rgba(15, 12, 32, 0.85);
             border: 1px solid rgba(148, 163, 184, 0.18);
+            background: rgba(15, 18, 42, 0.82);
+            border: 1px solid var(--card-border);
             display: grid;
             gap: 0.35rem;
         }
@@ -754,6 +933,121 @@
         footer a:hover,
         footer a:focus {
             color: var(--highlight);
+            text-align: center;
+            font-size: clamp(2rem, 4.5vw, 2.8rem);
+            margin: 0 0 1rem;
+            background: linear-gradient(130deg, var(--highlight), rgba(56, 189, 248, 0.95));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 20px 38px rgba(8, 10, 28, 0.55);
+        }
+
+        [data-theme="light"] .section-title {
+            background: none;
+            color: #0f172a;
+            -webkit-text-fill-color: #0f172a;
+            text-shadow: none;
+        }
+
+        .section-lead {
+            text-align: center;
+            color: var(--text-muted);
+            margin: 0 auto 2.8rem;
+            max-width: 720px;
+            line-height: 1.8;
+        }
+
+        .token-grid {
+            display: grid;
+            gap: 1.6rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        .metric-card {
+            padding: 1.6rem;
+            border-radius: 22px;
+            background: linear-gradient(155deg, rgba(15, 23, 42, 0.88), rgba(30, 41, 59, 0.65));
+            border: 1px solid var(--card-border);
+            box-shadow: 0 22px 55px -28px rgba(8, 9, 24, 0.8);
+            backdrop-filter: blur(18px);
+        }
+
+        [data-theme="light"] .metric-card {
+            box-shadow: 0 18px 40px -26px rgba(15, 23, 42, 0.25);
+        }
+
+        .metric-card h3 {
+            margin: 0 0 0.45rem;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--secondary);
+        }
+
+        .metric-card strong {
+            font-size: 1.5rem;
+            display: block;
+        }
+
+        .metric-card span {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .token-error {
+            margin-top: 2rem;
+            padding: 1.4rem;
+            border-radius: 18px;
+            background: rgba(248, 113, 113, 0.12);
+            border: 1px solid rgba(248, 113, 113, 0.35);
+            color: #fecaca;
+        }
+
+        [data-theme="light"] .token-error {
+            background: rgba(248, 113, 113, 0.15);
+            color: #b91c1c;
+            border-color: rgba(248, 113, 113, 0.35);
+        }
+
+        .social-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        }
+
+        .social-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.85rem 1.2rem;
+            border-radius: 18px;
+            background: rgba(15, 19, 40, 0.65);
+            border: 1px solid var(--outline);
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.18s ease, box-shadow 0.25s ease;
+        }
+
+        [data-theme="light"] .social-pill {
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        .social-pill:hover,
+        .social-pill:focus-visible {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px -26px rgba(56, 189, 248, 0.75);
+        }
+
+        .social-pill svg {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            gap: 1.6rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         }
 
         body[dir='rtl'] {
@@ -826,6 +1120,17 @@
             pointer-events: none;
             filter: blur(40px);
             opacity: 0.35;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.25), transparent 65%),
+                radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.2), transparent 70%);
+            opacity: 0.6;
+            pointer-events: none;
         }
 
         .intel-section::before {
@@ -919,6 +1224,62 @@
             border: 1px solid rgba(56, 189, 248, 0.35);
         }
 
+        }
+
+        .intel-section::after {
+            width: 220px;
+            height: 220px;
+            bottom: -110px;
+            left: -60px;
+            background: radial-gradient(circle, rgba(250, 204, 21, 0.6), transparent 60%);
+        }
+
+        .intel-header {
+            position: relative;
+        }
+
+        .feature-card h3 {
+            margin: 0 0 0.65rem;
+            font-size: 1.3rem;
+            color: rgba(56, 189, 248, 0.95);
+        }
+
+        .feature-card p {
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .timeline-step {
+            position: relative;
+            padding: 1.6rem 1.8rem 1.6rem 3.2rem;
+            border-radius: 22px;
+            background: var(--surface);
+            border: 1px solid var(--outline);
+        }
+
+        .timeline-step::before {
+            content: attr(data-step);
+            position: absolute;
+            top: 1.4rem;
+            left: 1.2rem;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #020617;
+            display: grid;
+            place-items: center;
+            font-weight: 700;
+            font-family: 'Baloo 2', cursive;
+        }
+
+
         .intel-badge.gain {
             background: rgba(34, 197, 94, 0.2);
             color: #86efac;
@@ -951,11 +1312,31 @@
             .intel-card {
                 padding: 1.5rem;
             }
+        .timeline-step p {
+            margin: 0 0 1rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .timeline-step ul {
+            margin: 0;
+            padding-left: 1rem;
+            color: var(--text);
+        }
+
+        .timeline-step li {
+            margin-bottom: 0.4rem;
+        }
+
+        [data-theme="light"] .timeline-step {
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 20px 40px -26px rgba(15, 23, 42, 0.3);
         }
     </style>
 </head>
 <body>
     <header>
+    <main class="landing">
         <div class="language-switcher" role="group" aria-label="Language toggle">
             <button class="language-button active" type="button" data-lang="en">EN</button>
             <button class="language-button" type="button" data-lang="fa">فا</button>
@@ -985,6 +1366,32 @@
                         <span data-i18n="hero.cta.secondary" data-i18n-format="text">Read the Whitepaper</span>
                     </a>
                 </div>
+        <section class="hero">
+            <div class="hero-inner">
+                <div class="hero-copy">
+                    <h1 data-i18n="hero.title">Forge Legends on the Shahnameh Frontier</h1>
+                    <p data-i18n="hero.lead" data-i18n-format="html">
+                        Rally your guild, grow the kingdom and chart a path through the myths of ancient Persia. Honoured as
+                        the <strong>third Editors' Choice</strong> during our first phase, Shahnameh Game blends playful strategy
+                        with Web3 stewardship so every decision leaves a mark on the eternal chronicle.
+                    </p>
+                    <p data-i18n="hero.mission" data-i18n-format="html">
+                        <strong>We are set on revolutionising the national economy of Iran through the gaming industry</strong>,
+                        creating equitable rails where player creativity, culture and capital compound for communities at
+                        home and across the diaspora.
+                    </p>
+                    <div class="cta-row">
+                        <a class="button" href="/api/">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 6.75h.008v.008H11.25V6.75zM11.25 9h.008v.008H11.25V9zm0 2.25h.008v.008H11.25V11.25zm0 2.25h.008v.008H11.25V13.5zm0 2.25h.008v.008H11.25V15.75zm0 2.25h.008v.008H11.25V18zm2.25-11.25h.008v.008H13.5V6.75zm0 2.25h.008v.008H13.5V9zm0 2.25h.008v.008H13.5V11.25zm0 2.25h.008v.008H13.5V13.5zm0 2.25h.008v.008H13.5V15.75zm0 2.25h.008v.008H13.5V18zm2.25-11.25h.008v.008H15.75V6.75zm0 2.25h.008v.008H15.75V9zm0 2.25h.008v.008H15.75V11.25zm0 2.25h.008v.008H15.75V13.5zm0 2.25h.008v.008H15.75V15.75zm0 2.25h.008v.008H15.75V18z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l.72-.72a1.5 1.5 0 011.06-.44h7.5A1.5 1.5 0 0117.5 7.5v9a1.5 1.5 0 01-1.5 1.5h-7.5a1.5 1.5 0 01-1.5-1.5V7.5z" />
+                            </svg>
+                            <span data-i18n="hero.cta.primary" data-i18n-format="text">Explore the API</span>
+                        </a>
+                        <a class="button secondary" href="{% url 'whitepaper' %}">
+                            <span data-i18n="hero.cta.secondary" data-i18n-format="text">Read the Whitepaper</span>
+                        </a>
+                    </div>
             </div>
             <div class="hero-visual">
                 <div class="hero-card">
@@ -1039,6 +1446,83 @@
                     </p>
                 </article>
             </div>
+                    <div class="cta-row">
+                        <a class="button" href="{% url 'whitepaper' %}" data-i18n="hero.card.ctaVision" data-i18n-format="text">Read the vision</a>
+                        <a class="button secondary" href="{% url 'season2-roadmap' %}" data-i18n="hero.card.ctaRoadmap" data-i18n-format="text">Season 2 roadmap</a>
+                    </div>
+                </div>
+                <div class="hero-art">
+                    <div class="hero-art-content">
+                        <h2 data-i18n="hero.pulse.title">REAL community pulse</h2>
+                        <p data-i18n="hero.pulse.copy" data-i18n-format="text">
+                            Live data, lore events, and social rallies keep Shahnameh explorers aligned across time zones.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </section>
+
+        <section id="real-token">
+            <div class="section-inner">
+                <h2 class="section-title" data-i18n="metrics.title">REAL token live metrics</h2>
+                <p class="section-lead" data-i18n="metrics.lead">
+                    Streaming directly from DYOR so treasury leads always see the same numbers.
+                </p>
+                {% if token_error %}
+                <div class="token-error">
+                    <span data-i18n="metrics.error" data-i18n-format="text">Live metrics temporarily unavailable. We'll retry shortly.</span>
+                    <div><small>{{ token_error }}</small></div>
+                </div>
+                {% endif %}
+                {% if token_stats %}
+                <div class="token-grid">
+                    <div class="metric-card">
+                        <h3 data-i18n="metrics.priceUsd.title" data-i18n-format="text">Price (USD)</h3>
+                        <strong>{{ token_stats.price_usd|default:"—" }}</strong>
+                        <span data-i18n="metrics.priceUsd.note">Current DYOR spot price</span>
+                    </div>
+                    {% if token_stats.price_ton %}
+                    <div class="metric-card">
+                        <h3 data-i18n="metrics.priceTon.title" data-i18n-format="text">Price (TON)</h3>
+                        <strong>{{ token_stats.price_ton }}</strong>
+                        <span data-i18n="metrics.priceTon.note">Quoted in native TON</span>
+                    </div>
+                    {% endif %}
+                    <div class="metric-card">
+                        <h3 data-i18n="metrics.change.title" data-i18n-format="text">24h change</h3>
+                        <strong>{{ token_stats.price_change_24h|default:"—" }}</strong>
+                        <span data-i18n="metrics.change.note">Price momentum</span>
+                    </div>
+                    <div class="metric-card">
+                        <h3 data-i18n="metrics.marketCap.title" data-i18n-format="text">Market cap</h3>
+                        <strong>{{ token_stats.market_cap|default:"—" }}</strong>
+                        <span data-i18n="metrics.marketCap.note">Fully diluted valuation</span>
+                    </div>
+                    <div class="metric-card">
+                        <h3 data-i18n="metrics.volume.title" data-i18n-format="text">24h volume</h3>
+                        <strong>{{ token_stats.volume_24h|default:"—" }}</strong>
+                        <span data-i18n="metrics.volume.note">Liquidity flowing through REAL</span>
+                    </div>
+                    <div class="metric-card">
+                        <h3 data-i18n="metrics.liquidityLocked.title" data-i18n-format="text">Liquidity locked</h3>
+                        <strong>{{ token_stats.liquidity_locked|default:"—" }}</strong>
+                        <span data-i18n="metrics.liquidityLocked.note">Reserves tracked by DYOR</span>
+                    </div>
+                </div>
+                {% endif %}
+                {% if token_stats.last_updated %}
+                <p class="section-lead" style="margin-top: 2.2rem; font-size: 0.95rem;">
+                    <span data-i18n="metrics.lastSynced" data-i18n-format="text">Last synced</span>: {{ token_stats.last_updated }}
+                </p>
+                {% endif %}
+            </div>
+            <p class="intel-footer" id="intel-footer">
+                Data updates every few minutes straight from
+                <a href="https://tonapi.io/" target="_blank" rel="noreferrer">TonAPI</a>
+                and
+                <a href="https://www.dyor.com/" target="_blank" rel="noreferrer">DYOR Intelligence</a>.
+            </p>
         </div>
     </section>
 
@@ -1304,6 +1788,8 @@
         </div>
     </section>
 
+    </main>
+
     <footer>
         <span data-i18n="footer.credit">Crafted by the Shahnameh core team · Dive deeper on</span>
         <a href="https://github.com/XS227/Shahnameh" target="_blank" rel="noreferrer" data-i18n="footer.link">our knowledge base</a>
@@ -1311,6 +1797,22 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+        const tonElements = {
+            price: document.querySelector('[data-ton-price]'),
+            change: document.querySelector('[data-ton-change]'),
+            liquidity: document.querySelector('[data-ton-liquidity]'),
+        };
+
+        const dyorElements = {
+            score: document.querySelector('[data-dyor-score]'),
+            tier: document.querySelector('[data-dyor-tier]'),
+            updated: document.querySelector('[data-dyor-updated]'),
+        };
+
+        const contentElements = {
+            share: document.querySelector('[data-content-share]'),
+            contributors: document.querySelector('[data-contributors]'),
+            note: document.querySelector('[data-content-note]'),
         const selectAll = (selector) => Array.from(document.querySelectorAll(selector));
 
         const setText = (elements, value) => {
@@ -1364,6 +1866,10 @@
                 'design.cards.coop': 'سیستم‌های همکاری',
                 'design.cards.coopBody':
                     'معماهای یورش تعاونی، تجمیع خزانه و رویدادهای دیپلماسی میان گیلدی از روز اول استراتژی و بازی اجتماعی را در هم می‌تند.',
+                'hero.card.ctaVision': 'مطالعه چشم‌انداز',
+                'hero.card.ctaRoadmap': 'نقشه راه فصل دوم',
+                'hero.pulse.title': 'نبض جامعه REAL',
+                'hero.pulse.copy': 'داده زنده، رویدادهای داستانی و گردهمایی‌های اجتماعی ماجراجویان شاهنامه را در همه مناطق هماهنگ می‌کند.',
                 'transparency.title': 'شفافیت توکن، در مرکز صحنه',
                 'transparency.lead':
                     'هر کاوشگری می‌تواند قلب خزانه شاهنامه را در لحظه بررسی کند. نوسان قیمت، شتاب دارندگان و نقدینگی پشتیبان ما را بدون ترک صفحه دنبال کنید.',
@@ -1373,6 +1879,22 @@
                 'transparency.cards.holdersNote': 'در انتظار داده‌های تعداد دارندگان…',
                 'transparency.cards.liquidity': 'عمق نقدینگی',
                 'transparency.cards.liquidityNote': 'تجمیع‌شده از استخرهای اصلی TON و به‌صورت مستمر تازه می‌شود.',
+                'metrics.title': 'آمار لحظه‌ای توکن REAL',
+                'metrics.lead': 'داده‌ها به‌صورت مستقیم از DYOR دریافت می‌شود تا مسئولان خزانه یک تصویر مشترک داشته باشند.',
+                'metrics.error': 'داده‌های زنده موقتاً در دسترس نیست. به‌زودی دوباره تلاش می‌کنیم.',
+                'metrics.priceUsd.title': 'قیمت (دلار)',
+                'metrics.priceUsd.note': 'آخرین قیمت لحظه‌ای DYOR',
+                'metrics.priceTon.title': 'قیمت (تون)',
+                'metrics.priceTon.note': 'نمایش بر حسب TON',
+                'metrics.change.title': 'تغییر ۲۴ ساعته',
+                'metrics.change.note': 'مومنتوم قیمتی',
+                'metrics.marketCap.title': 'ارزش بازار',
+                'metrics.marketCap.note': 'ارزش کاملاً رقیق شده',
+                'metrics.volume.title': 'حجم ۲۴ ساعته',
+                'metrics.volume.note': 'نقدینگی جاری REAL',
+                'metrics.liquidityLocked.title': 'نقدینگی قفل‌شده',
+                'metrics.liquidityLocked.note': 'ذخایر رصدشده توسط DYOR',
+                'metrics.lastSynced': 'آخرین همگام‌سازی',
                 'mission.statement':
                     'ماموریت ما جسورانه است: توانمندسازی سازندگان و بازیکنان ایرانی با اقتصادی بازتولیدی و غیرمتمرکز که رونق تازه‌ای را به استودیوها، گیلدها و راویان محلی هدایت می‌کند. <strong>توکنومیک شفاف سنگ‌بنای این انقلاب است.</strong>',
                 'countdown.title': 'شمارش معکوس تا فصل بعدی شاهنامه',
@@ -1862,6 +2384,18 @@
         };
 
         const applyFallback = () => {
+            tonElements.price.textContent = '$0.00';
+            tonElements.change.textContent = '0%';
+            tonElements.change.classList.remove('loss', 'gain');
+            tonElements.liquidity.textContent = 'Awaiting liquidity feed…';
+
+            dyorElements.score.textContent = 'N/A';
+            dyorElements.tier.textContent = 'DYOR ratings currently unavailable.';
+            dyorElements.updated.textContent = '';
+
+            contentElements.share.textContent = 'N/A';
+            contentElements.contributors.textContent = '--';
+            contentElements.note.textContent = 'Community dashboards will populate once DYOR data is reachable.';
             setText(tonElements.price, '$0.00');
             tonElements.change.forEach((element) => {
                 element.textContent = '0%';
@@ -1950,6 +2484,11 @@
                         tonData?.liquidity ||
                         null;
 
+                    if (price !== undefined) {
+                        tonElements.price.textContent = `$${formatNumber(Number(price), {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                        })}`;
                     const holders =
                         tonData?.holders ||
                         tonData?.holders_count ||
@@ -1966,6 +2505,21 @@
 
                     if (change !== undefined && change !== null) {
                         const changeValue = Number(change);
+                        tonElements.change.textContent = `${changeValue > 0 ? '+' : ''}${formatNumber(changeValue, {
+                            minimumFractionDigits: 2,
+                            maximumFractionDigits: 2,
+                        })}%`;
+                        tonElements.change.classList.toggle('gain', changeValue > 0);
+                        tonElements.change.classList.toggle('loss', changeValue < 0);
+                    }
+
+                    if (liquidity) {
+                        tonElements.liquidity.textContent = `Reported liquidity: $${formatNumber(Number(liquidity), {
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0,
+                        })}`;
+                    } else {
+                        tonElements.liquidity.textContent = 'Liquidity metrics pending fresh updates…';
                         tonElements.change.forEach((element) => {
                             element.textContent = `${changeValue > 0 ? '+' : ''}${formatNumber(changeValue, {
                                 minimumFractionDigits: 2,
@@ -2068,6 +2622,18 @@
                         project?.metrics?.verified_contributors;
 
                     if (score !== null) {
+                        dyorElements.score.textContent = `${formatNumber(score, {
+                            minimumFractionDigits: 1,
+                            maximumFractionDigits: 1,
+                        })}%`;
+                    } else {
+                        dyorElements.score.textContent = 'Unrated';
+                    }
+
+                    if (tier) {
+                        dyorElements.tier.textContent = `Risk tier: ${tier}`;
+                    } else {
+                        dyorElements.tier.textContent = 'Risk tier awaiting DYOR review.';
                         const formattedScore = `${formatNumber(score, {
                             minimumFractionDigits: 1,
                             maximumFractionDigits: 1,
@@ -2101,6 +2667,35 @@
                                 'dyor.lastRefreshedPrefix',
                                 'Last refreshed'
                             )} ${updatedDate.toLocaleString(locale)}`;
+                            dyorElements.updated.textContent = `Last refreshed ${updatedDate.toLocaleString()}`;
+                        }
+                    } else {
+                        dyorElements.updated.textContent = '';
+                    }
+
+                    if (contentPercent !== null) {
+                        contentElements.share.textContent = `${formatNumber(contentPercent, {
+                            minimumFractionDigits: 1,
+                            maximumFractionDigits: 1,
+                        })}%`;
+                    } else {
+                        contentElements.share.textContent = 'N/A';
+                    }
+
+                    if (contributors !== undefined) {
+                        contentElements.contributors.textContent = formatNumber(Number(contributors), {
+                            minimumFractionDigits: 0,
+                            maximumFractionDigits: 0,
+                        });
+                    } else {
+                        contentElements.contributors.textContent = '--';
+                    }
+
+                    contentElements.note.textContent =
+                        contentPercent !== null
+                            ? 'Content share reflects vetted creators on DYOR.'
+                            : 'Content share data pending next DYOR crawl.';
+                            const readable = `Last refreshed ${updatedDate.toLocaleString()}`;
                             setText(dyorElements.updated, readable);
                         }
                     } else {

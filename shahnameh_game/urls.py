@@ -14,6 +14,7 @@ from core import views as core_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', core_views.marketing_home, name='index'),
     path('api/', include('core.urls')),
     path('docs/legacy-overview/', core_views.legacy_repo_overview, name='legacy-overview'),
     path('docs/whitepaper/', core_views.whitepaper_overview, name='whitepaper'),
