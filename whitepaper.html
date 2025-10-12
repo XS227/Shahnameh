@@ -2,6 +2,16 @@
 {% block title %}{{ page_title }} · Shahnameh Knowledge Base{% endblock %}
 {% block content %}
 <section>
+    <h2>{{ page_title }}</h2>
+    <p>{{ summary }}</p>
+</section>
+<section>
+    <h3>Design Pillars</h3>
+    <div class="grid columns-2">
+        {% for pillar in pillars %}
+        <div class="phase">
+            <strong>{{ pillar.title }}</strong>
+            <p>{{ pillar.details }}</p>
     <h2 data-i18n-en="Digest summary" data-i18n-fa="چکیده">Digest summary</h2>
     <p data-i18n-en="{{ summary }}" data-i18n-fa="{{ summary_fa }}">{{ summary }}</p>
 </section>
@@ -17,6 +27,15 @@
     </div>
 </section>
 <section>
+    <h3>Economy Overview</h3>
+    <p><strong>Utility Token:</strong> {{ economy_breakdown.utility_token }}</p>
+    <p><strong>Governance Token:</strong> {{ economy_breakdown.governance_token }}</p>
+    <div class="grid columns-2">
+        <div>
+            <h3>Key Sinks</h3>
+            <ul>
+                {% for sink in economy_breakdown.sink_examples %}
+                <li>{{ sink }}</li>
     <h3 data-i18n-en="Economy overview" data-i18n-fa="نمای اقتصاد">Economy overview</h3>
     <p><strong data-i18n-en="Utility token" data-i18n-fa="توکن کاربردی">Utility token</strong> <span data-i18n-en="{{ economy_breakdown.utility_token.text }}" data-i18n-fa="{{ economy_breakdown.utility_token.text_fa }}">{{ economy_breakdown.utility_token.text }}</span></p>
     <p><strong data-i18n-en="Governance token" data-i18n-fa="توکن حاکمیتی">Governance token</strong> <span data-i18n-en="{{ economy_breakdown.governance_token.text }}" data-i18n-fa="{{ economy_breakdown.governance_token.text_fa }}">{{ economy_breakdown.governance_token.text }}</span></p>
@@ -30,6 +49,10 @@
             </ul>
         </div>
         <div>
+            <h3>Key Sources</h3>
+            <ul>
+                {% for source in economy_breakdown.source_examples %}
+                <li>{{ source }}</li>
             <h3 data-i18n-en="Key sources" data-i18n-fa="منابع کلیدی">Key sources</h3>
             <ul>
                 {% for source in economy_breakdown.source_examples %}
@@ -40,6 +63,10 @@
     </div>
 </section>
 <section>
+    <h3>Player Journey</h3>
+    <ol>
+        {% for step in player_journey %}
+        <li>{{ step }}</li>
     <h3 data-i18n-en="Player journey" data-i18n-fa="سفر بازیکن">Player journey</h3>
     <ol>
         {% for step in player_journey %}
@@ -48,6 +75,14 @@
     </ol>
 </section>
 <section>
+    <h3>Season 2 at a Glance</h3>
+    {% for phase in season_two_roadmap %}
+    <div class="phase">
+        <strong>{{ phase.phase }}</strong>
+        <p>{{ phase.summary }}</p>
+        <ul>
+            {% for item in phase.items %}
+            <li><strong>{{ item.title }}:</strong> {{ item.description }}</li>
     <h3 data-i18n-en="Tokenomics highlights" data-i18n-fa="نکات برجسته اقتصاد توکنی">Tokenomics highlights</h3>
     <ul>
         {% for row in tokenomics_highlights %}
@@ -82,6 +117,7 @@
         </ul>
     </div>
     {% endfor %}
+    <p>Need the full document? Visit the <a href="https://shahnameh-white-paper.gitbook.io/shahnameh-white-paper" class="external" target="_blank" rel="noopener">Shahnameh whitepaper on GitBook</a>.</p>
     <p><span data-i18n-en="Need the full document? Visit the" data-i18n-fa="برای مطالعه کامل سند مراجعه کنید به">Need the full document? Visit the</span> <a href="https://shahnameh-white-paper.gitbook.io/shahnameh-white-paper" class="external" target="_blank" rel="noopener" data-i18n-en="Shahnameh whitepaper on GitBook" data-i18n-fa="وایت‌پیپر شاهنامه در گیت‌بوک">Shahnameh whitepaper on GitBook</a>.</p>
 </section>
 {% endblock %}

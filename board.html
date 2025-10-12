@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8" />
@@ -19,6 +20,8 @@
             --accent-warm: #f97316;
         }
 
+        *, *::before, *::after {
+            box-sizing: border-box;
         [data-theme="light"] {
             --bg: #f7f8fb;
             --surface: rgba(255, 255, 255, 0.88);
@@ -34,6 +37,12 @@
             min-height: 100vh;
             font-family: 'Outfit', 'Segoe UI', system-ui, sans-serif;
             background: radial-gradient(circle at 20% 15%, rgba(56, 189, 248, 0.25), transparent 55%),
+                radial-gradient(circle at 80% 20%, rgba(249, 115, 22, 0.25), transparent 60%),
+                var(--bg);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
                 radial-gradient(circle at 80% 25%, rgba(249, 115, 22, 0.25), transparent 60%), var(--bg);
             color: var(--text);
             display: flex;
@@ -53,6 +62,7 @@
             padding: clamp(2rem, 4vw, 3rem);
             border-radius: 30px;
             background: var(--surface);
+            border: 1px solid rgba(248, 250, 252, 0.15);
             border: 1px solid rgba(248, 250, 252, 0.12);
             box-shadow: 0 25px 60px -25px rgba(7, 5, 18, 0.8);
             text-align: center;
@@ -68,6 +78,9 @@
             position: absolute;
             inset: 0;
             border-radius: inherit;
+            background: radial-gradient(circle at 25% 20%, rgba(56, 189, 248, 0.45), transparent 65%),
+                radial-gradient(circle at 80% 75%, rgba(249, 115, 22, 0.45), transparent 70%);
+            opacity: 0.4;
             background: radial-gradient(circle at 25% 20%, rgba(56, 189, 248, 0.35), transparent 65%),
                 radial-gradient(circle at 80% 75%, rgba(249, 115, 22, 0.35), transparent 70%);
             opacity: 0.45;
@@ -161,6 +174,38 @@
     </style>
 </head>
 <body>
+    <main class="play-area">
+        <h1>Simurgh Sliding Puzzle</h1>
+
+        {% if win %}
+            <div class="win-message">🎉 You assembled the crest of Rostam! 🎉</div>
+        {% endif %}
+
+        <table>
+            {% for row in board %}
+                <tr>
+                    {% for cell in row %}
+                        <td
+                            {% if cell == None %}class="empty"{% endif %}
+                            {% if cell != None %}onclick="location.href='/api/move/{{ forloop.parentloop.counter0 }}/{{ forloop.counter0 }}/'"{% endif %}
+                        >
+                            {{ cell|default:"" }}
+                        </td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+
+        <form action="/api/reset/" method="post">
+            {% csrf_token %}
+            <button type="submit">Reset the Puzzle</button>
+        </form>
+
+        <p class="instructions">
+            Swap tiles to restore the Shahnameh crest. Only tiles beside the moonlit gap will glide.
+            Reaching the triumphant pattern completes this side quest for your guild.
+        </p>
+    </main>
     {% include 'partials/site_header.html' %}
     <div class="play-wrapper">
         <main class="play-area">

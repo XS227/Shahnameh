@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="en">
 <html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
@@ -7,6 +8,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark light;
       href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Inter:wght@400;500;600&family=Vazirmatn:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
@@ -21,6 +28,8 @@
         --accent-warm: #f97316;
       }
 
+      *, *::before, *::after {
+        box-sizing: border-box;
       [data-theme="light"] {
         --bg: #f8fafc;
         --panel: rgba(255, 255, 255, 0.92);
@@ -94,6 +103,41 @@
 
       .widget-wrapper {
         position: relative;
+        display: grid;
+        gap: 1.5rem;
+        justify-items: center;
+      }
+
+      .status {
+        position: relative;
+        font-size: 0.9rem;
+        color: var(--muted);
+        min-height: 1.2em;
+      }
+
+      .status.success {
+        color: #4ade80;
+      }
+
+      .status.error {
+        color: #fda4af;
+      }
+
+      .safety-note {
+        position: relative;
+        margin-top: 1.75rem;
+        font-size: 0.85rem;
+        color: rgba(248, 250, 252, 0.65);
+      }
+
+      a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      a:hover,
+      a:focus {
+        color: var(--accent-warm);
         display: inline-flex;
         justify-content: center;
         width: 100%;
@@ -107,6 +151,56 @@
     </style>
   </head>
   <body>
+    <main>
+      <h1>Summon with Telegram</h1>
+      <p>Link your champion by signing in through the official @shahnameshbot gateway.</p>
+
+      <div class="widget-wrapper">
+        <script
+          async
+          src="https://telegram.org/js/telegram-widget.js?22"
+          data-telegram-login="shahnameshbot"
+          data-size="large"
+          data-userpic="false"
+          data-onauth="onTelegramAuth"
+          data-request-access="write"
+        ></script>
+        <div id="status" class="status" aria-live="polite"></div>
+      </div>
+
+      <p class="safety-note">
+        We never ask for private keys. Having trouble? <a href="mailto:support@shahnamehgamefi.ir">Contact support</a> and we will help.
+      </p>
+    </main>
+
+    <script>
+      async function onTelegramAuth(user) {
+        const statusEl = document.getElementById('status');
+        statusEl.textContent = 'Authenticating with the citadel...';
+        statusEl.className = 'status';
+
+        try {
+          const response = await fetch('/api/bot_login/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+          });
+
+          if (!response.ok) {
+            throw new Error('Telegram login failed');
+          }
+
+          const data = await response.json();
+          localStorage.setItem('authToken', data.token);
+          statusEl.textContent = 'All set! Redirecting to your guild hall...';
+          statusEl.className = 'status success';
+          window.location.href = data.redirect_url || '/dashboard/';
+        } catch (err) {
+          statusEl.textContent = `Login failed: ${err.message}`;
+          statusEl.className = 'status error';
+        }
     {% include 'partials/site_header.html' %}
     <div class="login-wrapper">
       <main>

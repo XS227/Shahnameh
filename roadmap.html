@@ -2,6 +2,18 @@
 {% block title %}{{ page_title }} · Shahnameh Knowledge Base{% endblock %}
 {% block content %}
 <section>
+    <h2>{{ page_title }}</h2>
+    <p>Season 2 doubles down on community-driven storytelling and competitive faction play. The roadmap below mirrors the live operations plan shared internally so everyone can rally around the same milestones.</p>
+</section>
+<section>
+    <h3>Milestones</h3>
+    {% for phase in season_two_roadmap %}
+    <div class="phase">
+        <strong>{{ phase.phase }}</strong>
+        <p>{{ phase.summary }}</p>
+        <ul>
+            {% for item in phase.items %}
+            <li><strong>{{ item.title }}:</strong> {{ item.description }}</li>
     <h2 data-i18n-en="{{ page_title }}" data-i18n-fa="{{ page_title_fa }}">{{ page_title }}</h2>
     <p data-i18n-en="{{ page_intro }}" data-i18n-fa="{{ page_intro_fa }}">{{ page_intro }}</p>
 </section>
@@ -23,6 +35,10 @@
     {% endfor %}
 </section>
 <section>
+    <h3>Operational Focus</h3>
+    <ul>
+        {% for focus in operational_focus %}
+        <li>{{ focus }}</li>
     <h3 data-i18n-en="Operational focus" data-i18n-fa="تمرکز اجرایی">Operational focus</h3>
     <ul>
         {% for focus in operational_focus %}
@@ -31,6 +47,10 @@
     </ul>
 </section>
 <section>
+    <h3>Community Programs</h3>
+    <ul>
+        {% for item in community_programs %}
+        <li>{{ item }}</li>
     <h3 data-i18n-en="Alignment cadence" data-i18n-fa="ریتم هم‌آهنگی">Alignment cadence</h3>
     <ul>
         {% for item in alignment_cadence %}
@@ -63,6 +83,11 @@
     </ul>
 </section>
 <section>
+    <h3>Additional Resources</h3>
+    <ul>
+        <li><a href="{% url 'whitepaper' %}">Season narrative context</a></li>
+        <li><a href="https://github.com/Shahnameh-TON" class="external" target="_blank" rel="noopener">Legacy repository reference</a></li>
+        <li><a href="/api/" class="external">Developer API documentation</a></li>
     <h3 data-i18n-en="Additional resources" data-i18n-fa="منابع بیشتر">Additional resources</h3>
     <ul>
         <li><a href="{% url 'whitepaper' %}" data-i18n-en="Season narrative context" data-i18n-fa="بستر روایی فصل">Season narrative context</a></li>

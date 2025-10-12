@@ -1,4 +1,9 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shahnameh Game | Web3 Strategy &amp; Community Hub</title>
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8" />
@@ -10,6 +15,22 @@
         href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Vazirmatn:wght@400;500;700&display=swap"
         rel="stylesheet"
     />
+    <style>
+        :root {
+            color-scheme: dark light;
+            --bg: #0b0915;
+            --bg-soft: rgba(21, 17, 45, 0.9);
+            --surface: rgba(22, 18, 58, 0.78);
+            --primary: #f97316;
+            --secondary: #38bdf8;
+            --highlight: #facc15;
+            --text: #f8fafc;
+            --text-muted: rgba(248, 250, 252, 0.78);
+            --glass: rgba(16, 13, 35, 0.65);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
     {% include 'partials/global_style.html' %}
     <style>
         :root {
@@ -43,6 +64,31 @@
         body {
             margin: 0;
             font-family: 'Outfit', 'Segoe UI', system-ui, sans-serif;
+            background: radial-gradient(circle at 15% 20%, rgba(248, 250, 252, 0.08), transparent 45%),
+                radial-gradient(circle at 85% 15%, rgba(56, 189, 248, 0.18), transparent 40%),
+                radial-gradient(circle at 70% 80%, rgba(249, 115, 22, 0.18), transparent 50%),
+                var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400"><defs><linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="%23f97316" stop-opacity="0.18"/><stop offset="100%" stop-color="%2338bdf8" stop-opacity="0.12"/></linearGradient></defs><g fill="none" stroke="url(%23g)" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 14" opacity="0.35"><path d="M30 120Q120 40 210 120T390 120"/><path d="M10 260Q140 170 260 260T410 260"/><path d="M40 360Q200 260 360 360"/></g><g fill="%23facc15" opacity="0.35"><circle cx="70" cy="90" r="2"/><circle cx="210" cy="60" r="3"/><circle cx="320" cy="140" r="2.5"/><circle cx="110" cy="220" r="3"/><circle cx="260" cy="320" r="2.5"/><circle cx="50" cy="310" r="2"/></g></svg>');
+            background-repeat: repeat;
+            mix-blend-mode: screen;
+            pointer-events: none;
+            opacity: 0.65;
+            z-index: 0;
+        }
+
+        header {
             background:
                 radial-gradient(circle at 12% 10%, rgba(56, 189, 248, 0.2), transparent 55%),
                 radial-gradient(circle at 88% 8%, rgba(192, 132, 252, 0.22), transparent 62%),
@@ -57,6 +103,28 @@
             overflow: hidden;
         }
 
+        .hero {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: clamp(3.5rem, 6vw, 5.5rem) clamp(1.5rem, 5vw, 3.5rem);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3.5rem;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 12% 10% auto 55%;
+            height: clamp(240px, 40vw, 420px);
+            background: radial-gradient(circle at 30% 30%, rgba(250, 204, 21, 0.8), transparent 65%),
+                radial-gradient(circle at 70% 70%, rgba(56, 189, 248, 0.6), transparent 70%);
+            filter: blur(45px);
+            opacity: 0.45;
+            pointer-events: none;
         section {
             padding: clamp(3rem, 5vw, 4.6rem) clamp(1.5rem, 6vw, 3.5rem);
         }
@@ -76,6 +144,18 @@
 
         .hero-copy h1 {
             font-family: 'Baloo 2', cursive;
+            font-size: clamp(3rem, 7vw, 4.5rem);
+            line-height: 1.08;
+            margin: 0 0 1.2rem;
+            color: var(--highlight);
+            text-shadow: 0 18px 45px rgba(14, 11, 31, 0.55);
+        }
+
+        .hero-copy p {
+            font-size: clamp(1.05rem, 2.3vw, 1.2rem);
+            color: var(--text-muted);
+            margin-bottom: 2.4rem;
+            max-width: 60ch;
             font-size: clamp(2.8rem, 6vw, 4.2rem);
             margin: 0 0 1.25rem;
             background: linear-gradient(120deg, var(--highlight), rgba(56, 189, 248, 0.95));
@@ -101,6 +181,28 @@
             display: inline-flex;
             align-items: center;
             gap: 0.6rem;
+            padding: 0.95rem 1.85rem;
+            border-radius: 999px;
+            background: var(--secondary);
+            color: #020617;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 150ms ease, box-shadow 200ms ease;
+            box-shadow: 0 18px 40px -15px rgba(56, 189, 248, 0.85);
+        }
+
+        .button svg {
+            width: 1.1em;
+            height: 1.1em;
+        }
+
+        .button.secondary {
+            background: transparent;
+            border: 2px solid rgba(248, 250, 252, 0.35);
+            color: var(--text);
+            box-shadow: none;
+            backdrop-filter: blur(10px);
+            background-color: rgba(8, 11, 27, 0.35);
             padding: 0.95rem 1.8rem;
             border-radius: 999px;
             background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
@@ -125,6 +227,8 @@
             right: clamp(1rem, 4vw, 3rem);
             display: inline-flex;
             gap: 0.5rem;
+            background: rgba(8, 11, 27, 0.55);
+            border: 1px solid rgba(148, 163, 184, 0.25);
             background: rgba(9, 14, 33, 0.65);
             border: 1px solid var(--card-border);
             border-radius: 999px;
@@ -152,6 +256,7 @@
         }
 
         .language-button.active {
+            background: var(--secondary);
             background: linear-gradient(135deg, rgba(56, 189, 248, 0.9), rgba(192, 132, 252, 0.9));
             color: #020617;
         }
@@ -159,11 +264,142 @@
         .button:hover,
         .button:focus-visible {
             transform: translateY(-3px);
+            box-shadow: 0 26px 48px -20px rgba(56, 189, 248, 0.95);
             box-shadow: 0 24px 52px -24px rgba(56, 189, 248, 0.95);
         }
 
         .button.secondary:hover,
         .button.secondary:focus-visible {
+            border-color: var(--secondary);
+            color: var(--secondary);
+        }
+
+        .hero-visual {
+            position: relative;
+            min-height: 360px;
+            border-radius: 36px;
+            overflow: hidden;
+            background: linear-gradient(145deg, rgba(56, 189, 248, 0.35), rgba(249, 115, 22, 0.3));
+            box-shadow: 0 25px 60px -25px rgba(12, 10, 31, 0.65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            isolation: isolate;
+        }
+
+        .hero-visual::before,
+        .hero-visual::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.25;
+        }
+
+        .hero-visual::before {
+            background-image: url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80');
+        }
+
+        .hero-visual::after {
+            mix-blend-mode: screen;
+            background: radial-gradient(circle at 25% 25%, rgba(250, 204, 21, 0.7), transparent 55%),
+                radial-gradient(circle at 80% 70%, rgba(56, 189, 248, 0.7), transparent 65%);
+        }
+
+        .hero-card {
+            position: relative;
+            width: min(340px, 78%);
+            padding: 2.2rem;
+            border-radius: 24px;
+            background: rgba(7, 11, 28, 0.76);
+            border: 1px solid rgba(248, 250, 252, 0.2);
+            box-shadow: 0 18px 45px -22px rgba(7, 11, 28, 0.9);
+            backdrop-filter: blur(16px);
+        }
+
+        .hero-card h2 {
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.3rem;
+            margin: 0 0 0.85rem;
+            color: var(--highlight);
+        }
+
+        .hero-card p {
+            margin: 0;
+            font-size: 0.98rem;
+            color: var(--text-muted);
+        }
+
+        .design-section {
+            position: relative;
+            padding: clamp(3rem, 6vw, 5rem) 0;
+        }
+
+        .design-header {
+            max-width: 78ch;
+            margin: 0 auto clamp(2rem, 5vw, 3rem);
+            text-align: center;
+        }
+
+        .design-header p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .design-grid {
+            display: grid;
+            gap: clamp(1.5rem, 4vw, 2.5rem);
+        }
+
+        @media (min-width: 900px) {
+            .design-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        .design-card {
+            position: relative;
+            padding: clamp(1.9rem, 4vw, 2.6rem);
+            border-radius: 28px;
+            background: rgba(9, 12, 28, 0.78);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            box-shadow: 0 22px 55px -28px rgba(7, 10, 28, 0.85);
+            backdrop-filter: blur(16px);
+            display: flex;
+            flex-direction: column;
+            gap: 1.4rem;
+        }
+
+        .design-media {
+            position: relative;
+            border-radius: 20px;
+            background: radial-gradient(circle at 30% 30%, rgba(250, 204, 21, 0.3), transparent 60%),
+                radial-gradient(circle at 70% 70%, rgba(56, 189, 248, 0.3), transparent 65%),
+                rgba(15, 23, 42, 0.75);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            padding: 1.6rem;
+            display: grid;
+            place-items: center;
+            min-height: 160px;
+        }
+
+        .design-media span {
+            font-size: clamp(2.4rem, 4vw, 3rem);
+        }
+
+        .design-card h3 {
+            margin: 0;
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.35rem;
+            color: var(--highlight);
+        }
+
+        .design-card p {
+            margin: 0;
+            color: var(--text-muted);
+            line-height: 1.7;
             border-color: rgba(56, 189, 248, 0.65);
             color: rgba(56, 189, 248, 0.95);
         }
@@ -228,6 +464,8 @@
 
         .transparency-section {
             position: relative;
+            background: linear-gradient(180deg, rgba(12, 9, 28, 0.85), rgba(8, 10, 26, 0.95));
+            border-block: 1px solid rgba(56, 189, 248, 0.12);
             background: linear-gradient(180deg, rgba(7, 11, 28, 0.92), rgba(5, 8, 22, 0.98));
             border-block: 1px solid var(--card-border);
         }
@@ -260,6 +498,10 @@
             position: relative;
             padding: clamp(1.8rem, 4vw, 2.4rem);
             border-radius: 28px;
+            background: rgba(9, 12, 28, 0.82);
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: 0 22px 55px -28px rgba(7, 10, 28, 0.85);
+            backdrop-filter: blur(16px);
             background: linear-gradient(155deg, rgba(10, 16, 40, 0.9), rgba(18, 28, 60, 0.7));
             border: 1px solid var(--card-border);
             box-shadow: 0 22px 55px -28px rgba(7, 10, 28, 0.85);
@@ -270,12 +512,14 @@
             margin: 0 0 0.75rem;
             font-family: 'Baloo 2', cursive;
             font-size: 1.3rem;
+            color: var(--secondary);
             color: var(--highlight);
         }
 
         .transparency-value {
             font-size: clamp(1.8rem, 4.5vw, 2.6rem);
             font-weight: 600;
+            color: var(--highlight);
             color: var(--secondary);
             margin: 0 0 0.85rem;
         }
@@ -291,12 +535,14 @@
             margin: 0 auto clamp(2rem, 5vw, 3rem);
             max-width: 80ch;
             font-size: 1.05rem;
+            color: rgba(248, 250, 252, 0.82);
             color: var(--muted);
             text-align: center;
             line-height: 1.8;
         }
 
         .mission-copy strong {
+            color: var(--secondary);
             color: var(--highlight);
         }
 
@@ -330,6 +576,8 @@
         }
 
         .reeal-card {
+            background: rgba(9, 12, 28, 0.78);
+            border: 1px solid rgba(148, 163, 184, 0.2);
             background: linear-gradient(155deg, rgba(10, 16, 38, 0.85), rgba(18, 28, 60, 0.65));
             border: 1px solid var(--card-border);
             border-radius: 28px;
@@ -414,6 +662,9 @@
 
         .chart-tabs {
             display: inline-flex;
+            background: rgba(8, 11, 27, 0.55);
+            border-radius: 999px;
+            border: 1px solid rgba(148, 163, 184, 0.18);
             background: rgba(8, 11, 27, 0.65);
             border-radius: 999px;
             border: 1px solid var(--card-border);
@@ -429,6 +680,7 @@
 
         .chart-tab.active {
             color: #020617;
+            background: var(--secondary);
             background: linear-gradient(135deg, rgba(56, 189, 248, 0.9), rgba(192, 132, 252, 0.9));
         }
 
@@ -440,6 +692,8 @@
 
         .community-section {
             padding: clamp(3rem, 6vw, 5rem) 0;
+            background: linear-gradient(180deg, rgba(12, 9, 28, 0.88), rgba(8, 10, 26, 0.92));
+            border-block: 1px solid rgba(56, 189, 248, 0.1);
             background: linear-gradient(180deg, rgba(7, 11, 30, 0.9), rgba(5, 8, 22, 0.96));
             border-block: 1px solid var(--card-border);
         }
@@ -468,6 +722,8 @@
             gap: 0.6rem;
             padding: 1rem 1.2rem;
             border-radius: 18px;
+            background: rgba(8, 11, 27, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.18);
             background: rgba(8, 11, 27, 0.72);
             border: 1px solid var(--card-border);
             color: var(--text);
@@ -479,6 +735,8 @@
         .social-link:hover,
         .social-link:focus-visible {
             transform: translateY(-3px);
+            border-color: var(--secondary);
+            box-shadow: 0 18px 40px -20px rgba(56, 189, 248, 0.75);
             border-color: rgba(56, 189, 248, 0.85);
             box-shadow: 0 18px 40px -20px rgba(56, 189, 248, 0.7);
         }
@@ -490,6 +748,7 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
+            background: rgba(56, 189, 248, 0.2);
             background: rgba(56, 189, 248, 0.18);
             color: var(--secondary);
             font-size: 0.95rem;
@@ -498,6 +757,8 @@
         .countdown-panel {
             border-radius: 28px;
             padding: clamp(2rem, 5vw, 2.8rem);
+            background: rgba(5, 8, 22, 0.8);
+            border: 1px solid rgba(56, 189, 248, 0.22);
             background: linear-gradient(160deg, rgba(6, 10, 28, 0.9), rgba(13, 19, 42, 0.7));
             border: 1px solid var(--card-border);
             box-shadow: 0 20px 48px -26px rgba(6, 9, 24, 0.85);
@@ -526,6 +787,8 @@
         .countdown-cell {
             padding: 1.2rem 1rem;
             border-radius: 24px;
+            background: rgba(15, 12, 32, 0.85);
+            border: 1px solid rgba(148, 163, 184, 0.18);
             background: rgba(15, 18, 42, 0.82);
             border: 1px solid var(--card-border);
             display: grid;
@@ -557,6 +820,119 @@
 
         .section-title {
             font-family: 'Baloo 2', cursive;
+            font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+            color: var(--highlight);
+            margin: 0 0 2.5rem;
+            text-align: center;
+            text-shadow: 0 12px 32px rgba(9, 7, 24, 0.6);
+        }
+
+        .feature-grid {
+            display: grid;
+            gap: 1.8rem;
+        }
+
+        @media (min-width: 720px) {
+            .feature-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        .feature-card {
+            position: relative;
+            padding: 1.8rem;
+            border-radius: 24px;
+            background: var(--glass);
+            border: 1px solid rgba(248, 250, 252, 0.16);
+            box-shadow: 0 18px 55px -28px rgba(6, 5, 19, 0.85);
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: "";
+            position: absolute;
+            width: 140%;
+            height: 140%;
+            top: -80%;
+            left: -40%;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.22), transparent 60%);
+            transform: rotate(8deg);
+            opacity: 0.9;
+        }
+
+        .feature-card h3 {
+            position: relative;
+            margin: 0 0 0.75rem;
+            font-family: 'Baloo 2', cursive;
+            font-size: 1.4rem;
+            color: var(--secondary);
+        }
+
+        .feature-card p,
+        .feature-card ul {
+            position: relative;
+            margin: 0;
+            color: var(--text-muted);
+            line-height: 1.7;
+            font-size: 0.98rem;
+        }
+
+        .feature-card ul {
+            padding-left: 1.1rem;
+            margin-top: 0.6rem;
+        }
+
+        .feature-card li {
+            margin-bottom: 0.4rem;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .timeline-step {
+            position: relative;
+            padding: 1.6rem 1.6rem 1.6rem 3.2rem;
+            border-radius: 22px;
+            background: rgba(11, 8, 32, 0.7);
+            border: 1px solid rgba(248, 250, 252, 0.14);
+            box-shadow: 0 18px 45px -25px rgba(9, 7, 24, 0.9);
+        }
+
+        .timeline-step::before {
+            content: attr(data-step);
+            position: absolute;
+            left: 1.1rem;
+            top: 1.3rem;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #020617;
+            font-weight: 700;
+            display: grid;
+            place-items: center;
+            font-family: 'Baloo 2', cursive;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 1rem 4rem;
+            color: rgba(248, 250, 252, 0.65);
+            font-size: 0.95rem;
+        }
+
+        footer a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover,
+        footer a:focus {
+            color: var(--highlight);
             text-align: center;
             font-size: clamp(2rem, 4.5vw, 2.8rem);
             margin: 0 0 1rem;
@@ -684,6 +1060,8 @@
 
         body[dir='rtl'] .hero-copy,
         body[dir='rtl'] .hero-card,
+        body[dir='rtl'] .design-header,
+        body[dir='rtl'] .design-card,
         body[dir='rtl'] .transparency-header,
         body[dir='rtl'] .mission-copy,
         body[dir='rtl'] .countdown-panel,
@@ -726,6 +1104,22 @@
 
         .intel-section {
             position: relative;
+            margin: 4.5rem auto;
+            padding: clamp(2.8rem, 5vw, 3.6rem);
+            border-radius: 32px;
+            background: linear-gradient(160deg, rgba(9, 13, 32, 0.9), rgba(22, 32, 64, 0.65));
+            border: 1px solid rgba(56, 189, 248, 0.22);
+            box-shadow: 0 28px 60px -30px rgba(2, 6, 23, 0.8);
+            overflow: hidden;
+        }
+
+        .intel-section::before,
+        .intel-section::after {
+            content: '';
+            position: absolute;
+            pointer-events: none;
+            filter: blur(40px);
+            opacity: 0.35;
             overflow: hidden;
         }
 
@@ -753,6 +1147,81 @@
             bottom: -110px;
             left: -60px;
             background: radial-gradient(circle, rgba(250, 204, 21, 0.6), transparent 60%);
+        }
+
+        .intel-header {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-bottom: 2.2rem;
+        }
+
+        .intel-header h2 {
+            font-family: 'Baloo 2', cursive;
+            font-size: clamp(2.1rem, 4vw, 2.8rem);
+            color: var(--highlight);
+            margin: 0;
+        }
+
+        .intel-header p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 60ch;
+        }
+
+        .intel-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.4rem;
+        }
+
+        .intel-card {
+            padding: 1.8rem;
+            border-radius: 24px;
+            background: rgba(8, 12, 28, 0.8);
+            border: 1px solid rgba(248, 250, 252, 0.12);
+            backdrop-filter: blur(14px);
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            min-height: 180px;
+        }
+
+        .intel-card h3 {
+            font-size: 1.05rem;
+            color: var(--secondary);
+            margin: 0;
+        }
+
+        .intel-value {
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--highlight);
+        }
+
+        .intel-metric {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .intel-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+            padding: 0.35rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--secondary);
+            border: 1px solid rgba(56, 189, 248, 0.35);
         }
 
         }
@@ -823,6 +1292,26 @@
             border-color: rgba(248, 113, 113, 0.4);
         }
 
+        .intel-footer {
+            margin-top: 2rem;
+            font-size: 0.8rem;
+            color: rgba(248, 250, 252, 0.55);
+        }
+
+        .intel-footer a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        .intel-footer a:hover,
+        .intel-footer a:focus-visible {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 640px) {
+            .intel-card {
+                padding: 1.5rem;
+            }
         .timeline-step p {
             margin: 0 0 1rem;
             color: var(--muted);
@@ -846,11 +1335,37 @@
     </style>
 </head>
 <body>
+    <header>
     <main class="landing">
         <div class="language-switcher" role="group" aria-label="Language toggle">
             <button class="language-button active" type="button" data-lang="en">EN</button>
             <button class="language-button" type="button" data-lang="fa">فا</button>
         </div>
+        <div class="hero">
+            <div class="hero-copy">
+                <h1 data-i18n="hero.title">Forge Legends on the Shahnameh Frontier</h1>
+                <p data-i18n="hero.lead" data-i18n-format="html">
+                    Rally your guild, grow the kingdom and chart a path through the myths of ancient Persia. Honoured as
+                    the <strong>third Editors' Choice</strong> during our first phase, Shahnameh Game blends playful strategy with
+                    Web3 stewardship so every decision leaves a mark on the eternal chronicle.
+                </p>
+                <p data-i18n="hero.mission" data-i18n-format="html">
+                    <strong>We are set on revolutionising the national economy of Iran through the gaming industry</strong>,
+                    creating equitable rails where player creativity, culture and capital compound for communities at
+                    home and across the diaspora.
+                </p>
+                <div class="cta-row">
+                    <a class="button" href="/api/">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 6.75h.008v.008H11.25V6.75zM11.25 9h.008v.008H11.25V9zm0 2.25h.008v.008H11.25V11.25zm0 2.25h.008v.008H11.25V13.5zm0 2.25h.008v.008H11.25V15.75zm0 2.25h.008v.008H11.25V18zm2.25-11.25h.008v.008H13.5V6.75zm0 2.25h.008v.008H13.5V9zm0 2.25h.008v.008H13.5V11.25zm0 2.25h.008v.008H13.5V13.5zm0 2.25h.008v.008H13.5V15.75zm0 2.25h.008v.008H13.5V18zm2.25-11.25h.008v.008H15.75V6.75zm0 2.25h.008v.008H15.75V9zm0 2.25h.008v.008H15.75V11.25zm0 2.25h.008v.008H15.75V13.5zm0 2.25h.008v.008H15.75V15.75zm0 2.25h.008v.008H15.75V18z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l.72-.72a1.5 1.5 0 011.06-.44h7.5A1.5 1.5 0 0117.5 7.5v9a1.5 1.5 0 01-1.5 1.5h-7.5a1.5 1.5 0 01-1.5-1.5V7.5z" />
+                        </svg>
+                        <span data-i18n="hero.cta.primary" data-i18n-format="text">Explore the API</span>
+                    </a>
+                    <a class="button secondary" href="{% url 'whitepaper' %}">
+                        <span data-i18n="hero.cta.secondary" data-i18n-format="text">Read the Whitepaper</span>
+                    </a>
+                </div>
         <section class="hero">
             <div class="hero-inner">
                 <div class="hero-copy">
@@ -885,6 +1400,52 @@
                         Chart expeditions, tame mythical familiars and unlock cooperative quests to rebuild the House of Knowledge.
                         Every completed saga reshapes the shared roadmap.
                     </p>
+                </div>
+            </div>
+        </div>
+</header>
+
+    <section class="design-section">
+        <div class="section-inner">
+            <div class="design-header">
+                <h2 class="section-title" data-i18n="design.title">Game Design Blueprint</h2>
+                <p data-i18n="design.lead">
+                    Explore how Shahnameh blends tactical conquest, cultural storytelling and collaborative worldbuilding
+                    into a living Web3 experience crafted for guilds and solo adventurers alike.
+                </p>
+            </div>
+            <div class="design-grid">
+                <article class="design-card">
+                    <div class="design-media" aria-hidden="true">
+                        <span>🗺️</span>
+                    </div>
+                    <h3 data-i18n="design.cards.world">Living World Layers</h3>
+                    <p data-i18n="design.cards.worldBody">
+                        Dynamic regional control, procedurally refreshed quests and seasonal map shifts ensure every
+                        campaign feels bespoke to your guild's legend.
+                    </p>
+                </article>
+                <article class="design-card">
+                    <div class="design-media" aria-hidden="true">
+                        <span>🛡️</span>
+                    </div>
+                    <h3 data-i18n="design.cards.progression">Hero Progression Paths</h3>
+                    <p data-i18n="design.cards.progressionBody">
+                        Fuse narrative choices with NFT-backed artifacts to unlock class specialisations, shared buffs and
+                        reputation tiers across the Shahnameh universe.
+                    </p>
+                </article>
+                <article class="design-card">
+                    <div class="design-media" aria-hidden="true">
+                        <span>🤝</span>
+                    </div>
+                    <h3 data-i18n="design.cards.coop">Co-op Systems</h3>
+                    <p data-i18n="design.cards.coopBody">
+                        Collaborative raid puzzles, treasury pooling and cross-guild diplomacy events keep strategy and
+                        social play woven together from day one.
+                    </p>
+                </article>
+            </div>
                     <div class="cta-row">
                         <a class="button" href="{% url 'whitepaper' %}" data-i18n="hero.card.ctaVision" data-i18n-format="text">Read the vision</a>
                         <a class="button secondary" href="{% url 'season2-roadmap' %}" data-i18n="hero.card.ctaRoadmap" data-i18n-format="text">Season 2 roadmap</a>
@@ -1293,6 +1854,18 @@
                 'hero.card.title': 'فصل داستانی ۲: سپیده‌دم سیمرغ',
                 'hero.card.body':
                     'ماموریت‌ها را طرح‌ریزی کنید، یاران اسطوره‌ای را رام نمایید و ماموریت‌های تعاونی را برای بازسازی خانه دانش آزاد کنید. هر فصل کامل‌شده مسیر مشترک را دگرگون می‌کند.',
+                'design.title': 'نقشه طراحی بازی',
+                'design.lead':
+                    'کاوش کنید چگونه شاهنامه فتح تاکتیکی، روایت فرهنگی و ساخت جهان مشارکتی را برای تجربه‌ای زنده وب۳ در کنار گیلدها و ماجراجویان تنها در هم می‌آمیزد.',
+                'design.cards.world': 'لایه‌های دنیای زنده',
+                'design.cards.worldBody':
+                    'کنترل پویا بر مناطق، ماموریت‌های تازه‌سازی‌شده و تغییرات فصلی نقشه هر کارزار را متناسب با افسانه گیلد شما می‌سازد.',
+                'design.cards.progression': 'مسیرهای پیشرفت قهرمان',
+                'design.cards.progressionBody':
+                    'انتخاب‌های روایی را با آثار پشتیبانی‌شده توسط NFT ترکیب کنید تا تخصص کلاس‌ها، تقویت‌های مشترک و رده‌بندی اعتبار در جهان شاهنامه را آزاد کنید.',
+                'design.cards.coop': 'سیستم‌های همکاری',
+                'design.cards.coopBody':
+                    'معماهای یورش تعاونی، تجمیع خزانه و رویدادهای دیپلماسی میان گیلدی از روز اول استراتژی و بازی اجتماعی را در هم می‌تند.',
                 'hero.card.ctaVision': 'مطالعه چشم‌انداز',
                 'hero.card.ctaRoadmap': 'نقشه راه فصل دوم',
                 'hero.pulse.title': 'نبض جامعه REAL',

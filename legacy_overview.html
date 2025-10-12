@@ -2,6 +2,18 @@
 {% block title %}{{ page_title }} · Shahnameh Knowledge Base{% endblock %}
 {% block content %}
 <section>
+    <h2>{{ page_title }}</h2>
+    <p>{{ intro }}</p>
+</section>
+<section>
+    <h3>Feature Pillars</h3>
+    <div class="grid columns-2">
+        {% for group in feature_groups %}
+        <div class="phase">
+            <strong>{{ group.title }}</strong>
+            <ul>
+                {% for item in group.items %}
+                <li>{{ item }}</li>
     <h2 data-i18n-en="Project snapshot" data-i18n-fa="تصویر کلی پروژه">Project snapshot</h2>
     <p data-i18n-en="{{ intro }}" data-i18n-fa="{{ intro_fa }}">{{ intro }}</p>
 </section>
@@ -21,6 +33,10 @@
     </div>
 </section>
 <section>
+    <h3>Technical Highlights</h3>
+    <ul>
+        {% for highlight in technical_highlights %}
+        <li>{{ highlight }}</li>
     <h3 data-i18n-en="Technical highlights" data-i18n-fa="نکات فنی برجسته">Technical highlights</h3>
     <ul>
         {% for highlight in technical_highlights %}
@@ -29,6 +45,10 @@
     </ul>
 </section>
 <section>
+    <h3>Migration Notes</h3>
+    <ul>
+        {% for note in migration_notes %}
+        <li>{{ note }}</li>
     <h3 data-i18n-en="Migration notes" data-i18n-fa="نکات مهاجرت">Migration notes</h3>
     <ul>
         {% for note in migration_notes %}
@@ -37,6 +57,11 @@
     </ul>
 </section>
 <section>
+    <h3>Useful Links</h3>
+    <ul>
+        <li><a href="https://github.com/Shahnameh-TON" class="external" target="_blank" rel="noopener">Legacy GitHub Organisation</a></li>
+        <li><a href="/api/" class="external">Live API Explorer</a></li>
+        <li><a href="{% url 'whitepaper' %}">Whitepaper Digest</a></li>
     <h3 data-i18n-en="Repository timeline" data-i18n-fa="خط زمانی مخزن">Repository timeline</h3>
     <ol>
         {% for milestone in repository_timeline %}
