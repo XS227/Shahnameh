@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import (RegisterView, profile_view,telegram_login_page, bot_login, claim_cipher,
                     CharacterListView, DailyTaskListView, CompleteTaskView, UserCharacterListCreateView,
+                    UserCharacterCoinUpdateView,
                     SettingsAPIView, MiningActionView, MiningView, DailyHafezTaskView, complete_hafez_task,
                     AllTasksStatusView, BootsEnegry, UnlockSkinView,BankAccountDetailAPIView, BankAccountListCreateAPIView,
                     CreateBankAccountView, puzzle_board
@@ -25,7 +26,7 @@ urlpatterns = [
     path('tasks/', DailyTaskListView.as_view(), name='daily-tasks'),
     path('tasks/<int:task_id>/complete/', CompleteTaskView.as_view(), name='complete-task'),
     path('user_characters/', UserCharacterListCreateView.as_view(), name='character-list-create'),
-    path('user_characters/<int:pk>/increase_coins/', UserCharacterListCreateView.as_view()),
+    path('user_characters/<int:pk>/increase_coins/', UserCharacterCoinUpdateView.as_view(), name='character-increase-coins'),
     path('settings/', SettingsAPIView.as_view(), name='settings-api'),
     path("send-message/", SendTelegramMessageView.as_view(), name="send-message"),
     path("chat-history/<int:user_id>/", MessageHistoryView.as_view(), name="chat-history"),

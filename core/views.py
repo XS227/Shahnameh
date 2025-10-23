@@ -28,10 +28,17 @@ try:  # pragma: no cover - optional web3 dependency
 except ModuleNotFoundError:  # pragma: no cover - degrade gracefully in local shells
     Web3 = None
 
-from .serializers import (RegisterSerializer, CharacterSerializer,
-                          UserCharaterSerializer, TaskSerializer,UserCharaterSerializer,
-                          SettingsSerializer,MiningCardSerializer,HafizReadingSerializer,
-                          BankSerializer, BankAccountSerializer)
+from .serializers import (
+    RegisterSerializer,
+    CharacterSerializer,
+    UserCharaterSerializer,
+    TaskSerializer,
+    SettingsSerializer,
+    MiningCardSerializer,
+    HafizReadingSerializer,
+    BankSerializer,
+    BankAccountSerializer,
+)
 from .utils import verify_telegram_auth
 from . import models
 import random
@@ -1120,7 +1127,7 @@ class CharacterListView(APIView):
 
 class UserCharaterCreateAPIView(APIView):
     def post(self, request):
-        serializer = UserCharaterSerializer(data=request.data)
+        serializer = UserCharaterSerializer(data=request.data, context={"request": request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -1227,19 +1234,38 @@ class CompleteTaskView(APIView):
 class UserCharacterListCreateView(APIView):
     def get(self, request):
         characters = models.UserCharater.objects.all()
-        serializer = UserCharaterSerializer(characters, many=True)
+        serializer = UserCharaterSerializer(characters, many=True, context={"request": request})
         return Response(serializer.data)
-    
+
+    def post(self, request):
+        serializer = UserCharaterSerializer(data=request.data, context={"request": request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserCharacterCoinUpdateView(APIView):
     def post(self, request, pk):
         try:
             character = models.UserCharater.objects.get(id=pk)
-            amount = request.data.get("amount", 0)
-            character.coins = (character.coins or 0) + int(amount)
-            character.engry = (character.engry) - int(amount)
-            character.save()
-            return Response(UserCharaterSerializer(character).data, status=status.HTTP_200_OK)
         except models.UserCharater.DoesNotExist:
             return Response({"error": "Character not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        try:
+            amount = int(request.data.get("amount", 0))
+        except (TypeError, ValueError):
+            return Response({"error": "Invalid amount"}, status=status.HTTP_400_BAD_REQUEST)
+
+        if amount < 0:
+            return Response({"error": "Amount must be positive"}, status=status.HTTP_400_BAD_REQUEST)
+
+        character.coins = (character.coins or 0) + amount
+        character.engry = max((character.engry or 0) - amount, 0)
+        character.save(update_fields=["coins", "engry"])
+
+        serializer = UserCharaterSerializer(character, context={"request": request})
+        return Response(serializer.data, status=status.HTTP_200_OK)
         
 
 class SettingsAPIView(APIView):
